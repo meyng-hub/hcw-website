@@ -1,0 +1,120 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import { IMPACT_STATS } from "@/lib/constants";
+import { Trophy, Users, Heart, Layers } from "lucide-react";
+
+function useCountUp(target: number, duration = 2000, started: boolean) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    if (!started) return;
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += step;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+    return () => clearInterval(timer);
+  }, [target, duration, started]);
+  return count;
+}
+
+function StatCard({
+  value,
+  label,
+  icon: Icon,
+  suffix = "",
+  started,
+}: {
+  value: number;
+  label: string;
+  icon: React.ElementType;
+  suffix?: string;
+  started: boolean;
+}) {
+  const count = useCountUp(value, 2200, started);
+  return (
+    <div className="flex flex-col items-center rounded-2xl bg-white p-8 shadow-sm ring-1 ring-teal-100 hover:shadow-md hover:ring-teal-200 transition-all">
+      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-teal-50 text-teal-600">
+        <Icon className="h-7 w-7" aria-hidden="true" />
+      </div>
+      <div className="font-serif text-4xl font-bold text-charcoal-900 tabular-nums">
+        {count.toLocaleString()}
+        {suffix}
+      </div>
+      <div className="mt-2 text-center text-sm text-gray-500">{label}</div>
+    </div>
+  );
+}
+
+export default function ImpactCounter() {
+  const t = useTranslations("impact");
+  const ref = useRef<HTMLDivElement>(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setStarted(true);
+      },
+      { threshold: 0.3 },
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={ref}
+      className="bg-cream-50 py-24"
+      aria-labelledby="impact-heading"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <h2
+            id="impact-heading"
+            className="font-serif text-3xl font-bold text-charcoal-900 sm:text-4xl"
+          >
+            {t("title")}
+          </h2>
+          <p className="mt-3 text-sm text-gray-500">{t("updated")}</p>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" role="list">
+          <StatCard
+            value={IMPACT_STATS.prizes}
+            label={t("prizes")}
+            icon={Trophy}
+            started={started}
+          />
+          <StatCard
+            value={IMPACT_STATS.students}
+            label={t("students")}
+            icon={Users}
+            started={started}
+            suffix="+"
+          />
+          <StatCard
+            value={IMPACT_STATS.donations}
+            label={t("donations")}
+            icon={Heart}
+            started={started}
+            suffix="+"
+          />
+          <StatCard
+            value={IMPACT_STATS.projects}
+            label={t("projects")}
+            icon={Layers}
+            started={started}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}

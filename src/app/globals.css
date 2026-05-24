@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #0d6e6e;
+  --color-accent: #f5a623;
+  --color-cream: #fdf8f0;
+  --color-dark: #1c1c2e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-dark);
+}
+
+/* Custom selection color */
+::selection {
+  background-color: #0d6e6e;
+  color: white;
+}
+
+/* Focus ring — accessible */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Donation thermometer fill animation */
+@keyframes fillBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--fill-width);
+  }
+}
+
+.thermometer-fill {
+  animation: fillBar 1.5s ease-out forwards;
+}

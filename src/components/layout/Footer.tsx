@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { MessageCircle, Heart, Send } from "lucide-react";
@@ -99,8 +100,13 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1">
             <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-600 font-serif text-lg font-bold text-white">
-                H
+              <div className="relative h-10 w-16">
+                <Image
+                  src="/images/hcw-logo.png"
+                  alt="HCW logo"
+                  fill
+                  className="object-contain brightness-0 invert"
+                />
               </div>
               <span className="font-serif text-xl font-semibold">HCW</span>
             </div>

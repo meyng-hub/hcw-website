@@ -1,22 +1,31 @@
+import Image from "next/image";
 import Link from "next/link";
 import { getLocale } from "next-intl/server";
-import { ExternalLink } from "lucide-react";
 
 const PARTNERS = [
   {
-    name: "MEYNG",
-    url: "https://meyng.com",
-    desc: "Partenaire technologique / Technology partner",
+    name: "Kaïkelem",
+    logo: "/images/partner-kaikelem.png",
+    url: "#",
+    bg: "bg-white",
   },
   {
     name: "WEIRAM",
+    logo: "/images/partner-weiram.jpg",
     url: "#",
-    desc: "Partenaire associatif / Associate partner",
+    bg: "bg-white",
   },
   {
-    name: "KAIKELEM",
-    url: "#",
-    desc: "Programme solidarité / Solidarity programme",
+    name: "MEYNG",
+    logo: "/images/partner-meyng.jpg",
+    url: "https://meyng.com",
+    bg: "bg-gray-900",
+  },
+  {
+    name: "Solidatech",
+    logo: "/images/partner-solidatech.png",
+    url: "https://www.solidatech.fr",
+    bg: "bg-white",
   },
 ];
 
@@ -25,47 +34,41 @@ export default async function PartnersStrip() {
 
   return (
     <section
-      className="bg-cream-50 py-20 border-t border-gray-100"
-      aria-labelledby="partners-heading"
+      className="bg-gray-50 py-16 border-t border-gray-100"
+      aria-label="Partenaires"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2
-            id="partners-heading"
-            className="text-sm font-semibold uppercase tracking-widest text-gray-400"
-          >
-            {locale === "fr" ? "Ils nous font confiance" : "Our partners"}
-          </h2>
-        </div>
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-10">
+          {locale === "fr" ? "Ils nous font confiance" : "They trust us"}
+        </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
-          {PARTNERS.map(({ name, url, desc }) => (
+        <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16">
+          {PARTNERS.map((partner) => (
             <a
-              key={name}
-              href={url}
-              target={url !== "#" ? "_blank" : undefined}
+              key={partner.name}
+              href={partner.url}
+              target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-gray-400 hover:text-teal-600 transition-colors"
-              aria-label={desc}
+              aria-label={partner.name}
+              className={`group relative flex h-16 w-36 items-center justify-center rounded-xl p-3 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5 ${partner.bg}`}
             >
-              <span className="font-serif text-2xl font-bold tracking-tight">
-                {name}
-              </span>
-              {url !== "#" && (
-                <ExternalLink
-                  className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity"
-                  aria-hidden="true"
+              <div className="relative h-full w-full">
+                <Image
+                  src={partner.logo}
+                  alt={`${partner.name} — partenaire HCW`}
+                  fill
+                  className="object-contain"
+                  sizes="144px"
                 />
-              )}
+              </div>
             </a>
           ))}
         </div>
 
-        {/* Become a partner CTA */}
-        <div className="mt-12 text-center">
+        <div className="text-center mt-10">
           <Link
             href={`/${locale}/partners`}
-            className="text-sm font-medium text-teal-600 hover:text-teal-800 underline underline-offset-4 transition-colors"
+            className="text-sm text-teal-600 font-medium hover:text-teal-700 hover:underline transition-colors"
           >
             {locale === "fr" ? "Devenir partenaire →" : "Become a partner →"}
           </Link>

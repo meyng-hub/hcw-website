@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
@@ -55,8 +56,14 @@ export default function Navbar() {
           className="flex items-center gap-2 focus-visible:outline-teal-600"
           aria-label="HCW — retour à l'accueil"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-600 text-white font-serif font-bold text-lg">
-            H
+          <div className="relative h-10 w-16">
+            <Image
+              src="/images/hcw-logo.png"
+              alt="HCW logo"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
           <span
             className={`font-serif text-xl font-semibold tracking-tight ${

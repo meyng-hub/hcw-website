@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { IMPACT_STATS } from "@/lib/constants";
 import { Trophy, Users, Heart, Layers } from "lucide-react";
@@ -72,10 +73,20 @@ export default function ImpactCounter() {
   return (
     <section
       ref={ref}
-      className="bg-cream-50 py-24"
+      className="relative overflow-hidden py-24"
       aria-labelledby="impact-heading"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* Subtle classroom photo background */}
+      <Image
+        src="/images/hero-classroom.jpg"
+        alt=""
+        fill
+        className="object-cover object-center opacity-10"
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 bg-cream-50/90" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
           <h2
             id="impact-heading"

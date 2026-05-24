@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 import Link from "next/link";
 import {
   BookOpen,
@@ -304,28 +305,44 @@ export default async function AboutPage({
             className="relative border-l-2 border-teal-200 pl-8 space-y-10"
             aria-label={isFr ? "Chronologie HCW" : "HCW timeline"}
           >
-            {TIMELINE.map((item, idx) => (
-              <li key={item.year} className="relative">
-                {/* dot */}
-                <span
-                  className="absolute -left-[41px] flex h-6 w-6 items-center justify-center rounded-full border-2 border-teal-600 bg-white"
-                  aria-hidden="true"
-                >
+            {TIMELINE.map((item, idx) => {
+              const isAward = item.year === 2024;
+              const isLast = idx === TIMELINE.length - 1;
+              return (
+                <li key={item.year} className="relative">
+                  {/* dot */}
                   <span
-                    className={`h-2.5 w-2.5 rounded-full ${idx === TIMELINE.length - 1 ? "bg-amber-500" : "bg-teal-600"}`}
-                  />
-                </span>
-                <time
-                  dateTime={String(item.year)}
-                  className="mb-1 block text-xs font-bold uppercase tracking-wider text-teal-600"
-                >
-                  {item.year}
-                </time>
-                <p className="text-base text-charcoal-900">
-                  {isFr ? item.fr : item.en}
-                </p>
-              </li>
-            ))}
+                    className={`absolute -left-[41px] flex h-6 w-6 items-center justify-center rounded-full border-2 bg-white ${isAward ? "border-amber-500" : "border-teal-600"}`}
+                    aria-hidden="true"
+                  >
+                    <span
+                      className={`h-2.5 w-2.5 rounded-full ${isLast ? "bg-amber-500" : isAward ? "bg-amber-500" : "bg-teal-600"}`}
+                    />
+                  </span>
+                  <time
+                    dateTime={String(item.year)}
+                    className={`mb-1 block text-xs font-bold uppercase tracking-wider ${isAward ? "text-amber-600" : "text-teal-600"}`}
+                  >
+                    {item.year}
+                  </time>
+                  {isAward ? (
+                    <div className="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 flex items-start gap-3">
+                      <Award
+                        className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-500"
+                        aria-hidden="true"
+                      />
+                      <p className="text-base font-semibold text-amber-900">
+                        {isFr ? item.fr : item.en}
+                      </p>
+                    </div>
+                  ) : (
+                    <p className="text-base text-charcoal-900">
+                      {isFr ? item.fr : item.en}
+                    </p>
+                  )}
+                </li>
+              );
+            })}
           </ol>
         </div>
       </section>
@@ -346,6 +363,29 @@ export default async function AboutPage({
                 ? "Des personnes engagées, portées par la conviction que l'éducation change le monde."
                 : "Dedicated people driven by the conviction that education changes the world."}
             </p>
+          </div>
+
+          {/* Team community photo */}
+          <div className="mb-12 overflow-hidden rounded-2xl shadow-md">
+            <figure>
+              <Image
+                src="/images/team-community.jpg"
+                alt={
+                  isFr
+                    ? "L'équipe HCW et partenaires communautaires à Bangui"
+                    : "HCW team and community partners in Bangui"
+                }
+                width={1200}
+                height={600}
+                className="w-full object-cover"
+                priority
+              />
+              <figcaption className="bg-charcoal-900 px-6 py-3 text-center text-sm text-gray-300">
+                {isFr
+                  ? "Notre équipe à Bangui, République Centrafricaine"
+                  : "Our team in Bangui, Central African Republic"}
+              </figcaption>
+            </figure>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

@@ -7,6 +7,7 @@ import ProjectsPreview from "@/components/sections/ProjectsPreview";
 import DonateSection from "@/components/sections/DonateSection";
 import NewsPreview from "@/components/sections/NewsPreview";
 import PartnersStrip from "@/components/sections/PartnersStrip";
+import PhotoGallery from "@/components/sections/PhotoGallery";
 
 export async function generateMetadata({
   params,
@@ -26,6 +27,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <ImpactCounter />
+      <PhotoGallery />
       <CampaignProgress />
       <ProjectsPreview />
       <DonateSection />

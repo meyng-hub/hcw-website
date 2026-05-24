@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { ArrowRight, MapPin } from "lucide-react";
 import { PROJECTS } from "@/lib/constants";
@@ -13,12 +14,13 @@ const CATEGORY_COLORS: Record<string, string> = {
   solidarity: "bg-green-100 text-green-700",
 };
 
-const CATEGORY_EMOJI: Record<string, string> = {
-  education: "📚",
-  girls: "👩‍🎓",
-  digital: "💻",
-  culture: "🎭",
-  solidarity: "🤝",
+const PROJECT_IMAGES: Record<string, string> = {
+  "endara-challenge": "/images/endara-students.png",
+  "empowering-girls": "/images/project-girls.jpg",
+  "fighting-illiteracy": "/images/hero-classroom.jpg",
+  "tolerance-fair-play": "/images/project-kaikelem.jpg",
+  kaikelem: "/images/project-girls.jpg",
+  "digital-inclusion": "/images/endara-students.png",
 };
 
 export default function ProjectsPreview() {
@@ -54,29 +56,41 @@ export default function ProjectsPreview() {
           {preview.map((project) => (
             <article
               key={project.id}
-              className="group relative overflow-hidden rounded-2xl bg-cream-50 ring-1 ring-gray-100 transition-all hover:shadow-lg hover:ring-teal-200"
+              className="group overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow"
             >
-              {/* Image placeholder — replace with real Sanity image */}
-              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-teal-100 to-teal-200">
-                <div className="absolute inset-0 flex items-center justify-center text-5xl">
-                  {CATEGORY_EMOJI[project.category]}
+              {/* Image top — 60% height */}
+              <div className="relative h-52 overflow-hidden">
+                <Image
+                  src={
+                    PROJECT_IMAGES[project.id] ?? "/images/hero-classroom.jpg"
+                  }
+                  alt={locale === "fr" ? project.titleFr : project.titleEn}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                {/* Overlay for contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+
+                {/* Category badge overlaid on image */}
+                <div className="absolute top-3 left-3">
+                  <span
+                    className={`rounded-full px-3 py-1 text-xs font-semibold shadow-sm ${CATEGORY_COLORS[project.category]}`}
+                  >
+                    {t(`filter_${project.category}` as Parameters<typeof t>[0])}
+                  </span>
                 </div>
+
                 {/* Status badge */}
                 <span className="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-teal-700 shadow-sm">
                   ● {t("status_active")}
                 </span>
               </div>
 
+              {/* Text content */}
               <div className="p-6">
-                {/* Category */}
-                <span
-                  className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${CATEGORY_COLORS[project.category]}`}
-                >
-                  {t(`filter_${project.category}` as Parameters<typeof t>[0])}
-                </span>
-
                 {/* Title */}
-                <h3 className="mt-3 font-serif text-xl font-semibold text-charcoal-900 group-hover:text-teal-700 transition-colors">
+                <h3 className="font-serif text-xl font-semibold text-charcoal-900 group-hover:text-teal-700 transition-colors">
                   {locale === "fr" ? project.titleFr : project.titleEn}
                 </h3>
 

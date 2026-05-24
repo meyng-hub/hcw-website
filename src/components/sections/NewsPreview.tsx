@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { ArrowRight, Calendar } from "lucide-react";
 
@@ -45,6 +46,12 @@ const RECENT_NEWS = [
   },
 ];
 
+const ARTICLE_IMAGES = [
+  "/images/endara-students.png",
+  "/images/project-girls.jpg",
+  "/images/hero-classroom.jpg",
+];
+
 function formatDate(dateStr: string, locale: string) {
   return new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : "en-GB", {
     year: "numeric",
@@ -80,16 +87,21 @@ export default async function NewsPreview() {
         </div>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {RECENT_NEWS.map((article) => (
+          {RECENT_NEWS.map((article, index) => (
             <article
               key={article.id}
               className="group flex flex-col rounded-2xl bg-cream-50 ring-1 ring-gray-100 overflow-hidden hover:shadow-md hover:ring-teal-200 transition-all"
             >
-              {/* Color strip header */}
-              <div
-                className="h-2 w-full bg-gradient-to-r from-teal-500 to-teal-700"
-                aria-hidden="true"
-              />
+              {/* Photo header */}
+              <div className="relative h-44 overflow-hidden">
+                <Image
+                  src={ARTICLE_IMAGES[index % ARTICLE_IMAGES.length]}
+                  alt={locale === "fr" ? article.titleFr : article.titleEn}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
 
               <div className="flex flex-1 flex-col p-6">
                 <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">

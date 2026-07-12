@@ -18,7 +18,11 @@
     "subheadline": "Depuis 2009, HCW œuvre pour l'égalité éducative en Afrique centrale. Chaque don ouvre une porte à un enfant.",
     "cta_donate": "Faire un don",
     "cta_projects": "Nos projets",
-    "campaign_badge": "Campagne en cours"
+    "campaign_badge": "Campagne en cours",
+    "stat_laureates": "lauréat·e·s récompensé·e·s",
+    "stat_students": "élèves touchés",
+    "stat_projects": "projets actifs",
+    "scroll": "Défiler"
   },
   "impact": {
     "title": "Notre impact depuis 2009",
@@ -45,7 +49,11 @@
     "tier3_label": "Inscription trimestrielle",
     "tier3_desc": "Finance un trimestre complet de scolarité",
     "donate_cta": "Participer à la campagne",
-    "share": "Partager"
+    "share": "Partager",
+    "annual_badge": "Campagne annuelle",
+    "quote": "« Chaque don transforme une vie en République Centrafricaine »",
+    "quote_author": "— HCW, Bangui RCA",
+    "photo_alt": "Enfants bénéficiaires des programmes HCW en République Centrafricaine"
   },
   "donate": {
     "title": "Faire un don",
@@ -84,7 +92,14 @@
     "merci_share_prompt": "Partagez et encouragez d'autres personnes à donner :",
     "merci_back_home": "Retour à l'accueil",
     "merci_see_projects": "Voir nos projets",
-    "merci_receipt_note": "Vous recevrez un reçu fiscal par email sous 48h."
+    "merci_receipt_note": "Vous recevrez un reçu fiscal par email sous 48h.",
+    "impact_title": "Chaque don, un impact réel",
+    "your_impact": "Votre impact",
+    "one_child": "1 don = 1 enfant scolarisé",
+    "students_helped": "élèves aidés",
+    "since": "depuis 2013",
+    "donate_amount_cta": "Donner €{amount} maintenant",
+    "photo_alt": "Jeunes filles bénéficiaires des programmes HCW"
   },
   "projects": {
     "title": "Nos projets",
@@ -102,6 +117,7 @@
     "learn_more": "En savoir plus",
     "donate_project": "Soutenir ce projet",
     "location": "Bangui, RCA",
+    "filter_aria": "Filtrer les projets",
     "map_title": "Nos projets sur la carte",
     "map_subtitle": "Tous nos projets sont implantés à Bangui, capitale de la République Centrafricaine.",
     "meta_title": "Nos projets — HCW",
@@ -185,6 +201,8 @@
     "form_success_whatsapp": "Rejoindre le groupe WhatsApp",
     "form_error": "Une erreur est survenue. Veuillez réessayer.",
     "form_success": "Candidature reçue ! Nous vous contactons dans les 48h.",
+    "kicker": "Bénévolat",
+    "whatsapp_note": "Rejoignez notre groupe de bénévoles et restez informé.",
     "meta_title": "Devenir bénévole — HCW",
     "meta_description": "Devenez bénévole pour HCW et contribuez à l'éducation en République Centrafricaine. Postulez en ligne."
   },
@@ -201,7 +219,15 @@
     "hero_subtitle": "Chaque achat soutient nos projets",
     "shop_cta": "Acheter",
     "how_title": "Comment ça marche",
-    "impact_banner": "€12 de chaque achat va directement financer nos programmes"
+    "impact_banner": "€12 de chaque achat va directement financer nos programmes",
+    "badge": "Boutique solidaire",
+    "banner_shipping": "Livraison mondiale",
+    "banner_pod": "Production à la demande",
+    "banner_profits": "100% des bénéfices à HCW",
+    "products_title": "Nos produits",
+    "price_note": "· dont €12 reversés à HCW",
+    "order_subject": "Commande : {name}",
+    "impact_note": "Chaque commande contribue directement à nos programmes d'éducation en RCA."
   },
   "partners": {
     "page_title": "Nos partenaires — HCW",
@@ -213,7 +239,9 @@
     "become_title": "Devenir partenaire",
     "become_subtitle": "Rejoignez notre réseau d'organisations engagées pour l'éducation en Afrique centrale.",
     "become_cta": "Nous contacter",
-    "institutional_title": "Soutiens institutionnels"
+    "institutional_title": "Soutiens institutionnels",
+    "trust_title": "Ils nous font confiance",
+    "become_link": "Devenir partenaire →"
   },
   "impactPage": {
     "page_title": "Notre impact — HCW",
@@ -273,7 +301,20 @@
     "legal": "Mentions légales",
     "privacy": "Confidentialité",
     "founded": "Fondée en 2009 · Association loi 1901",
-    "rights": "Tous droits réservés"
+    "rights": "Tous droits réservés",
+    "nav_title": "Navigation",
+    "gdpr_note": "Conformément au RGPD. Désabonnement en un clic.",
+    "take_action": "Agir maintenant",
+    "every_euro": "Chaque euro compte pour un enfant en RCA."
+  },
+  "gallery": {
+    "aria_label": "Galerie photos",
+    "kicker": "Notre action sur le terrain",
+    "title": "HCW en images",
+    "facebook_cta": "Voir toutes nos photos sur Facebook →",
+    "viewer_label": "Visionneuse de photos",
+    "prev": "Photo précédente",
+    "next": "Photo suivante"
   },
   "impact_calculator": {
     "title": "L'impact de votre don",
@@ -297,7 +338,9 @@
     "share": "Partager",
     "close": "Fermer",
     "language": "Langue",
-    "skip_nav": "Aller au contenu principal"
+    "skip_nav": "Aller au contenu principal",
+    "country": "RCA",
+    "or": "Ou"
   },
   "legal": {
     "page_title": "Mentions légales",

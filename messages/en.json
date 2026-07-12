@@ -18,7 +18,11 @@
     "subheadline": "Since 2009, HCW has worked for educational equality in Central Africa. Every donation opens a door for a child.",
     "cta_donate": "Donate Now",
     "cta_projects": "Our Projects",
-    "campaign_badge": "Live Campaign"
+    "campaign_badge": "Live Campaign",
+    "stat_laureates": "laureates awarded",
+    "stat_students": "students reached",
+    "stat_projects": "active projects",
+    "scroll": "Scroll"
   },
   "impact": {
     "title": "Our impact since 2009",
@@ -45,7 +49,11 @@
     "tier3_label": "Term enrollment",
     "tier3_desc": "Finances a full term of schooling for one student",
     "donate_cta": "Join the campaign",
-    "share": "Share"
+    "share": "Share",
+    "annual_badge": "Annual Campaign",
+    "quote": "« Every donation transforms a life in the Central African Republic »",
+    "quote_author": "— HCW, Bangui CAR",
+    "photo_alt": "Children benefiting from HCW programmes in the Central African Republic"
   },
   "donate": {
     "title": "Make a Donation",
@@ -84,7 +92,14 @@
     "merci_share_prompt": "Share and encourage others to give:",
     "merci_back_home": "Back to home",
     "merci_see_projects": "See our projects",
-    "merci_receipt_note": "You'll receive a tax receipt by email within 48 hours."
+    "merci_receipt_note": "You'll receive a tax receipt by email within 48 hours.",
+    "impact_title": "Every donation, real impact",
+    "your_impact": "Your impact",
+    "one_child": "1 donation = 1 child in school",
+    "students_helped": "students helped",
+    "since": "since 2013",
+    "donate_amount_cta": "Donate €{amount} now",
+    "photo_alt": "Young girls benefiting from HCW programmes"
   },
   "projects": {
     "title": "Our Projects",
@@ -102,6 +117,7 @@
     "learn_more": "Learn more",
     "donate_project": "Support this project",
     "location": "Bangui, CAR",
+    "filter_aria": "Filter projects",
     "map_title": "Projects on the map",
     "map_subtitle": "All our projects are based in Bangui, capital of the Central African Republic.",
     "meta_title": "Our Projects — HCW",
@@ -185,6 +201,8 @@
     "form_success_whatsapp": "Join the WhatsApp group",
     "form_error": "Something went wrong. Please try again.",
     "form_success": "Application received! We will contact you within 48 hours.",
+    "kicker": "Volunteering",
+    "whatsapp_note": "Join our volunteer group and stay informed.",
     "meta_title": "Become a Volunteer — HCW",
     "meta_description": "Volunteer with HCW and help bring education to the Central African Republic. Apply online."
   },
@@ -201,7 +219,15 @@
     "hero_subtitle": "Every purchase supports our projects",
     "shop_cta": "Shop",
     "how_title": "How it works",
-    "impact_banner": "€12 from every purchase directly funds our programmes"
+    "impact_banner": "€12 from every purchase directly funds our programmes",
+    "badge": "Solidarity Shop",
+    "banner_shipping": "Worldwide shipping",
+    "banner_pod": "Print on demand",
+    "banner_profits": "100% of profits to HCW",
+    "products_title": "Our products",
+    "price_note": "· incl. €12 to HCW",
+    "order_subject": "Order: {name}",
+    "impact_note": "Each order directly contributes to our education programmes in CAR."
   },
   "partners": {
     "page_title": "Our Partners — HCW",
@@ -213,7 +239,9 @@
     "become_title": "Become a partner",
     "become_subtitle": "Join our network of organisations committed to education in Central Africa.",
     "become_cta": "Contact us",
-    "institutional_title": "Institutional supporters"
+    "institutional_title": "Institutional supporters",
+    "trust_title": "They trust us",
+    "become_link": "Become a partner →"
   },
   "impactPage": {
     "page_title": "Our Impact — HCW",
@@ -273,7 +301,20 @@
     "legal": "Legal",
     "privacy": "Privacy",
     "founded": "Founded in 2009 · Non-profit association",
-    "rights": "All rights reserved"
+    "rights": "All rights reserved",
+    "nav_title": "Navigation",
+    "gdpr_note": "GDPR compliant. Unsubscribe anytime.",
+    "take_action": "Take action",
+    "every_euro": "Every euro matters for a child in CAR."
+  },
+  "gallery": {
+    "aria_label": "Photo gallery",
+    "kicker": "Our field action",
+    "title": "HCW in pictures",
+    "facebook_cta": "See all our photos on Facebook →",
+    "viewer_label": "Photo viewer",
+    "prev": "Previous photo",
+    "next": "Next photo"
   },
   "impact_calculator": {
     "title": "The impact of your donation",
@@ -297,7 +338,9 @@
     "share": "Share",
     "close": "Close",
     "language": "Language",
-    "skip_nav": "Skip to main content"
+    "skip_nav": "Skip to main content",
+    "country": "CAR",
+    "or": "Or"
   },
   "legal": {
     "page_title": "Legal Notice",

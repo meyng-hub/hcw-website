@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { Search } from "lucide-react";
-import type { NewsArticle } from "./page";
+import { pickLocale, type NewsArticle } from "@/lib/content";
 
 interface NewsClientProps {
   articles: NewsArticle[];
@@ -39,8 +39,9 @@ export default function NewsClient({ articles, locale }: NewsClientProps) {
 
   const filtered = articles.filter((article) => {
     if (!query.trim()) return true;
-    const title = locale === "fr" ? article.titleFr : article.titleEn;
-    return title.toLowerCase().includes(query.toLowerCase());
+    return pickLocale(article.title, locale)
+      .toLowerCase()
+      .includes(query.toLowerCase());
   });
 
   return (
@@ -77,9 +78,8 @@ export default function NewsClient({ articles, locale }: NewsClientProps) {
         ) : (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((article) => {
-              const title = locale === "fr" ? article.titleFr : article.titleEn;
-              const excerpt =
-                locale === "fr" ? article.excerptFr : article.excerptEn;
+              const title = pickLocale(article.title, locale);
+              const excerpt = pickLocale(article.excerpt, locale);
               const tagColor =
                 TAG_COLORS[article.tag] ?? "bg-gray-100 text-gray-700";
               const accentClass =

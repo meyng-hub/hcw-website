@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import NewsClient from "./NewsClient";
+import NewsletterForm from "./NewsletterForm";
+import { news } from "@/lib/content";
 
 export async function generateMetadata({
   params,
@@ -19,92 +21,6 @@ export async function generateMetadata({
   };
 }
 
-export interface NewsArticle {
-  id: string;
-  titleFr: string;
-  titleEn: string;
-  excerptFr: string;
-  excerptEn: string;
-  date: string; // ISO date string
-  tag: "impact" | "education" | "partnership" | "report" | "campaign" | "award";
-  accentColor: "teal" | "amber";
-}
-
-export const NEWS_ARTICLES: NewsArticle[] = [
-  {
-    id: "hcw-90000-eleves",
-    titleFr: "HCW atteint 90 000 élèves en RCA",
-    titleEn: "HCW reaches 90,000 students in CAR",
-    excerptFr:
-      "Grâce à l'engagement de nos bénévoles et partenaires, HCW a désormais touché plus de 90 000 élèves à travers ses programmes éducatifs en République Centrafricaine.",
-    excerptEn:
-      "Thanks to the commitment of our volunteers and partners, HCW has now reached more than 90,000 students through its educational programmes in the Central African Republic.",
-    date: "2026-05-10",
-    tag: "impact",
-    accentColor: "teal",
-  },
-  {
-    id: "endara-challenge-2025",
-    titleFr: "eNdara Challenge 2025 : 800 lauréats récompensés",
-    titleEn: "eNdara Challenge 2025: 800 prize-winners rewarded",
-    excerptFr:
-      "La 4ᵉ édition du concours eNdara Challenge a sacré 800 jeunes talents de Bangui pour leurs projets innovants en numérique et sciences.",
-    excerptEn:
-      "The 4th edition of the eNdara Challenge competition honoured 800 young talents from Bangui for their innovative projects in digital technology and science.",
-    date: "2026-04-18",
-    tag: "education",
-    accentColor: "amber",
-  },
-  {
-    id: "partenariat-weiram",
-    titleFr: "Nouveau partenariat avec WEIRAM",
-    titleEn: "New partnership with WEIRAM",
-    excerptFr:
-      "HCW signe un accord de coopération avec WEIRAM pour renforcer les programmes d'autonomisation des jeunes filles en milieu rural centrafricain.",
-    excerptEn:
-      "HCW signs a cooperation agreement with WEIRAM to strengthen empowerment programmes for young girls in rural Central Africa.",
-    date: "2026-03-05",
-    tag: "partnership",
-    accentColor: "teal",
-  },
-  {
-    id: "rapport-annuel-2024",
-    titleFr: "Rapport annuel 2024 disponible",
-    titleEn: "Annual report 2024 now available",
-    excerptFr:
-      "Notre rapport annuel 2024 est désormais disponible en téléchargement. Découvrez le bilan complet de nos actions et l'impact de vos dons.",
-    excerptEn:
-      "Our 2024 annual report is now available for download. Discover the full review of our activities and the impact of your donations.",
-    date: "2026-02-14",
-    tag: "report",
-    accentColor: "amber",
-  },
-  {
-    id: "campagne-dons-objectif",
-    titleFr: "Campagne de dons : objectif atteint !",
-    titleEn: "Donation campaign: goal reached!",
-    excerptFr:
-      "Grâce à votre générosité, notre campagne « L'éducation est une liberté » a atteint son objectif de 70 000 € et financera 200 élèves supplémentaires.",
-    excerptEn:
-      "Thanks to your generosity, our campaign 'Education is Freedom' has reached its €70,000 goal and will fund 200 additional students.",
-    date: "2026-01-22",
-    tag: "campaign",
-    accentColor: "teal",
-  },
-  {
-    id: "prix-iaap-accessibilite",
-    titleFr: "HCW reçoit le prix IAAP Accessibilité",
-    titleEn: "HCW receives the IAAP Accessibility Award",
-    excerptFr:
-      "L'Association internationale pour l'accessibilité professionnelle a décerné à HCW son prix pour l'inclusion numérique dans les zones à faible connectivité.",
-    excerptEn:
-      "The International Association of Accessibility Professionals has awarded HCW its prize for digital inclusion in low-connectivity areas.",
-    date: "2024-04-30",
-    tag: "award",
-    accentColor: "amber",
-  },
-];
-
 export default async function NewsPage({
   params,
 }: {
@@ -112,6 +28,7 @@ export default async function NewsPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "news" });
+  const articles = [...news].sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <>
@@ -139,7 +56,7 @@ export default async function NewsPage({
       </section>
 
       {/* ── News grid + search (client) ── */}
-      <NewsClient articles={NEWS_ARTICLES} locale={locale} />
+      <NewsClient articles={articles} locale={locale} />
 
       {/* ── Newsletter CTA ── */}
       <section
@@ -154,28 +71,7 @@ export default async function NewsPage({
             {t("newsletter_title")}
           </h2>
           <p className="mt-3 text-teal-100">{t("newsletter_subtitle")}</p>
-          <form
-            className="mt-8 flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
-            onSubmit={(e) => e.preventDefault()}
-            aria-label={t("newsletter_title")}
-          >
-            <label htmlFor="newsletter-email" className="sr-only">
-              {t("newsletter_placeholder")}
-            </label>
-            <input
-              id="newsletter-email"
-              type="email"
-              placeholder={t("newsletter_placeholder")}
-              className="flex-1 rounded-full px-5 py-3 text-sm text-charcoal-900 bg-white outline-none focus:ring-2 focus:ring-amber-400"
-              required
-            />
-            <button
-              type="submit"
-              className="rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white hover:bg-amber-600 transition-colors"
-            >
-              {t("newsletter_submit")}
-            </button>
-          </form>
+          <NewsletterForm />
           <p className="mt-4 text-xs text-teal-200">
             {t("newsletter_disclaimer")}
           </p>

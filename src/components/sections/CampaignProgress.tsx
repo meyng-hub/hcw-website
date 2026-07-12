@@ -4,14 +4,7 @@ import { useTranslations, useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, Share2, Users } from "lucide-react";
-
-// Static data — replace with Sanity fetch when CMS is configured
-const CAMPAIGN = {
-  goalAmount: 5000,
-  raisedAmount: 350, // Updated from the live €60 — placeholder for ongoing campaign
-  donorCount: 12,
-  active: true,
-};
+import { campaign as CAMPAIGN } from "@/lib/content";
 
 export default function CampaignProgress() {
   const t = useTranslations("campaign");
@@ -48,7 +41,7 @@ export default function CampaignProgress() {
             {/* Header */}
             <div className="mb-12 text-center lg:text-left">
               <span className="mb-4 inline-block rounded-full bg-amber-500/20 px-4 py-1.5 text-sm font-medium text-amber-300">
-                {locale === "fr" ? "Campagne annuelle" : "Annual Campaign"}
+                {t("annual_badge")}
               </span>
               <h2
                 id="campaign-heading"
@@ -155,7 +148,7 @@ export default function CampaignProgress() {
             <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
               <Image
                 src="/images/project-kaikelem.jpg"
-                alt="Enfants bénéficiaires des programmes HCW en République Centrafricaine"
+                alt={t("photo_alt")}
                 fill
                 className="object-cover"
                 sizes="50vw"
@@ -164,12 +157,10 @@ export default function CampaignProgress() {
               {/* Floating quote card at bottom */}
               <div className="absolute bottom-6 left-6 right-6 bg-white/95 rounded-xl p-4 backdrop-blur-sm">
                 <p className="text-sm font-medium text-charcoal-900 italic">
-                  {locale === "fr"
-                    ? "« Chaque don transforme une vie en République Centrafricaine »"
-                    : "« Every donation transforms a life in the Central African Republic »"}
+                  {t("quote")}
                 </p>
                 <p className="text-xs text-teal-600 mt-1 font-semibold">
-                  — HCW, Bangui RCA
+                  {t("quote_author")}
                 </p>
               </div>
             </div>

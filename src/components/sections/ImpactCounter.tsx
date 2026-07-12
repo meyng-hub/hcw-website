@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { IMPACT_STATS } from "@/lib/constants";
+import { stats } from "@/lib/content";
 import { Trophy, Users, Heart, Layers } from "lucide-react";
 
 function useCountUp(target: number, duration = 2000, started: boolean) {
@@ -99,27 +99,27 @@ export default function ImpactCounter() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" role="list">
           <StatCard
-            value={IMPACT_STATS.prizes}
+            value={stats.prizes}
             label={t("prizes")}
             icon={Trophy}
             started={started}
           />
           <StatCard
-            value={IMPACT_STATS.students}
+            value={stats.students}
             label={t("students")}
             icon={Users}
             started={started}
             suffix="+"
           />
           <StatCard
-            value={IMPACT_STATS.donations}
+            value={stats.donations}
             label={t("donations")}
             icon={Heart}
             started={started}
             suffix="+"
           />
           <StatCard
-            value={IMPACT_STATS.projects}
+            value={stats.projects}
             label={t("projects")}
             icon={Layers}
             started={started}

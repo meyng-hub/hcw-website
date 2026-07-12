@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { Heart, ArrowRight, Sparkles } from "lucide-react";
+import { stats } from "@/lib/content";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
@@ -91,20 +92,24 @@ export default function HeroSection() {
           {/* Trust indicators */}
           <div className="flex flex-wrap gap-6 text-sm text-teal-200">
             <div className="flex items-center gap-2">
-              <span className="text-lg font-bold text-amber-400">800+</span>
-              <span>
-                {locale === "fr" ? "lauréat·e·s récompensé·e·s" : "laureates awarded"}
+              <span className="text-lg font-bold text-amber-400">
+                {stats.prizes.toLocaleString(locale)}+
               </span>
+              <span>{t("stat_laureates")}</span>
             </div>
             <div className="w-px bg-teal-600" aria-hidden="true" />
             <div className="flex items-center gap-2">
-              <span className="text-lg font-bold text-amber-400">90 000+</span>
-              <span>{locale === "fr" ? "élèves touchés" : "students reached"}</span>
+              <span className="text-lg font-bold text-amber-400">
+                {stats.students.toLocaleString(locale)}+
+              </span>
+              <span>{t("stat_students")}</span>
             </div>
             <div className="w-px bg-teal-600" aria-hidden="true" />
             <div className="flex items-center gap-2">
-              <span className="text-lg font-bold text-amber-400">6</span>
-              <span>{locale === "fr" ? "projets actifs" : "active projects"}</span>
+              <span className="text-lg font-bold text-amber-400">
+                {stats.projects.toLocaleString(locale)}
+              </span>
+              <span>{t("stat_projects")}</span>
             </div>
           </div>
         </div>
@@ -116,7 +121,7 @@ export default function HeroSection() {
         aria-hidden="true"
       >
         <span className="text-xs uppercase tracking-widest opacity-70">
-          {locale === "fr" ? "Défiler" : "Scroll"}
+          {t("scroll")}
         </span>
         <div className="h-8 w-px animate-bounce bg-gradient-to-b from-teal-300/70 to-transparent" />
       </div>

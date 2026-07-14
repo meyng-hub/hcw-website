@@ -77,9 +77,8 @@ export async function POST(req: NextRequest) {
               quantity: 1,
             },
           ],
-      payment_method_types: isRecurring
-        ? ["card", "sepa_debit"]
-        : ["card", "paypal"],
+      // Payment methods are managed in the Stripe Dashboard
+      // (Settings → Payment methods) — no deploy needed to change them.
       metadata: {
         source: "hcw_website",
         locale: safeLocale,

@@ -89,9 +89,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (error: unknown) {
+    // Server-side log only — clients always get the generic message below.
     console.error(
       "Stripe checkout error:",
-      error instanceof Error ? error.name : "unknown",
+      error instanceof Error ? `${error.name}: ${error.message}` : "unknown",
     );
     return NextResponse.json(
       { error: "Payment could not be started. Please try again." },

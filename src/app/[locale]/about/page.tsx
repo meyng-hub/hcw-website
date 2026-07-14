@@ -202,7 +202,7 @@ export default async function AboutPage({
               : "Since 2009, HCW has worked at the heart of Central Africa to give every child the chance to learn, grow, and flourish."}
           </p>
           <p className="mt-4 text-base font-semibold tracking-widest text-amber-400 uppercase">
-            Humanity · Culture · Welfare
+            Hervé-Charles Wenezoui
           </p>
         </div>
       </section>

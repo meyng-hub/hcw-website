@@ -17,7 +17,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "hero" });
   return {
-    title: "HCW — Humanity, Culture & Welfare",
+    title: "HCW — Hervé-Charles Wenezoui",
     description: t("subheadline"),
   };
 }

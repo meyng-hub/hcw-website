@@ -159,7 +159,7 @@ export default async function PrivacyPage({
                   items={[
                     {
                       term: "Organisation",
-                      detail: "HCW — Humanity, Culture and Welfare",
+                      detail: "HCW — Hervé-Charles Wenezoui",
                     },
                     { term: "Adresse", detail: CONTACT.france },
                     {
@@ -181,7 +181,7 @@ export default async function PrivacyPage({
                   items={[
                     {
                       term: "Organisation",
-                      detail: "HCW — Humanity, Culture and Welfare",
+                      detail: "HCW — Hervé-Charles Wenezoui",
                     },
                     { term: "Address", detail: CONTACT.france },
                     {

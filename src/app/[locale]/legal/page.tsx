@@ -82,8 +82,8 @@ export default async function LegalPage({
               {isFr ? (
                 <>
                   <p>
-                    <strong>Dénomination sociale :</strong> HCW — Humanity,
-                    Culture and Welfare
+                    <strong>Dénomination sociale :</strong> HCW —
+                    Hervé-Charles Wenezoui
                   </p>
                   <p>
                     <strong>Forme juridique :</strong> Association régie par la
@@ -114,8 +114,8 @@ export default async function LegalPage({
               ) : (
                 <>
                   <p>
-                    <strong>Organisation name:</strong> HCW — Humanity, Culture
-                    and Welfare
+                    <strong>Organisation name:</strong> HCW — Hervé-Charles
+Wenezoui
                   </p>
                   <p>
                     <strong>Legal form:</strong> Non-profit association under

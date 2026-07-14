@@ -16,8 +16,8 @@ export default function MerciPage() {
     const shareData: ShareData = {
       title: isFr ? "J'ai soutenu HCW !" : "I supported HCW!",
       text: isFr
-        ? "Je viens de faire un don à HCW — Humanity, Culture & Welfare pour l'éducation en Afrique centrale. Rejoignez-moi !"
-        : "I just donated to HCW — Humanity, Culture & Welfare for education in Central Africa. Join me!",
+        ? "Je viens de faire un don à HCW — Hervé-Charles Wenezoui pour l'éducation en Afrique centrale. Rejoignez-moi !"
+        : "I just donated to HCW — Hervé-Charles Wenezoui for education in Central Africa. Join me!",
       url:
         typeof window !== "undefined"
           ? window.location.origin + "/" + locale + "/donate"

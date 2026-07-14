@@ -111,7 +111,7 @@ export default function Footer() {
               <span className="font-serif text-xl font-semibold">HCW</span>
             </div>
             <p className="mb-2 text-sm leading-relaxed text-gray-400">
-              Humanity · Culture · Welfare
+              Hervé-Charles Wenezoui
             </p>
             <p className="mb-6 text-xs font-medium italic text-amber-500">
               &ldquo;{t("footer.tagline")}&rdquo;

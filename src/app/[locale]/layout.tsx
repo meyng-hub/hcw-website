@@ -34,7 +34,7 @@ export async function generateMetadata({
       process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.h-cw.org",
     ),
     title: {
-      default: "HCW — Humanity, Culture & Welfare",
+      default: "HCW — Hervé-Charles Wenezoui",
       template: "%s | HCW",
     },
     description: t("subheadline"),

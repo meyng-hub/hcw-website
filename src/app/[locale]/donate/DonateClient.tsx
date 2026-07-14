@@ -172,7 +172,7 @@ export default function DonateClient() {
               className="h-4 w-4 fill-amber-400 text-amber-400"
               aria-hidden="true"
             />
-            <span>HCW — Humanity, Culture &amp; Welfare</span>
+            <span>HCW — Hervé-Charles Wenezoui</span>
           </div>
           <h1 className="font-serif text-4xl font-bold text-white sm:text-5xl">
             {isFr ? "Faites un don" : "Make a donation"}

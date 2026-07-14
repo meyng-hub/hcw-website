@@ -1,4 +1,4 @@
-export const SITE_NAME = "HCW — Humanity, Culture & Welfare";
+export const SITE_NAME = "HCW — Hervé-Charles Wenezoui";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.h-cw.org";
 

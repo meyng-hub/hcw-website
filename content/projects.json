@@ -1,0 +1,74 @@
+[
+  {
+    "id": "endara-challenge",
+    "title": { "fr": "eNdara Challenge", "en": "eNdara Challenge" },
+    "description": {
+      "fr": "Concours de créativité et d'innovation pour les jeunes — pensée critique et résolution de problèmes.",
+      "en": "Creativity and innovation competition for youth — critical thinking and problem solving."
+    },
+    "category": "digital",
+    "status": "active",
+    "location": { "lat": 4.3612, "lng": 18.555, "city": "Bangui" },
+    "image": "/images/endara-students.png"
+  },
+  {
+    "id": "empowering-girls",
+    "title": { "fr": "Équiper nos jeunes filles", "en": "Empowering Young Girls" },
+    "description": {
+      "fr": "Réduire les inégalités de genre grâce à l'éducation et l'autonomisation des jeunes filles.",
+      "en": "Reducing gender inequality through education and empowerment of young girls."
+    },
+    "category": "girls",
+    "status": "active",
+    "location": { "lat": 4.3612, "lng": 18.555, "city": "Bangui" },
+    "image": "/images/project-girls.jpg"
+  },
+  {
+    "id": "fighting-illiteracy",
+    "title": { "fr": "Lutter contre l'illettrisme", "en": "Fighting Illiteracy" },
+    "description": {
+      "fr": "Programmes d'alphabétisation pour enfants et adultes en Afrique centrale.",
+      "en": "Literacy programmes for children and adults across Central Africa."
+    },
+    "category": "education",
+    "status": "active",
+    "location": { "lat": 4.3612, "lng": 18.555, "city": "Bangui" },
+    "image": "/images/hero-classroom.jpg"
+  },
+  {
+    "id": "tolerance-fair-play",
+    "title": { "fr": "Tolérance et fair-play", "en": "Tolerance and Fair Play" },
+    "description": {
+      "fr": "Utiliser le sport comme vecteur de coopération interculturelle et de tolérance.",
+      "en": "Using sport as a vehicle for intercultural cooperation and tolerance."
+    },
+    "category": "culture",
+    "status": "active",
+    "location": { "lat": 4.3612, "lng": 18.555, "city": "Bangui" },
+    "image": "/images/project-kaikelem.jpg"
+  },
+  {
+    "id": "kaikelem",
+    "title": { "fr": "KAIKELEM", "en": "KAIKELEM" },
+    "description": {
+      "fr": "Soutien aux veuves et orphelins en RCA — restaurer la dignité et l'espoir.",
+      "en": "Support for widows and orphans in CAR — restoring dignity and hope."
+    },
+    "category": "solidarity",
+    "status": "active",
+    "location": { "lat": 4.3612, "lng": 18.555, "city": "Bangui" },
+    "image": "/images/project-girls.jpg"
+  },
+  {
+    "id": "digital-inclusion",
+    "title": { "fr": "Inclusion numérique", "en": "Digital Inclusion" },
+    "description": {
+      "fr": "Plateforme eNdara : espace d'apprentissage virtuel, ateliers numériques sans frontières.",
+      "en": "eNdara platform: virtual learning space, borderless digital workshops."
+    },
+    "category": "digital",
+    "status": "active",
+    "location": { "lat": 4.3612, "lng": 18.555, "city": "Bangui" },
+    "image": "/images/endara-students.png"
+  }
+]

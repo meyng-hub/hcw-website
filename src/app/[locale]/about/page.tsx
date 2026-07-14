@@ -65,19 +65,9 @@ const TIMELINE = [
     en: "COVID-19 response: school kits distributed despite the crisis",
   },
   {
-    year: 2022,
-    fr: "Partenariat WEIRAM pour l'autonomisation des femmes en RCA",
-    en: "WEIRAM partnership for women's empowerment in CAR",
-  },
-  {
-    year: 2024,
-    fr: "Prix IAAP — Excellence en action associative internationale",
-    en: "IAAP Award — Excellence in international associative action",
-  },
-  {
     year: 2025,
-    fr: "90 000 élèves touchés depuis la fondation",
-    en: "90,000 students reached since foundation",
+    fr: "9 000 élèves touchés depuis la fondation",
+    en: "9,000 students reached since foundation",
   },
 ];
 

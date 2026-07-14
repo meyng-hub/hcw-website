@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import ProjectsClient from "./ProjectsClient";
 import ProjectMapWrapper from "@/components/map/ProjectMapWrapper";
-import { PROJECTS } from "@/lib/constants";
+import { projects, pickLocale } from "@/lib/content";
 
 export async function generateMetadata({
   params,
@@ -28,22 +28,11 @@ export default async function ProjectsPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "projects" });
-
-  // Normalise PROJECTS from const to plain objects for client component
-  const projects = PROJECTS.map((p) => ({
-    id: p.id,
-    titleFr: p.titleFr,
-    titleEn: p.titleEn,
-    descFr: p.descFr,
-    descEn: p.descEn,
-    category: p.category,
-    status: p.status,
-    location: { ...p.location },
-  }));
+  const common = await getTranslations({ locale, namespace: "common" });
 
   const mapProjects = projects.map((p) => ({
     id: p.id,
-    title: locale === "fr" ? p.titleFr : p.titleEn,
+    title: pickLocale(p.title, locale),
     category: p.category,
     location: p.location,
   }));
@@ -94,7 +83,7 @@ export default async function ProjectsPage({
           </div>
           <ProjectMapWrapper
             projects={mapProjects}
-            locationLabel={locale === "fr" ? "RCA" : "CAR"}
+            locationLabel={common("country")}
           />
         </div>
       </section>

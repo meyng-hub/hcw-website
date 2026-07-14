@@ -1,0 +1,99 @@
+{
+  "products": [
+    {
+      "id": "tshirt-education-freedom",
+      "name": {
+        "fr": "T-shirt \"Education is Freedom\"",
+        "en": "T-shirt \"Education is Freedom\""
+      },
+      "price": 25,
+      "category": { "fr": "Vêtement", "en": "Clothing" },
+      "emoji": "👕",
+      "colorFrom": "from-teal-100",
+      "colorTo": "to-white"
+    },
+    {
+      "id": "hoodie-hcw",
+      "name": { "fr": "Hoodie HCW", "en": "HCW Hoodie" },
+      "price": 45,
+      "category": { "fr": "Vêtement", "en": "Clothing" },
+      "emoji": "🧥",
+      "colorFrom": "from-charcoal-800",
+      "colorTo": "to-teal-900"
+    },
+    {
+      "id": "tote-sango-pride",
+      "name": {
+        "fr": "Tote bag \"Sango Pride\"",
+        "en": "\"Sango Pride\" Tote bag"
+      },
+      "price": 18,
+      "category": { "fr": "Accessoire", "en": "Accessory" },
+      "emoji": "👜",
+      "colorFrom": "from-amber-100",
+      "colorTo": "to-cream-100"
+    },
+    {
+      "id": "notebook-hcw",
+      "name": { "fr": "Carnet de notes HCW", "en": "HCW Notebook" },
+      "price": 12,
+      "category": { "fr": "Papeterie", "en": "Stationery" },
+      "emoji": "📓",
+      "colorFrom": "from-cream-100",
+      "colorTo": "to-amber-50"
+    },
+    {
+      "id": "mug-education",
+      "name": {
+        "fr": "Mug \"Éducation pour tous\"",
+        "en": "\"Education for All\" Mug"
+      },
+      "price": 15,
+      "category": { "fr": "Accessoire", "en": "Accessory" },
+      "emoji": "☕",
+      "colorFrom": "from-white",
+      "colorTo": "to-teal-50"
+    },
+    {
+      "id": "cap-hcw",
+      "name": { "fr": "Casquette HCW", "en": "HCW Cap" },
+      "price": 22,
+      "category": { "fr": "Vêtement", "en": "Clothing" },
+      "emoji": "🧢",
+      "colorFrom": "from-teal-600",
+      "colorTo": "to-teal-800"
+    }
+  ],
+  "howItWorks": [
+    {
+      "step": "1",
+      "title": { "fr": "Choisissez votre article", "en": "Choose your item" },
+      "desc": {
+        "fr": "Parcourez notre boutique et sélectionnez vos produits préférés.",
+        "en": "Browse our shop and pick your favourite products."
+      },
+      "emoji": "🛍️"
+    },
+    {
+      "step": "2",
+      "title": { "fr": "Passez commande", "en": "Place your order" },
+      "desc": {
+        "fr": "Contactez-nous par email ou finalisez votre commande en ligne.",
+        "en": "Contact us by email or complete your order online."
+      },
+      "emoji": "🛒"
+    },
+    {
+      "step": "3",
+      "title": {
+        "fr": "Production & livraison",
+        "en": "Production & delivery"
+      },
+      "desc": {
+        "fr": "Votre article est produit à la demande et livré chez vous dans le monde entier.",
+        "en": "Your item is printed on demand and shipped worldwide directly to you."
+      },
+      "emoji": "📦"
+    }
+  ]
+}

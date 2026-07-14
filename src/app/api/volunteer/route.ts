@@ -13,11 +13,14 @@ export async function POST(req: NextRequest) {
     }
 
     // TODO: send notification email via Resend
-    console.log("Volunteer application:", { name, email, role, motivation });
+    // No logging of applicant details — PII must not land in function logs.
+    void motivation;
 
     return NextResponse.json({ success: true });
-  } catch (error: unknown) {
-    const msg = error instanceof Error ? error.message : String(error);
-    return NextResponse.json({ error: msg }, { status: 500 });
+  } catch {
+    return NextResponse.json(
+      { error: "Something went wrong. Please try again." },
+      { status: 500 },
+    );
   }
 }

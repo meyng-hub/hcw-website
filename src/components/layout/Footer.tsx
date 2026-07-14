@@ -138,33 +138,25 @@ export default function Footer() {
           {/* Navigation */}
           <div>
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-gray-300">
-              {locale === "fr" ? "Navigation" : "Navigation"}
+              {t("footer.nav_title")}
             </h3>
             <ul className="space-y-2" role="list">
               {[
-                { href: "/about", labelFr: "À propos", labelEn: "About" },
-                { href: "/projects", labelFr: "Projets", labelEn: "Projects" },
-                { href: "/impact", labelFr: "Impact", labelEn: "Impact" },
-                { href: "/news", labelFr: "Actualités", labelEn: "News" },
-                { href: "/shop", labelFr: "Boutique", labelEn: "Shop" },
-                {
-                  href: "/volunteer",
-                  labelFr: "Bénévoles",
-                  labelEn: "Volunteer",
-                },
-                {
-                  href: "/partners",
-                  labelFr: "Partenaires",
-                  labelEn: "Partners",
-                },
-                { href: "/contact", labelFr: "Contact", labelEn: "Contact" },
-              ].map(({ href, labelFr, labelEn }) => (
+                { href: "/about", key: "about" },
+                { href: "/projects", key: "projects" },
+                { href: "/impact", key: "impact" },
+                { href: "/news", key: "news" },
+                { href: "/shop", key: "shop" },
+                { href: "/volunteer", key: "volunteer" },
+                { href: "/partners", key: "partners" },
+                { href: "/contact", key: "contact" },
+              ].map(({ href, key }) => (
                 <li key={href}>
                   <Link
                     href={`/${locale}${href}`}
                     className="text-sm text-gray-400 transition-colors hover:text-white"
                   >
-                    {locale === "fr" ? labelFr : labelEn}
+                    {t(`nav.${key}` as Parameters<typeof t>[0])}
                   </Link>
                 </li>
               ))}
@@ -237,23 +229,17 @@ export default function Footer() {
                     <Send className="h-4 w-4" />
                   </button>
                 </div>
-                <p className="text-xs text-gray-500">
-                  {locale === "fr"
-                    ? "Conformément au RGPD. Désabonnement en un clic."
-                    : "GDPR compliant. Unsubscribe anytime."}
-                </p>
+                <p className="text-xs text-gray-500">{t("footer.gdpr_note")}</p>
               </form>
             )}
 
             {/* Donate CTA */}
             <div className="mt-8 rounded-xl bg-gradient-to-br from-teal-600 to-teal-800 p-5">
               <p className="mb-1 text-sm font-semibold text-white">
-                {locale === "fr" ? "Agir maintenant" : "Take action"}
+                {t("footer.take_action")}
               </p>
               <p className="mb-3 text-xs text-teal-200">
-                {locale === "fr"
-                  ? "Chaque euro compte pour un enfant en RCA."
-                  : "Every euro matters for a child in CAR."}
+                {t("footer.every_euro")}
               </p>
               <Link
                 href={`/${locale}/donate`}
@@ -269,7 +255,8 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-gray-500 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} HCW — {t("footer.rights")}
+            © {new Date().getFullYear()} HCW — {t("footer.rights")} ·{" "}
+            {t("footer.registration")}
           </p>
           <div className="flex gap-4">
             <Link

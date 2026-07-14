@@ -1,36 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getLocale } from "next-intl/server";
-
-const PARTNERS = [
-  {
-    name: "Kaïkelem",
-    logo: "/images/partner-kaikelem.png",
-    url: "#",
-    bg: "bg-white",
-  },
-  {
-    name: "WEIRAM",
-    logo: "/images/partner-weiram.jpg",
-    url: "#",
-    bg: "bg-white",
-  },
-  {
-    name: "MEYNG",
-    logo: "/images/partner-meyng.jpg",
-    url: "https://meyng.com",
-    bg: "bg-gray-900",
-  },
-  {
-    name: "Solidatech",
-    logo: "/images/partner-solidatech.png",
-    url: "https://www.solidatech.fr",
-    bg: "bg-white",
-  },
-];
+import { getLocale, getTranslations } from "next-intl/server";
+import { partners } from "@/lib/content";
 
 export default async function PartnersStrip() {
   const locale = await getLocale();
+  const t = await getTranslations("partners");
 
   return (
     <section
@@ -39,11 +14,11 @@ export default async function PartnersStrip() {
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-10">
-          {locale === "fr" ? "Ils nous font confiance" : "They trust us"}
+          {t("trust_title")}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-16">
-          {PARTNERS.map((partner) => (
+          {partners.map((partner) => (
             <a
               key={partner.name}
               href={partner.url}
@@ -70,7 +45,7 @@ export default async function PartnersStrip() {
             href={`/${locale}/partners`}
             className="text-sm text-teal-600 font-medium hover:text-teal-700 hover:underline transition-colors"
           >
-            {locale === "fr" ? "Devenir partenaire →" : "Become a partner →"}
+            {t("become_link")}
           </Link>
         </div>
       </div>

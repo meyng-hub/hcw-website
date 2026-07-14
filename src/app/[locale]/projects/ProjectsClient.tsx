@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { MapPin } from "lucide-react";
+import { pickLocale, type Project } from "@/lib/content";
 
 type Category =
   | "all"
@@ -12,17 +13,6 @@ type Category =
   | "digital"
   | "culture"
   | "solidarity";
-
-interface Project {
-  id: string;
-  titleFr: string;
-  titleEn: string;
-  descFr: string;
-  descEn: string;
-  category: "education" | "girls" | "digital" | "culture" | "solidarity";
-  status: "active" | "completed" | "ongoing";
-  location: { lat: number; lng: number; city: string };
-}
 
 interface ProjectsClientProps {
   projects: Project[];
@@ -67,6 +57,7 @@ export default function ProjectsClient({
   locale,
 }: ProjectsClientProps) {
   const t = useTranslations("projects");
+  const common = useTranslations("common");
   const [activeFilter, setActiveFilter] = useState<Category>("all");
 
   const filtered =
@@ -84,9 +75,7 @@ export default function ProjectsClient({
         <div
           className="mb-10 flex flex-wrap gap-2 justify-center"
           role="group"
-          aria-label={
-            locale === "fr" ? "Filtrer les projets" : "Filter projects"
-          }
+          aria-label={t("filter_aria")}
         >
           {FILTER_CATEGORIES.map(({ key, translationKey }) => (
             <button
@@ -110,8 +99,8 @@ export default function ProjectsClient({
         </h2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((project) => {
-            const title = locale === "fr" ? project.titleFr : project.titleEn;
-            const desc = locale === "fr" ? project.descFr : project.descEn;
+            const title = pickLocale(project.title, locale);
+            const desc = pickLocale(project.description, locale);
             const emoji = CATEGORY_EMOJI[project.category] ?? "📍";
             const categoryColor =
               CATEGORY_COLORS[project.category] ?? "bg-gray-100 text-gray-700";
@@ -176,7 +165,7 @@ export default function ProjectsClient({
                       className="h-3.5 w-3.5 shrink-0"
                       aria-hidden="true"
                     />
-                    {project.location.city}, {locale === "fr" ? "RCA" : "CAR"}
+                    {project.location.city}, {common("country")}
                   </div>
 
                   {/* CTA */}

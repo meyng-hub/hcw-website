@@ -1,0 +1,62 @@
+[
+  {
+    "src": "/images/project-girls.jpg",
+    "alt": {
+      "fr": "Jeunes filles lors d'un événement KAIKELEM à Bangui",
+      "en": "Young girls at a KAIKELEM event in Bangui"
+    },
+    "caption": {
+      "fr": "Programme KAIKELEM — Bangui, RCA",
+      "en": "KAIKELEM Programme — Bangui, CAR"
+    },
+    "rowSpan": false
+  },
+  {
+    "src": "/images/endara-students.png",
+    "alt": {
+      "fr": "Élèves dans une salle de classe eNdara",
+      "en": "Students in an eNdara classroom"
+    },
+    "caption": {
+      "fr": "Plateforme eNdara — salle de classe",
+      "en": "eNdara Platform — classroom"
+    },
+    "rowSpan": true
+  },
+  {
+    "src": "/images/project-kaikelem.jpg",
+    "alt": {
+      "fr": "Enfants recevant des cadeaux lors d'un événement HCW",
+      "en": "Children receiving gifts at an HCW event"
+    },
+    "caption": {
+      "fr": "Distribution de fournitures scolaires",
+      "en": "School supplies distribution"
+    },
+    "rowSpan": false
+  },
+  {
+    "src": "/images/hero-classroom.jpg",
+    "alt": {
+      "fr": "Enfants réunis dans une salle de classe avec le banner Bienvenue",
+      "en": "Children gathered in a classroom with the Welcome banner"
+    },
+    "caption": {
+      "fr": "Séance d'accueil des élèves — Bangui",
+      "en": "Student welcome session — Bangui"
+    },
+    "rowSpan": false
+  },
+  {
+    "src": "/images/team-community.jpg",
+    "alt": {
+      "fr": "Leaders communautaires lors d'un événement HCW",
+      "en": "Community leaders at an HCW event"
+    },
+    "caption": {
+      "fr": "Partenaires communautaires en RCA",
+      "en": "Community partners in CAR"
+    },
+    "rowSpan": false
+  }
+]

@@ -12,7 +12,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import ImpactCounterAnimated from "@/components/sections/ImpactCounterAnimated";
-import { PROJECTS } from "@/lib/constants";
+import { stats } from "@/lib/content";
 
 export async function generateMetadata({
   params,
@@ -248,25 +248,25 @@ export default async function ImpactPage({
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5" role="list">
             <ImpactCounterAnimated
-              value={800}
+              value={stats.prizes}
               suffix="+"
               label={isFr ? "lauréat·e·s" : "laureates"}
               icon={<Trophy className="h-7 w-7" aria-hidden="true" />}
             />
             <ImpactCounterAnimated
-              value={90000}
+              value={stats.students}
               suffix="+"
               label={isFr ? "élèves touchés" : "students reached"}
               icon={<Users className="h-7 w-7" aria-hidden="true" />}
             />
             <ImpactCounterAnimated
-              value={70000}
+              value={stats.donations}
               suffix="€+"
               label={isFr ? "collectés" : "raised"}
               icon={<Heart className="h-7 w-7" aria-hidden="true" />}
             />
             <ImpactCounterAnimated
-              value={6}
+              value={stats.projects}
               label={isFr ? "projets actifs" : "active projects"}
               icon={<Layers className="h-7 w-7" aria-hidden="true" />}
             />

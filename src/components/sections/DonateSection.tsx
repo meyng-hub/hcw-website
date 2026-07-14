@@ -6,30 +6,18 @@ import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Heart, CreditCard, Smartphone } from "lucide-react";
 import { DONATION_PRESETS } from "@/lib/constants";
-
-const IMPACT: Record<number, { fr: string; en: string }> = {
-  20: {
-    fr: "Fournit un kit scolaire complet à un enfant",
-    en: "Provides a full school kit for one child",
-  },
-  50: {
-    fr: "Finance les repas d'un élève pendant un mois",
-    en: "Funds meals for one student for a month",
-  },
-  100: {
-    fr: "Couvre un trimestre complet de scolarité",
-    en: "Covers a full term of schooling",
-  },
-  500: {
-    fr: "Équipe une salle de classe en outils numériques",
-    en: "Equips a classroom with digital tools",
-  },
-};
+import { stats } from "@/lib/content";
 
 export default function DonateSection() {
   const t = useTranslations("donate");
+  const calc = useTranslations("impact_calculator");
   const locale = useLocale();
   const [selected, setSelected] = useState(50);
+
+  const impactFor = (amount: number) =>
+    DONATION_PRESETS.includes(amount)
+      ? calc(`impact_${amount}` as Parameters<typeof calc>[0])
+      : "";
 
   return (
     <section className="bg-cream-50 py-24" aria-labelledby="donate-heading">
@@ -40,7 +28,7 @@ export default function DonateSection() {
             <div className="relative h-full min-h-[500px] rounded-2xl overflow-hidden">
               <Image
                 src="/images/project-girls.jpg"
-                alt="Jeunes filles bénéficiaires des programmes HCW"
+                alt={t("photo_alt")}
                 fill
                 className="object-cover"
                 sizes="50vw"
@@ -56,25 +44,19 @@ export default function DonateSection() {
                       </span>
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500">
-                        {locale === "fr" ? "Votre impact" : "Your impact"}
-                      </p>
+                      <p className="text-xs text-gray-500">{t("your_impact")}</p>
                       <p className="text-sm font-bold text-charcoal-900">
-                        {locale === "fr"
-                          ? "1 don = 1 enfant scolarisé"
-                          : "1 donation = 1 child in school"}
+                        {t("one_child")}
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="bg-teal-600/90 backdrop-blur-sm rounded-xl p-4 text-white">
                   <p className="text-sm font-semibold">
-                    90 000+{" "}
-                    {locale === "fr" ? "élèves aidés" : "students helped"}
+                    {stats.students.toLocaleString(locale)}+{" "}
+                    {t("students_helped")}
                   </p>
-                  <p className="text-xs text-teal-200 mt-1">
-                    {locale === "fr" ? "depuis 2013" : "since 2013"}
-                  </p>
+                  <p className="text-xs text-teal-200 mt-1">{t("since")}</p>
                 </div>
               </div>
             </div>
@@ -87,9 +69,7 @@ export default function DonateSection() {
                 id="donate-heading"
                 className="font-serif text-3xl font-bold text-charcoal-900 sm:text-4xl"
               >
-                {locale === "fr"
-                  ? "Chaque don, un impact réel"
-                  : "Every donation, real impact"}
+                {t("impact_title")}
               </h2>
               <p className="mt-4 text-gray-600 leading-relaxed">
                 {t("subtitle")}
@@ -116,9 +96,7 @@ export default function DonateSection() {
                     <div
                       className={`text-sm ${selected === amount ? "text-teal-100" : "text-gray-500"}`}
                     >
-                      {IMPACT[amount as keyof typeof IMPACT]?.[
-                        locale as "fr" | "en"
-                      ] ?? ""}
+                      {impactFor(amount)}
                     </div>
                   </button>
                 ))}
@@ -142,11 +120,7 @@ export default function DonateSection() {
                   {t("impact_suffix")}
                 </span>
                 <p className="mt-1 text-sm font-medium text-teal-800">
-                  {
-                    IMPACT[selected as keyof typeof IMPACT]?.[
-                      locale as "fr" | "en"
-                    ]
-                  }
+                  {impactFor(selected)}
                 </p>
               </div>
 
@@ -156,9 +130,7 @@ export default function DonateSection() {
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-amber-500 py-4 text-base font-semibold text-white shadow-md hover:bg-amber-600 active:scale-95 transition-all mb-4"
               >
                 <Heart className="h-5 w-5" aria-hidden="true" />
-                {locale === "fr"
-                  ? `Donner €${selected} maintenant`
-                  : `Donate €${selected} now`}
+                {t("donate_amount_cta", { amount: selected })}
               </Link>
 
               {/* Payment icons */}

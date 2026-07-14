@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Kaïkelem",
+    "logo": "/images/partner-kaikelem.png",
+    "url": "#",
+    "bg": "bg-white"
+  },
+  {
+    "name": "WEIRAM",
+    "logo": "/images/partner-weiram.jpg",
+    "url": "#",
+    "bg": "bg-white"
+  },
+  {
+    "name": "MEYNG",
+    "logo": "/images/partner-meyng.jpg",
+    "url": "https://meyng.com",
+    "bg": "bg-gray-900"
+  },
+  {
+    "name": "Solidatech",
+    "logo": "/images/partner-solidatech.png",
+    "url": "https://www.solidatech.fr",
+    "bg": "bg-white"
+  }
+]

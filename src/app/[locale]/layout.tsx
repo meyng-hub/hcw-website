@@ -61,6 +61,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!routing.locales.includes(locale as "en" | "fr")) notFound();
   const messages = await getMessages();
+  const common = await getTranslations({ locale, namespace: "common" });
 
   return (
     <html
@@ -74,9 +75,7 @@ export default async function LocaleLayout({
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-teal-600 focus:px-4 focus:py-2 focus:text-white"
           >
-            {locale === "fr"
-              ? "Aller au contenu principal"
-              : "Skip to main content"}
+            {common("skip_nav")}
           </a>
           <Navbar />
           <main id="main-content">{children}</main>

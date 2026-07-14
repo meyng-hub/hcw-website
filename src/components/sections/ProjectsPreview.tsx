@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { ArrowRight, MapPin } from "lucide-react";
-import { PROJECTS } from "@/lib/constants";
+import { projects, pickLocale } from "@/lib/content";
 
 const CATEGORY_COLORS: Record<string, string> = {
   education: "bg-blue-100 text-blue-700",
@@ -14,21 +14,13 @@ const CATEGORY_COLORS: Record<string, string> = {
   solidarity: "bg-green-100 text-green-700",
 };
 
-const PROJECT_IMAGES: Record<string, string> = {
-  "endara-challenge": "/images/endara-students.png",
-  "empowering-girls": "/images/project-girls.jpg",
-  "fighting-illiteracy": "/images/hero-classroom.jpg",
-  "tolerance-fair-play": "/images/project-kaikelem.jpg",
-  kaikelem: "/images/project-girls.jpg",
-  "digital-inclusion": "/images/endara-students.png",
-};
-
 export default function ProjectsPreview() {
   const t = useTranslations("projects");
+  const common = useTranslations("common");
   const locale = useLocale();
 
   // Show first 3 projects on homepage
-  const preview = PROJECTS.slice(0, 3);
+  const preview = projects.slice(0, 3);
 
   return (
     <section className="bg-white py-24" aria-labelledby="projects-heading">
@@ -61,10 +53,8 @@ export default function ProjectsPreview() {
               {/* Image top — 60% height */}
               <div className="relative h-52 overflow-hidden">
                 <Image
-                  src={
-                    PROJECT_IMAGES[project.id] ?? "/images/hero-classroom.jpg"
-                  }
-                  alt={locale === "fr" ? project.titleFr : project.titleEn}
+                  src={project.image}
+                  alt={pickLocale(project.title, locale)}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -91,19 +81,19 @@ export default function ProjectsPreview() {
               <div className="p-6">
                 {/* Title */}
                 <h3 className="font-serif text-xl font-semibold text-charcoal-900 group-hover:text-teal-700 transition-colors">
-                  {locale === "fr" ? project.titleFr : project.titleEn}
+                  {pickLocale(project.title, locale)}
                 </h3>
 
                 {/* Description */}
                 <p className="mt-2 text-sm text-gray-500 line-clamp-3">
-                  {locale === "fr" ? project.descFr : project.descEn}
+                  {pickLocale(project.description, locale)}
                 </p>
 
                 {/* Location */}
                 {project.location && (
                   <div className="mt-4 flex items-center gap-1.5 text-xs text-gray-400">
                     <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
-                    {project.location.city}, RCA
+                    {project.location.city}, {common("country")}
                   </div>
                 )}
 

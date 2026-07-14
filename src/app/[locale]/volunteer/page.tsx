@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -71,7 +71,7 @@ function RoleCard({
 
 export default function VolunteerPage() {
   const t = useTranslations("volunteer");
-  const locale = useLocale();
+  const common = useTranslations("common");
   const [submitted, setSubmitted] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
@@ -120,7 +120,7 @@ export default function VolunteerPage() {
         />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-white/80 mb-3">
-            HCW · {locale === "fr" ? "Bénévolat" : "Volunteering"}
+            HCW · {t("kicker")}
           </p>
           <h1 className="font-serif text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
             {t("title")}
@@ -419,7 +419,7 @@ export default function VolunteerPage() {
 
               {/* WhatsApp alternative */}
               <p className="text-center text-xs text-gray-400">
-                {locale === "fr" ? "Ou " : "Or "}
+                {common("or")}{" "}
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
@@ -441,11 +441,7 @@ export default function VolunteerPage() {
             <p className="font-serif text-xl font-bold text-white">
               {t("whatsapp_desc")}
             </p>
-            <p className="mt-1 text-teal-100 text-sm">
-              {locale === "fr"
-                ? "Rejoignez notre groupe de bénévoles et restez informé."
-                : "Join our volunteer group and stay informed."}
-            </p>
+            <p className="mt-1 text-teal-100 text-sm">{t("whatsapp_note")}</p>
           </div>
           <a
             href={WHATSAPP_URL}

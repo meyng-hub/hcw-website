@@ -90,8 +90,13 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (error: unknown) {
-    const message =
-      error instanceof Error ? error.message : "Internal server error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error(
+      "Stripe checkout error:",
+      error instanceof Error ? error.name : "unknown",
+    );
+    return NextResponse.json(
+      { error: "Payment could not be started. Please try again." },
+      { status: 500 },
+    );
   }
 }

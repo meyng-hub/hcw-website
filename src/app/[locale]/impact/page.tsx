@@ -8,7 +8,6 @@ import {
   Layers,
   Globe,
   Download,
-  Quote,
   TrendingUp,
 } from "lucide-react";
 import ImpactCounterAnimated from "@/components/sections/ImpactCounterAnimated";
@@ -112,25 +111,6 @@ const SDGS: SDG[] = [
 ];
 
 const ANNUAL_REPORT_YEARS: number[] = [2024, 2023, 2022];
-
-interface Testimonial {
-  quoteKey: string;
-  nameKey: string;
-  roleKey: string;
-}
-
-const TESTIMONIALS: Testimonial[] = [
-  {
-    quoteKey: "testimonial_adama_quote",
-    nameKey: "testimonial_adama_name",
-    roleKey: "testimonial_adama_role",
-  },
-  {
-    quoteKey: "testimonial_marieclaire_quote",
-    nameKey: "testimonial_marieclaire_name",
-    roleKey: "testimonial_marieclaire_role",
-  },
-];
 
 interface FinanceItem {
   pct: string;
@@ -363,59 +343,6 @@ export default async function ImpactPage({
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section
-        className="bg-white py-20"
-        aria-labelledby="testimonials-heading"
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
-            <h2
-              id="testimonials-heading"
-              className="font-serif text-3xl font-bold text-charcoal-900 sm:text-4xl"
-            >
-              {t("testimonials_title")}
-            </h2>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-2">
-            {TESTIMONIALS.map((testimonial, i) => (
-              <figure
-                key={i}
-                className="rounded-2xl bg-cream-50 p-8 ring-1 ring-teal-100"
-              >
-                <Quote
-                  className="mb-4 h-8 w-8 text-teal-200"
-                  aria-hidden="true"
-                />
-                <blockquote className="text-gray-700 leading-relaxed italic">
-                  &ldquo;{t(testimonial.quoteKey as TKey)}
-                  &rdquo;
-                </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3">
-                  <div
-                    className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white"
-                    aria-hidden="true"
-                  >
-                    {t(testimonial.nameKey as TKey)
-                      .charAt(0)
-                      .toUpperCase()}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-charcoal-900 text-sm">
-                      {t(testimonial.nameKey as TKey)}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      {t(testimonial.roleKey as TKey)}
-                    </div>
-                  </div>
-                </figcaption>
-              </figure>
             ))}
           </div>
         </div>

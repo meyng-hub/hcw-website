@@ -80,24 +80,24 @@ const VALUES = [
 
 const TEAM = [
   {
-    name: "Dr. Ulrich Guene",
+    name: "Michel Wenezoui",
     roleKey: "team_role_president",
-    initials: "UG",
-  },
-  {
-    name: "Marie-Claire Wenezoui",
-    roleKey: "team_role_programme_director",
     initials: "MW",
   },
   {
-    name: "Jean-Baptiste Koyara",
-    roleKey: "team_role_car_coordinator",
-    initials: "JK",
+    name: "Jean Mba",
+    roleKey: "team_role_programme_director",
+    initials: "JM",
   },
   {
-    name: "Aminata Ndongo",
+    name: "Suzy Ouenezoui",
+    roleKey: "team_role_car_coordinator",
+    initials: "SO",
+  },
+  {
+    name: "Philomène Etoa",
     roleKey: "team_role_partnerships_officer",
-    initials: "AN",
+    initials: "PE",
   },
 ];
 

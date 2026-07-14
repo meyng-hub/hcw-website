@@ -10,14 +10,11 @@ export default function MerciPage() {
   const t = useTranslations("donate");
   const tCommon = useTranslations("common");
   const locale = useLocale();
-  const isFr = locale === "fr";
 
   const handleShare = useCallback(async () => {
     const shareData: ShareData = {
-      title: isFr ? "J'ai soutenu HCW !" : "I supported HCW!",
-      text: isFr
-        ? "Je viens de faire un don à HCW — Hervé-Charles Wenezoui pour l'éducation en Afrique centrale. Rejoignez-moi !"
-        : "I just donated to HCW — Hervé-Charles Wenezoui for education in Central Africa. Join me!",
+      title: t("merci_share_title"),
+      text: t("merci_share_text"),
       url:
         typeof window !== "undefined"
           ? window.location.origin + "/" + locale + "/donate"
@@ -37,7 +34,7 @@ export default function MerciPage() {
     } catch {
       // User cancelled share — no action needed
     }
-  }, [isFr, locale]);
+  }, [t, locale]);
 
   return (
     <div className="min-h-screen bg-cream-50">
@@ -69,11 +66,7 @@ export default function MerciPage() {
           <p className="mt-5 text-lg text-teal-100">{t("success_message")}</p>
 
           {/* Receipt note */}
-          <p className="mt-3 text-sm text-teal-200">
-            {isFr
-              ? "Vous recevrez un reçu fiscal par email sous 48h."
-              : "You'll receive a tax receipt by email within 48 hours."}
-          </p>
+          <p className="mt-3 text-sm text-teal-200">{t("merci_receipt_note")}</p>
         </div>
       </section>
 
@@ -83,23 +76,15 @@ export default function MerciPage() {
           {/* Impact reminder */}
           <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-100">
             <p className="font-serif text-lg font-semibold text-charcoal-900">
-              {isFr
-                ? "Grâce à vous, HCW peut continuer à ouvrir des portes."
-                : "Thanks to you, HCW can keep opening doors."}
+              {t("merci_impact")}
             </p>
-            <p className="mt-2 text-sm text-gray-500">
-              {isFr
-                ? "100% de votre don finance directement nos projets éducatifs en République Centrafricaine."
-                : "100% of your donation directly funds our educational projects in the Central African Republic."}
-            </p>
+            <p className="mt-2 text-sm text-gray-500">{t("merci_impact_sub")}</p>
           </div>
 
           {/* Share */}
           <div>
             <p className="mb-4 text-sm font-medium text-gray-600">
-              {isFr
-                ? "Partagez et encouragez d'autres personnes à donner :"
-                : "Share and encourage others to give:"}
+              {t("merci_share_prompt")}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <button
@@ -141,13 +126,13 @@ export default function MerciPage() {
               className="flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-charcoal-900 shadow-sm ring-1 ring-gray-200 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
               <Home className="h-4 w-4 text-gray-400" aria-hidden="true" />
-              {isFr ? "Retour à l'accueil" : "Back to home"}
+              {t("merci_back_home")}
             </Link>
             <Link
               href={`/${locale}/projects`}
               className="flex items-center gap-2 rounded-xl bg-teal-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
-              {isFr ? "Voir nos projets" : "See our projects"}
+              {t("merci_see_projects")}
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>

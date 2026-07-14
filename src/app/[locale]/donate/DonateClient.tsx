@@ -17,71 +17,23 @@ const PRESETS = [20, 50, 100, 500] as const;
 
 type Preset = (typeof PRESETS)[number];
 
-const IMPACT_FR: Record<Preset | "custom", string> = {
-  20: "1 mois de fournitures scolaires pour un enfant",
-  50: "Formation d'un enseignant aux méthodes modernes",
-  100: "Équipement complet d'une classe",
-  500: "Bourse scolaire pour 1 jeune fille pendant un an",
-  custom: "Votre soutien fait la différence",
-};
+const RECURRING_TIER_AMOUNTS = [10, 25, 50];
 
-const IMPACT_EN: Record<Preset | "custom", string> = {
-  20: "1 month of school supplies for one child",
-  50: "Training one teacher in modern methods",
-  100: "Equipping a full classroom",
-  500: "Scholarship for 1 girl for an entire year",
-  custom: "Your support makes a difference",
-};
-
-const RECURRING_TIERS_FR = [
-  {
-    amount: 10,
-    label: "Soutien régulier",
-    desc: "Fournitures trimestrielles pour un enfant",
-  },
-  {
-    amount: 25,
-    label: "Partenaire éducatif",
-    desc: "Couvre les frais de scolarité mensuel d'un élève",
-  },
-  {
-    amount: 50,
-    label: "Ambassadeur HCW",
-    desc: "Finance la formation d'un enseignant par trimestre",
-  },
-];
-
-const RECURRING_TIERS_EN = [
-  {
-    amount: 10,
-    label: "Regular supporter",
-    desc: "Quarterly supplies for one child",
-  },
-  {
-    amount: 25,
-    label: "Education partner",
-    desc: "Covers monthly school fees for one student",
-  },
-  {
-    amount: 50,
-    label: "HCW Ambassador",
-    desc: "Funds teacher training every quarter",
-  },
-];
-
-function getImpact(amount: number | null, locale: string): string {
-  const map = locale === "fr" ? IMPACT_FR : IMPACT_EN;
-  if (amount === 20) return map[20];
-  if (amount === 50) return map[50];
-  if (amount === 100) return map[100];
-  if (amount === 500) return map[500];
-  return map.custom;
+function getImpactKey(amount: number | null): string {
+  if (
+    amount === 20 ||
+    amount === 50 ||
+    amount === 100 ||
+    amount === 500
+  ) {
+    return `impact_${amount}`;
+  }
+  return "impact_custom";
 }
 
 export default function DonateClient() {
   const t = useTranslations("donate");
   const locale = useLocale();
-  const isFr = locale === "fr";
 
   const [selectedPreset, setSelectedPreset] = useState<Preset | null>(50);
   const [customAmount, setCustomAmount] = useState("");
@@ -96,7 +48,9 @@ export default function DonateClient() {
         ? parseFloat(customAmount)
         : null;
 
-  const impactText = getImpact(effectiveAmount, locale);
+  const impactText = t(
+    getImpactKey(effectiveAmount) as Parameters<typeof t>[0],
+  );
 
   const handlePresetClick = useCallback((amount: Preset) => {
     setSelectedPreset(amount);
@@ -115,7 +69,7 @@ export default function DonateClient() {
 
   const handleCheckout = useCallback(async () => {
     if (!effectiveAmount || effectiveAmount < 5) {
-      setError(isFr ? "Montant minimum : 5 €" : "Minimum amount: €5");
+      setError(t("min_amount_error"));
       return;
     }
     setLoading(true);
@@ -133,28 +87,23 @@ export default function DonateClient() {
       });
       const data = (await res.json()) as { url?: string; error?: string };
       if (!res.ok || !data.url) {
-        setError(
-          data.error ??
-            (isFr ? "Une erreur est survenue." : "Something went wrong."),
-        );
+        setError(data.error ?? t("generic_error"));
         return;
       }
       window.location.href = data.url;
     } catch {
-      setError(isFr ? "Une erreur est survenue." : "Something went wrong.");
+      setError(t("generic_error"));
     } finally {
       setLoading(false);
     }
-  }, [effectiveAmount, locale, isMonthly, isFr]);
-
-  const recurringTiers = isFr ? RECURRING_TIERS_FR : RECURRING_TIERS_EN;
+  }, [effectiveAmount, locale, isMonthly, t]);
 
   return (
     <div className="min-h-screen bg-cream-50">
       {/* ── Hero ─────────────────────────────────────────── */}
       <section
         className="relative overflow-hidden bg-teal-700 py-20"
-        aria-label={isFr ? "En-tête don" : "Donation header"}
+        aria-label={t("hero_aria")}
       >
         {/* subtle background pattern */}
         <div
@@ -175,7 +124,7 @@ export default function DonateClient() {
             <span>HCW — Hervé-Charles Wenezoui</span>
           </div>
           <h1 className="font-serif text-4xl font-bold text-white sm:text-5xl">
-            {isFr ? "Faites un don" : "Make a donation"}
+            {t("title")}
           </h1>
           <p className="mt-4 text-lg text-teal-100">{t("subtitle")}</p>
         </div>
@@ -189,12 +138,12 @@ export default function DonateClient() {
             {/* One-time / Monthly toggle */}
             <div>
               <h2 className="mb-4 font-serif text-xl font-semibold text-charcoal-900">
-                {isFr ? "Fréquence du don" : "Donation frequency"}
+                {t("frequency_label")}
               </h2>
               <div
                 className="inline-flex rounded-xl bg-white p-1 shadow-sm ring-1 ring-gray-100"
                 role="group"
-                aria-label={isFr ? "Fréquence de don" : "Donation frequency"}
+                aria-label={t("frequency_label")}
               >
                 <button
                   type="button"
@@ -224,9 +173,7 @@ export default function DonateClient() {
               </div>
               {isMonthly && (
                 <p className="mt-2 text-xs text-teal-700">
-                  {isFr
-                    ? "Les dons mensuels sont prélevés par carte ou SEPA. Annulable à tout moment."
-                    : "Monthly gifts are collected by card or SEPA. Cancel anytime."}
+                  {t("cancel_anytime")}
                 </p>
               )}
             </div>
@@ -234,12 +181,12 @@ export default function DonateClient() {
             {/* Preset amounts */}
             <div>
               <h2 className="mb-4 font-serif text-xl font-semibold text-charcoal-900">
-                {isFr ? "Choisissez votre montant" : "Choose your amount"}
+                {t("amount_label")}
               </h2>
               <div
                 className="grid grid-cols-2 gap-3 sm:grid-cols-4"
                 role="group"
-                aria-label={isFr ? "Montants prédéfinis" : "Preset amounts"}
+                aria-label={t("presets_aria")}
               >
                 {PRESETS.map((amount) => (
                   <button
@@ -269,7 +216,7 @@ export default function DonateClient() {
                           : "text-gray-500"
                       }`}
                     >
-                      {isFr ? IMPACT_FR[amount] : IMPACT_EN[amount]}
+                      {t(`impact_${amount}` as Parameters<typeof t>[0])}
                     </span>
                   </button>
                 ))}
@@ -312,7 +259,7 @@ export default function DonateClient() {
             {effectiveAmount && effectiveAmount >= 5 && (
               <div className="rounded-2xl border border-teal-100 bg-gradient-to-br from-teal-50 to-white p-6">
                 <p className="text-xs font-semibold uppercase tracking-widest text-teal-500">
-                  {isFr ? "Impact de votre don" : "Impact of your gift"}
+                  {t("your_impact")}
                 </p>
                 <p className="mt-2 font-serif text-lg font-semibold text-charcoal-900">
                   {t("impact_label")}{" "}
@@ -326,35 +273,43 @@ export default function DonateClient() {
             {/* Recurring donors section */}
             <div>
               <h2 className="mb-1 font-serif text-xl font-semibold text-charcoal-900">
-                {isFr ? "Donateurs réguliers" : "Monthly donors"}
+                {t("recurring_title")}
               </h2>
               <p className="mb-5 text-sm text-gray-500">
-                {isFr
-                  ? "Rejoignez notre communauté de donateurs fidèles."
-                  : "Join our community of committed supporters."}
+                {t("recurring_subtitle")}
               </p>
               <div className="space-y-3">
-                {recurringTiers.map((tier) => (
+                {RECURRING_TIER_AMOUNTS.map((amount) => (
                   <button
-                    key={tier.amount}
+                    key={amount}
                     type="button"
                     onClick={() => {
                       setIsMonthly(true);
-                      handlePresetClick(tier.amount as Preset);
+                      handlePresetClick(amount as Preset);
                     }}
                     className="flex w-full items-center gap-4 rounded-xl bg-white px-5 py-4 text-left shadow-sm ring-1 ring-gray-100 transition-all hover:ring-teal-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
                   >
                     <span className="shrink-0 font-serif text-xl font-bold text-teal-600">
-                      €{tier.amount}
+                      €{amount}
                       <span className="font-sans text-xs font-normal text-gray-400">
-                        /{isFr ? "mois" : "mo"}
+                        /{t("per_month_short")}
                       </span>
                     </span>
                     <div>
                       <p className="text-sm font-semibold text-charcoal-900">
-                        {tier.label}
+                        {t(
+                          `recurring_${amount}_label` as Parameters<
+                            typeof t
+                          >[0],
+                        )}
                       </p>
-                      <p className="text-xs text-gray-500">{tier.desc}</p>
+                      <p className="text-xs text-gray-500">
+                        {t(
+                          `recurring_${amount}_desc` as Parameters<
+                            typeof t
+                          >[0],
+                        )}
+                      </p>
                     </div>
                   </button>
                 ))}
@@ -371,10 +326,8 @@ export default function DonateClient() {
                       aria-hidden="true"
                     />
                   ),
-                  label: isFr
-                    ? "Association loi 1901"
-                    : "Registered non-profit",
-                  sub: isFr ? "Enregistrée en France" : "Registered in France",
+                  label: t("trust_nonprofit_label"),
+                  sub: t("trust_nonprofit_sub"),
                 },
                 {
                   icon: (
@@ -383,10 +336,8 @@ export default function DonateClient() {
                       aria-hidden="true"
                     />
                   ),
-                  label: isFr ? "Reçu fiscal 66%" : "Tax receipt 66%",
-                  sub: isFr
-                    ? "Pour résidents français"
-                    : "For French residents",
+                  label: t("trust_tax_label"),
+                  sub: t("trust_tax_sub"),
                 },
                 {
                   icon: (
@@ -396,7 +347,7 @@ export default function DonateClient() {
                     />
                   ),
                   label: "RGPD / GDPR",
-                  sub: isFr ? "Données protégées" : "Data protected",
+                  sub: t("trust_gdpr_sub"),
                 },
               ].map((item) => (
                 <div
@@ -422,9 +373,7 @@ export default function DonateClient() {
                 {t("payment_title")}
               </h2>
               <p className="mb-6 text-sm text-gray-500">
-                {isFr
-                  ? "Paiement crypté, traité par Stripe"
-                  : "Encrypted payment processed by Stripe"}
+                {t("payment_subtitle")}
               </p>
 
               {/* Amount summary */}
@@ -437,7 +386,7 @@ export default function DonateClient() {
                     </strong>
                     {isMonthly && (
                       <span className="ml-1 text-xs text-teal-500">
-                        /{isFr ? "mois" : "month"}
+                        /{t("per_month")}
                       </span>
                     )}
                   </p>
@@ -445,9 +394,7 @@ export default function DonateClient() {
                 </div>
               ) : (
                 <div className="mb-6 rounded-xl bg-gray-50 px-4 py-3.5 text-center text-sm text-gray-400">
-                  {isFr
-                    ? "Sélectionnez un montant ci-contre"
-                    : "Select an amount on the left"}
+                  {t("select_amount_prompt")}
                 </div>
               )}
 
@@ -470,23 +417,13 @@ export default function DonateClient() {
                 aria-busy={loading}
               >
                 <CreditCard className="h-5 w-5" aria-hidden="true" />
-                {loading
-                  ? isFr
-                    ? "Redirection…"
-                    : "Redirecting…"
-                  : isFr
-                    ? "Payer par carte"
-                    : "Pay by card"}
+                {loading ? t("redirecting") : t("pay_by_card")}
               </button>
 
               {/* Payment method logos */}
               <div
                 className="mt-4 flex flex-wrap items-center justify-center gap-2"
-                aria-label={
-                  isFr
-                    ? "Moyens de paiement acceptés"
-                    : "Accepted payment methods"
-                }
+                aria-label={t("payment_methods_aria")}
               >
                 {["Visa", "Mastercard", "Google Pay", "Apple Pay"].map(
                   (method) => (
@@ -503,19 +440,13 @@ export default function DonateClient() {
               {/* Security */}
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-400">
                 <Lock className="h-3.5 w-3.5" aria-hidden="true" />
-                <span>
-                  {isFr
-                    ? "Paiement sécurisé SSL · Stripe"
-                    : "SSL Secured · Stripe"}
-                </span>
+                <span>{t("ssl_badge")}</span>
               </div>
 
               {/* Divider */}
               <div className="my-6 flex items-center gap-3">
                 <div className="h-px flex-1 bg-gray-100" />
-                <span className="text-xs text-gray-400">
-                  {isFr ? "ou" : "or"}
-                </span>
+                <span className="text-xs text-gray-400">{t("or")}</span>
                 <div className="h-px flex-1 bg-gray-100" />
               </div>
 
@@ -534,10 +465,7 @@ export default function DonateClient() {
               </a>
               <div className="mt-2 flex items-center justify-center gap-1.5">
                 <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
-                  0%{" "}
-                  {isFr
-                    ? "frais pour les associations FR"
-                    : "fees for French associations"}
+                  {t("helloasso_badge")}
                 </span>
               </div>
 

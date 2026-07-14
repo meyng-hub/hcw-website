@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -105,8 +105,6 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 /* ── Main component ── */
 export default function ContactPage() {
   const t = useTranslations("contact");
-  const locale = useLocale();
-  const isFr = locale === "fr";
 
   const [status, setStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -126,16 +124,10 @@ export default function ContactPage() {
   const errorMsg = (key: string | undefined) => {
     if (!key) return undefined;
     const map: Record<string, string> = {
-      name_required: isFr
-        ? "Le nom est requis (min. 2 caractères)"
-        : "Name is required (min. 2 characters)",
-      email_invalid: isFr ? "Adresse email invalide" : "Invalid email address",
-      subject_required: isFr
-        ? "Veuillez choisir un sujet"
-        : "Please choose a subject",
-      message_min: isFr
-        ? "Le message doit contenir au moins 20 caractères"
-        : "Message must be at least 20 characters",
+      name_required: t("error_name_required"),
+      email_invalid: t("error_email_invalid"),
+      subject_required: t("error_subject_required"),
+      message_min: t("error_message_min"),
     };
     return map[key] ?? key;
   };
@@ -163,11 +155,11 @@ export default function ContactPage() {
   };
 
   const SUBJECTS = [
-    { value: "general", fr: "Question générale", en: "General enquiry" },
-    { value: "partnership", fr: "Partenariat", en: "Partnership" },
-    { value: "press", fr: "Presse / Médias", en: "Press / Media" },
-    { value: "volunteer", fr: "Bénévolat", en: "Volunteering" },
-    { value: "donation", fr: "Don / Financement", en: "Donation / Funding" },
+    { value: "general", label: t("subject_general") },
+    { value: "partnership", label: t("subject_partnership") },
+    { value: "press", label: t("subject_press") },
+    { value: "volunteer", label: t("subject_volunteer") },
+    { value: "donation", label: t("subject_donation") },
   ] as const;
 
   return (
@@ -179,11 +171,7 @@ export default function ContactPage() {
           <h1 className="font-serif text-5xl font-bold tracking-tight">
             {t("title")}
           </h1>
-          <p className="mt-4 text-lg text-teal-100">
-            {isFr
-              ? "Une question, un projet ou envie de nous rejoindre ? Écrivez-nous."
-              : "A question, a project, or want to join us? Write to us."}
-          </p>
+          <p className="mt-4 text-lg text-teal-100">{t("hero_subtitle")}</p>
         </div>
       </section>
 
@@ -196,7 +184,7 @@ export default function ContactPage() {
               <div>
                 <div className="mb-3 h-1 w-10 rounded bg-teal-600" />
                 <h2 className="font-serif text-2xl font-bold text-charcoal-900">
-                  {isFr ? "Coordonnées" : "Get in touch"}
+                  {t("info_title")}
                 </h2>
               </div>
 
@@ -313,12 +301,9 @@ export default function ContactPage() {
               {/* Social links */}
               <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
                 <p className="mb-4 font-semibold text-charcoal-900">
-                  {isFr ? "Réseaux sociaux" : "Social media"}
+                  {t("social_title")}
                 </p>
-                <div
-                  className="flex gap-3"
-                  aria-label={isFr ? "Réseaux sociaux" : "Social media links"}
-                >
+                <div className="flex gap-3" aria-label={t("social_aria")}>
                   {[
                     { href: SOCIAL.facebook, Icon: FbIcon, label: "Facebook" },
                     {
@@ -350,12 +335,10 @@ export default function ContactPage() {
                 <div className="mb-6">
                   <div className="mb-3 h-1 w-10 rounded bg-amber-500" />
                   <h2 className="font-serif text-2xl font-bold text-charcoal-900">
-                    {isFr ? "Envoyer un message" : "Send a message"}
+                    {t("form_title")}
                   </h2>
                   <p className="mt-2 text-sm text-gray-500">
-                    {isFr
-                      ? "Nous répondons dans les 48 heures ouvrées."
-                      : "We reply within 48 working hours."}
+                    {t("form_reply_time")}
                   </p>
                 </div>
 
@@ -371,9 +354,7 @@ export default function ContactPage() {
                       aria-hidden="true"
                     />
                     <div>
-                      <p className="font-semibold">
-                        {isFr ? "Message envoyé !" : "Message sent!"}
-                      </p>
+                      <p className="font-semibold">{t("form_success_title")}</p>
                       <p className="text-sm">{t("form_success")}</p>
                     </div>
                   </div>
@@ -397,7 +378,7 @@ export default function ContactPage() {
                 <form
                   onSubmit={handleSubmit(onSubmit)}
                   noValidate
-                  aria-label={isFr ? "Formulaire de contact" : "Contact form"}
+                  aria-label={t("form_aria")}
                 >
                   <div className="space-y-5">
                     {/* Name */}
@@ -426,9 +407,7 @@ export default function ContactPage() {
                             ? "border-red-300 bg-red-50 focus:ring-red-400"
                             : "border-gray-200 bg-gray-50 focus:border-teal-300 focus:bg-white"
                         }`}
-                        placeholder={
-                          isFr ? "Votre nom complet" : "Your full name"
-                        }
+                        placeholder={t("form_name_placeholder")}
                       />
                       <FieldError
                         id="name-error"
@@ -462,9 +441,7 @@ export default function ContactPage() {
                             ? "border-red-300 bg-red-50 focus:ring-red-400"
                             : "border-gray-200 bg-gray-50 focus:border-teal-300 focus:bg-white"
                         }`}
-                        placeholder={
-                          isFr ? "votre@email.com" : "your@email.com"
-                        }
+                        placeholder={t("form_email_placeholder")}
                       />
                       <FieldError
                         id="email-error"
@@ -499,11 +476,11 @@ export default function ContactPage() {
                         defaultValue=""
                       >
                         <option value="" disabled>
-                          {isFr ? "Choisir un sujet…" : "Choose a subject…"}
+                          {t("form_subject_placeholder")}
                         </option>
-                        {SUBJECTS.map(({ value, fr, en }) => (
+                        {SUBJECTS.map(({ value, label }) => (
                           <option key={value} value={value}>
-                            {isFr ? fr : en}
+                            {label}
                           </option>
                         ))}
                       </select>
@@ -538,11 +515,7 @@ export default function ContactPage() {
                             ? "border-red-300 bg-red-50 focus:ring-red-400"
                             : "border-gray-200 bg-gray-50 focus:border-teal-300 focus:bg-white"
                         }`}
-                        placeholder={
-                          isFr
-                            ? "Décrivez votre demande en quelques lignes… (min. 20 caractères)"
-                            : "Describe your request in a few lines… (min. 20 characters)"
-                        }
+                        placeholder={t("form_message_placeholder")}
                       />
                       <FieldError
                         id="message-error"
@@ -562,7 +535,7 @@ export default function ContactPage() {
                             className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"
                             aria-hidden="true"
                           />
-                          {isFr ? "Envoi en cours…" : "Sending…"}
+                          {t("form_sending")}
                         </>
                       ) : (
                         <>
@@ -573,9 +546,7 @@ export default function ContactPage() {
                     </button>
 
                     <p className="text-center text-xs text-gray-400">
-                      {isFr
-                        ? "Données protégées conformément au RGPD."
-                        : "Data protected in compliance with GDPR."}
+                      {t("form_gdpr")}
                     </p>
                   </div>
                 </form>

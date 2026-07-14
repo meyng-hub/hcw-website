@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-// Use Resend for email (already installed)
-// import { Resend } from "resend";
-// const resend = new Resend(process.env.RESEND_API_KEY);
+import { Resend } from "resend";
+
+const CONTACT_INBOX = "contact@h-cw.org";
+const FROM_ADDRESS = "HCW <noreply@h-cw.org>";
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,16 +28,34 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // TODO: send via Resend when API key configured
-    // await resend.emails.send({
-    //   from: "noreply@h-cw.org",
-    //   to: "contact@h-cw.org",
-    //   subject: `[HCW Contact] ${subject || "General enquiry"}`,
-    //   text: `From: ${name} <${email}>\nSubject: ${subject}\n\n${message}`,
-    // });
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      // Honest failure — never pretend a message was delivered.
+      return NextResponse.json(
+        {
+          error: `Formulaire momentanément indisponible — écrivez-nous directement à ${CONTACT_INBOX}`,
+        },
+        { status: 503 },
+      );
+    }
 
-    // No logging of sender details — PII must not land in function logs.
-    void subject;
+    const resend = new Resend(apiKey);
+    const { error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      to: CONTACT_INBOX,
+      replyTo: email,
+      subject: `[HCW Contact] ${subject || "Message du site"}`,
+      text: `De : ${name} <${email}>\nSujet : ${subject || "—"}\n\n${message}`,
+    });
+    if (error) {
+      console.error("Resend error (contact):", error.name);
+      return NextResponse.json(
+        {
+          error: `L'envoi a échoué — écrivez-nous directement à ${CONTACT_INBOX}`,
+        },
+        { status: 502 },
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch {

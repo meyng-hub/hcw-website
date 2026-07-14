@@ -1,4 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
+
+const CONTACT_INBOX = "contact@h-cw.org";
+const FROM_ADDRESS = "HCW <noreply@h-cw.org>";
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,9 +16,34 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // TODO: send notification email via Resend
-    // No logging of applicant details — PII must not land in function logs.
-    void motivation;
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      // Honest failure — never pretend an application was delivered.
+      return NextResponse.json(
+        {
+          error: `Formulaire momentanément indisponible — écrivez-nous directement à ${CONTACT_INBOX}`,
+        },
+        { status: 503 },
+      );
+    }
+
+    const resend = new Resend(apiKey);
+    const { error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      to: CONTACT_INBOX,
+      replyTo: String(email),
+      subject: `[HCW Bénévolat] Candidature — ${String(name)}`,
+      text: `Nom : ${String(name)}\nEmail : ${String(email)}\nRôle souhaité : ${String(role)}\n\nMotivation :\n${String(motivation ?? "—")}`,
+    });
+    if (error) {
+      console.error("Resend error (volunteer):", error.name);
+      return NextResponse.json(
+        {
+          error: `L'envoi a échoué — écrivez-nous directement à ${CONTACT_INBOX}`,
+        },
+        { status: 502 },
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch {

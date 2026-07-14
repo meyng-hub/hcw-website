@@ -39,79 +39,40 @@ export async function generateMetadata({
 }
 
 const TIMELINE = [
-  {
-    year: 2009,
-    fr: "Fondation de l'association HCW en mémoire d'Hervé-Charles Wenezoui",
-    en: "HCW association founded in memory of Hervé-Charles Wenezoui",
-  },
-  {
-    year: 2013,
-    fr: "Lancement des premiers programmes éducatifs en République Centrafricaine",
-    en: "Launch of first educational programmes in the Central African Republic",
-  },
-  {
-    year: 2015,
-    fr: "Premier programme d'alphabétisation — 2 000 élèves bénéficiaires",
-    en: "First literacy programme — 2,000 students reached",
-  },
-  {
-    year: 2018,
-    fr: "Création du concours eNdara Challenge pour l'innovation jeunesse",
-    en: "Creation of the eNdara Challenge competition for youth innovation",
-  },
-  {
-    year: 2020,
-    fr: "Réponse COVID-19 : kits scolaires distribués malgré la crise",
-    en: "COVID-19 response: school kits distributed despite the crisis",
-  },
-  {
-    year: 2025,
-    fr: "9 000 élèves touchés depuis la fondation",
-    en: "9,000 students reached since foundation",
-  },
+  { year: 2009, key: "timeline_2009" },
+  { year: 2013, key: "timeline_2013" },
+  { year: 2015, key: "timeline_2015" },
+  { year: 2018, key: "timeline_2018" },
+  { year: 2020, key: "timeline_2020" },
+  { year: 2025, key: "timeline_2025" },
 ];
 
 const VALUES = [
   {
     icon: BookOpen,
-    keyFr: "Éducation",
-    keyEn: "Education",
-    descFr:
-      "Garantir un accès équitable au savoir pour chaque enfant, quelles que soient ses origines.",
-    descEn:
-      "Ensuring equitable access to knowledge for every child, regardless of their background.",
+    titleKey: "values_education_title",
+    descKey: "values_education_desc",
     color: "text-teal-600",
     bg: "bg-teal-50",
   },
   {
     icon: Heart,
-    keyFr: "Solidarité",
-    keyEn: "Solidarity",
-    descFr:
-      "Agir ensemble, avec empathie, pour les communautés vulnérables d'Afrique centrale.",
-    descEn:
-      "Acting together, with empathy, for vulnerable communities in Central Africa.",
+    titleKey: "values_solidarity_title",
+    descKey: "values_solidarity_desc",
     color: "text-amber-500",
     bg: "bg-amber-50",
   },
   {
     icon: Globe,
-    keyFr: "Culture",
-    keyEn: "Culture",
-    descFr:
-      "Valoriser les identités culturelles centrafricaines comme levier de développement.",
-    descEn:
-      "Valuing Central African cultural identities as a driver of development.",
+    titleKey: "values_culture_title",
+    descKey: "values_culture_desc",
     color: "text-teal-600",
     bg: "bg-teal-50",
   },
   {
     icon: Lightbulb,
-    keyFr: "Innovation",
-    keyEn: "Innovation",
-    descFr:
-      "Concevoir des solutions créatives et adaptées aux réalités du terrain.",
-    descEn: "Designing creative solutions adapted to on-the-ground realities.",
+    titleKey: "values_innovation_title",
+    descKey: "values_innovation_desc",
     color: "text-amber-500",
     bg: "bg-amber-50",
   },
@@ -120,26 +81,22 @@ const VALUES = [
 const TEAM = [
   {
     name: "Dr. Ulrich Guene",
-    roleFr: "Président",
-    roleEn: "President",
+    roleKey: "team_role_president",
     initials: "UG",
   },
   {
     name: "Marie-Claire Wenezoui",
-    roleFr: "Directrice de programme",
-    roleEn: "Programme Director",
+    roleKey: "team_role_programme_director",
     initials: "MW",
   },
   {
     name: "Jean-Baptiste Koyara",
-    roleFr: "Coordinateur RCA",
-    roleEn: "CAR Coordinator",
+    roleKey: "team_role_car_coordinator",
     initials: "JK",
   },
   {
     name: "Aminata Ndongo",
-    roleFr: "Chargée de partenariats",
-    roleEn: "Partnerships Officer",
+    roleKey: "team_role_partnerships_officer",
     initials: "AN",
   },
 ];
@@ -147,18 +104,15 @@ const TEAM = [
 const PARTNERS = [
   {
     name: "WEIRAM",
-    descFr: "Réseau international pour l'autonomisation des femmes",
-    descEn: "International network for women's empowerment",
+    descKey: "partners_weiram_desc",
   },
   {
     name: "KAIKELEM",
-    descFr: "Programme solidarité — veuves et orphelins RCA",
-    descEn: "Solidarity programme — widows and orphans CAR",
+    descKey: "partners_kaikelem_desc",
   },
   {
     name: "eNdara",
-    descFr: "Plateforme d'apprentissage numérique",
-    descEn: "Digital learning platform",
+    descKey: "partners_endara_desc",
   },
 ];
 
@@ -169,7 +123,6 @@ export default async function AboutPage({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
-  const isFr = locale === "fr";
 
   return (
     <>
@@ -186,23 +139,19 @@ export default async function AboutPage({
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-medium backdrop-blur-sm">
             <Award className="h-4 w-4 text-amber-400" aria-hidden="true" />
-            {isFr
-              ? "Fondée en 2009 · Association loi 1901"
-              : "Founded 2009 · Non-profit association"}
+            {t("hero_badge")}
           </p>
           <h1
             id="about-hero-heading"
             className="font-serif text-5xl font-bold leading-tight tracking-tight md:text-6xl"
           >
-            {isFr ? "Notre histoire" : "Our story"}
+            {t("hero_title")}
           </h1>
           <p className="mt-6 text-lg text-teal-100 max-w-2xl mx-auto leading-relaxed">
-            {isFr
-              ? "Depuis 2009, HCW œuvre au cœur de l'Afrique centrale pour offrir à chaque enfant la chance d'apprendre, de grandir et de s'épanouir."
-              : "Since 2009, HCW has worked at the heart of Central Africa to give every child the chance to learn, grow, and flourish."}
+            {t("hero_subtitle")}
           </p>
           <p className="mt-4 text-base font-semibold tracking-widest text-amber-400 uppercase">
-            Humanity · Culture · Welfare
+            Hervé-Charles Wenezoui
           </p>
         </div>
       </section>
@@ -224,15 +173,13 @@ export default async function AboutPage({
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <span className="rounded-full bg-teal-100 px-4 py-1.5 text-sm font-medium text-teal-700">
-                  {isFr ? "Association loi 1901" : "Non-profit (loi 1901)"}
+                  {t("mission_badge_law")}
                 </span>
                 <span className="rounded-full bg-amber-100 px-4 py-1.5 text-sm font-medium text-amber-700">
-                  {isFr ? "Fondée en 2009" : "Founded 2009"}
+                  {t("mission_badge_founded")}
                 </span>
                 <span className="rounded-full bg-teal-100 px-4 py-1.5 text-sm font-medium text-teal-700">
-                  {isFr
-                    ? "République Centrafricaine"
-                    : "Central African Republic"}
+                  {t("mission_badge_country")}
                 </span>
               </div>
             </div>
@@ -240,20 +187,18 @@ export default async function AboutPage({
             <div>
               <div className="mb-4 h-1 w-12 rounded bg-amber-500" />
               <h2 className="font-serif text-4xl font-bold text-charcoal-900">
-                {isFr ? "Notre vision" : "Our vision"}
+                {t("vision_title")}
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-gray-600">
-                {isFr
-                  ? "Un monde où chaque enfant centrafricain a accès à une éducation de qualité, où la culture est vecteur de paix, et où la solidarité construit des ponts entre les peuples."
-                  : "A world where every Central African child has access to quality education, where culture is a vehicle for peace, and where solidarity builds bridges between peoples."}
+                {t("vision_text")}
               </p>
               <div className="mt-8 grid grid-cols-3 gap-4">
                 <div className="text-center">
                   <p className="font-serif text-3xl font-bold text-teal-600">
-                    90K+
+                    9K+
                   </p>
                   <p className="mt-1 text-xs text-gray-500">
-                    {isFr ? "élèves touchés" : "students reached"}
+                    {t("stats_students_label")}
                   </p>
                 </div>
                 <div className="text-center">
@@ -261,7 +206,7 @@ export default async function AboutPage({
                     6
                   </p>
                   <p className="mt-1 text-xs text-gray-500">
-                    {isFr ? "programmes actifs" : "active programmes"}
+                    {t("stats_programmes_label")}
                   </p>
                 </div>
                 <div className="text-center">
@@ -269,7 +214,7 @@ export default async function AboutPage({
                     16
                   </p>
                   <p className="mt-1 text-xs text-gray-500">
-                    {isFr ? "années d'action" : "years of action"}
+                    {t("stats_years_label")}
                   </p>
                 </div>
               </div>
@@ -287,13 +232,13 @@ export default async function AboutPage({
               id="timeline-heading"
               className="font-serif text-4xl font-bold text-charcoal-900"
             >
-              {isFr ? "Notre parcours" : "Our journey"}
+              {t("timeline_title")}
             </h2>
           </div>
 
           <ol
             className="relative border-l-2 border-teal-200 pl-8 space-y-10"
-            aria-label={isFr ? "Chronologie HCW" : "HCW timeline"}
+            aria-label={t("timeline_aria")}
           >
             {TIMELINE.map((item, idx) => {
               const isAward = item.year === 2024;
@@ -322,12 +267,12 @@ export default async function AboutPage({
                         aria-hidden="true"
                       />
                       <p className="text-base font-semibold text-amber-900">
-                        {isFr ? item.fr : item.en}
+                        {t(item.key as Parameters<typeof t>[0])}
                       </p>
                     </div>
                   ) : (
                     <p className="text-base text-charcoal-900">
-                      {isFr ? item.fr : item.en}
+                      {t(item.key as Parameters<typeof t>[0])}
                     </p>
                   )}
                 </li>
@@ -346,12 +291,10 @@ export default async function AboutPage({
               id="team-heading"
               className="font-serif text-4xl font-bold text-charcoal-900"
             >
-              {isFr ? "Notre équipe" : "Our team"}
+              {t("team_title")}
             </h2>
             <p className="mt-4 text-gray-500 max-w-xl mx-auto">
-              {isFr
-                ? "Des personnes engagées, portées par la conviction que l'éducation change le monde."
-                : "Dedicated people driven by the conviction that education changes the world."}
+              {t("team_subtitle")}
             </p>
           </div>
 
@@ -360,20 +303,14 @@ export default async function AboutPage({
             <figure>
               <Image
                 src="/images/team-community.jpg"
-                alt={
-                  isFr
-                    ? "L'équipe HCW et partenaires communautaires à Bangui"
-                    : "HCW team and community partners in Bangui"
-                }
+                alt={t("team_photo_alt")}
                 width={1200}
                 height={600}
                 className="w-full object-cover"
                 priority
               />
               <figcaption className="bg-charcoal-900 px-6 py-3 text-center text-sm text-gray-300">
-                {isFr
-                  ? "Notre équipe à Bangui, République Centrafricaine"
-                  : "Our team in Bangui, Central African Republic"}
+                {t("team_photo_caption")}
               </figcaption>
             </figure>
           </div>
@@ -393,7 +330,7 @@ export default async function AboutPage({
                 </h3>
                 <span className="mt-2 block text-center">
                   <span className="rounded-full bg-teal-100 px-3 py-0.5 text-xs font-medium text-teal-700">
-                    {isFr ? member.roleFr : member.roleEn}
+                    {t(member.roleKey as Parameters<typeof t>[0])}
                   </span>
                 </span>
               </div>
@@ -403,9 +340,7 @@ export default async function AboutPage({
           <div className="mt-8 text-center">
             <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
               <Users className="h-4 w-4" aria-hidden="true" />
-              {isFr
-                ? "Et de nombreux bénévoles engagés en France et en RCA"
-                : "And many committed volunteers in France and CAR"}
+              {t("team_volunteers")}
             </p>
           </div>
         </div>
@@ -420,7 +355,7 @@ export default async function AboutPage({
               id="partners-heading"
               className="font-serif text-4xl font-bold text-charcoal-900"
             >
-              {isFr ? "Nos partenaires" : "Our partners"}
+              {t("partners_title")}
             </h2>
           </div>
 
@@ -434,7 +369,7 @@ export default async function AboutPage({
                   {partner.name}
                 </p>
                 <p className="text-sm text-gray-500">
-                  {isFr ? partner.descFr : partner.descEn}
+                  {t(partner.descKey as Parameters<typeof t>[0])}
                 </p>
               </div>
             ))}
@@ -451,31 +386,29 @@ export default async function AboutPage({
               id="values-heading"
               className="font-serif text-4xl font-bold text-charcoal-900"
             >
-              {isFr ? "Nos valeurs" : "Our values"}
+              {t("values_title")}
             </h2>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {VALUES.map(
-              ({ icon: Icon, keyFr, keyEn, descFr, descEn, color, bg }) => (
+            {VALUES.map(({ icon: Icon, titleKey, descKey, color, bg }) => (
+              <div
+                key={titleKey}
+                className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 hover:shadow-md transition-shadow"
+              >
                 <div
-                  key={keyFr}
-                  className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-100 hover:shadow-md transition-shadow"
+                  className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${bg}`}
                 >
-                  <div
-                    className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${bg}`}
-                  >
-                    <Icon className={`h-6 w-6 ${color}`} aria-hidden="true" />
-                  </div>
-                  <h3 className="font-serif text-lg font-semibold text-charcoal-900 mb-2">
-                    {isFr ? keyFr : keyEn}
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    {isFr ? descFr : descEn}
-                  </p>
+                  <Icon className={`h-6 w-6 ${color}`} aria-hidden="true" />
                 </div>
-              ),
-            )}
+                <h3 className="font-serif text-lg font-semibold text-charcoal-900 mb-2">
+                  {t(titleKey as Parameters<typeof t>[0])}
+                </h3>
+                <p className="text-sm text-gray-500 leading-relaxed">
+                  {t(descKey as Parameters<typeof t>[0])}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -487,26 +420,22 @@ export default async function AboutPage({
       >
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <h2 id="about-cta-heading" className="font-serif text-4xl font-bold">
-            {isFr ? "Rejoindre notre mission" : "Join our mission"}
+            {t("cta_title")}
           </h2>
-          <p className="mt-6 text-lg text-teal-100">
-            {isFr
-              ? "Bénévole, partenaire ou donateur — chaque engagement compte."
-              : "Volunteer, partner or donor — every commitment counts."}
-          </p>
+          <p className="mt-6 text-lg text-teal-100">{t("cta_text")}</p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href={`/${locale}/donate`}
               className="flex items-center gap-2 rounded-full bg-amber-500 px-8 py-3 text-sm font-semibold text-white shadow-lg transition-all hover:bg-amber-600 hover:shadow-xl active:scale-95"
             >
               <Heart className="h-4 w-4" aria-hidden="true" />
-              {isFr ? "Faire un don" : "Donate"}
+              {t("cta_donate")}
             </Link>
             <Link
               href={`/${locale}/contact`}
               className="flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-8 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/20"
             >
-              {isFr ? "Nous contacter" : "Contact us"}
+              {t("cta_contact")}
               <ChevronRight className="h-4 w-4" aria-hidden="true" />
             </Link>
           </div>

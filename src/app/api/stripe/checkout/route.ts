@@ -57,7 +57,7 @@ export async function POST(req: NextRequest) {
                 product_data: {
                   name: "Don mensuel HCW",
                   description:
-                    "Don récurrent HCW — Humanity, Culture & Welfare",
+                    "Don récurrent HCW — Hervé-Charles Wenezoui",
                 },
               },
               quantity: 1,

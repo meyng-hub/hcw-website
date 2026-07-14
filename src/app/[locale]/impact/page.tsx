@@ -33,68 +33,53 @@ export async function generateMetadata({
 
 interface ProjectImpact {
   id: string;
-  titleFr: string;
-  titleEn: string;
-  beneficiariesFr: string;
-  beneficiariesEn: string;
+  titleKey: string;
+  beneficiariesKey: string;
   categoryEmoji: string;
 }
 
 const PROJECT_IMPACTS: ProjectImpact[] = [
   {
     id: "endara-challenge",
-    titleFr: "eNdara Challenge",
-    titleEn: "eNdara Challenge",
-    beneficiariesFr: "2 000+ jeunes participants",
-    beneficiariesEn: "2,000+ young participants",
+    titleKey: "project_endara_title",
+    beneficiariesKey: "project_endara_beneficiaries",
     categoryEmoji: "💻",
   },
   {
     id: "empowering-girls",
-    titleFr: "Équiper nos jeunes filles",
-    titleEn: "Empowering Young Girls",
-    beneficiariesFr: "500+ jeunes filles accompagnées",
-    beneficiariesEn: "500+ young girls supported",
+    titleKey: "project_girls_title",
+    beneficiariesKey: "project_girls_beneficiaries",
     categoryEmoji: "👩‍🎓",
   },
   {
     id: "fighting-illiteracy",
-    titleFr: "Lutter contre l'illettrisme",
-    titleEn: "Fighting Illiteracy",
-    beneficiariesFr: "10 000+ personnes alphabétisées",
-    beneficiariesEn: "10,000+ people made literate",
+    titleKey: "project_illiteracy_title",
+    beneficiariesKey: "project_illiteracy_beneficiaries",
     categoryEmoji: "📚",
   },
   {
     id: "tolerance-fair-play",
-    titleFr: "Tolérance et fair-play",
-    titleEn: "Tolerance and Fair Play",
-    beneficiariesFr: "3 000+ jeunes sportifs",
-    beneficiariesEn: "3,000+ young athletes",
+    titleKey: "project_tolerance_title",
+    beneficiariesKey: "project_tolerance_beneficiaries",
     categoryEmoji: "🤝",
   },
   {
     id: "kaikelem",
-    titleFr: "KAIKELEM",
-    titleEn: "KAIKELEM",
-    beneficiariesFr: "200+ veuves et orphelins",
-    beneficiariesEn: "200+ widows and orphans",
+    titleKey: "project_kaikelem_title",
+    beneficiariesKey: "project_kaikelem_beneficiaries",
     categoryEmoji: "❤️",
   },
   {
     id: "digital-inclusion",
-    titleFr: "Inclusion numérique",
-    titleEn: "Digital Inclusion",
-    beneficiariesFr: "5 000+ élèves connectés",
-    beneficiariesEn: "5,000+ students connected",
+    titleKey: "project_digital_title",
+    beneficiariesKey: "project_digital_beneficiaries",
     categoryEmoji: "🌐",
   },
 ];
 
 interface SDG {
   number: number;
-  labelFr: string;
-  labelEn: string;
+  labelKey: string;
   color: string;
   bg: string;
 }
@@ -102,87 +87,80 @@ interface SDG {
 const SDGS: SDG[] = [
   {
     number: 4,
-    labelFr: "Éducation de qualité",
-    labelEn: "Quality Education",
+    labelKey: "sdg_4_label",
     color: "text-red-700",
     bg: "bg-red-100",
   },
   {
     number: 5,
-    labelFr: "Égalité entre les sexes",
-    labelEn: "Gender Equality",
+    labelKey: "sdg_5_label",
     color: "text-orange-700",
     bg: "bg-orange-100",
   },
   {
     number: 10,
-    labelFr: "Inégalités réduites",
-    labelEn: "Reduced Inequalities",
+    labelKey: "sdg_10_label",
     color: "text-pink-700",
     bg: "bg-pink-100",
   },
   {
     number: 17,
-    labelFr: "Partenariats",
-    labelEn: "Partnerships",
+    labelKey: "sdg_17_label",
     color: "text-blue-700",
     bg: "bg-blue-100",
   },
 ];
 
-interface AnnualReport {
-  year: number;
-  pagesFr: string;
-  pagesEn: string;
-}
-
-const ANNUAL_REPORTS: AnnualReport[] = [
-  {
-    year: 2024,
-    pagesFr: "Rapport d'activité 2024",
-    pagesEn: "2024 Activity Report",
-  },
-  {
-    year: 2023,
-    pagesFr: "Rapport d'activité 2023",
-    pagesEn: "2023 Activity Report",
-  },
-  {
-    year: 2022,
-    pagesFr: "Rapport d'activité 2022",
-    pagesEn: "2022 Activity Report",
-  },
-];
+const ANNUAL_REPORT_YEARS: number[] = [2024, 2023, 2022];
 
 interface Testimonial {
-  quoteFr: string;
-  quoteEn: string;
-  nameFr: string;
-  nameEn: string;
-  roleFr: string;
-  roleEn: string;
+  quoteKey: string;
+  nameKey: string;
+  roleKey: string;
 }
 
 const TESTIMONIALS: Testimonial[] = [
   {
-    quoteFr:
-      "Grâce à HCW, j'ai pu obtenir mes fournitures scolaires et terminer mon année avec succès. Je rêve de devenir médecin pour aider ma communauté.",
-    quoteEn:
-      "Thanks to HCW, I was able to get my school supplies and finish the year successfully. I dream of becoming a doctor to help my community.",
-    nameFr: "Adama K.",
-    nameEn: "Adama K.",
-    roleFr: "Lauréat·e HCW, Bangui",
-    roleEn: "HCW laureate, Bangui",
+    quoteKey: "testimonial_adama_quote",
+    nameKey: "testimonial_adama_name",
+    roleKey: "testimonial_adama_role",
   },
   {
-    quoteFr:
-      "Le programme eNdara Challenge a transformé la façon dont mes élèves pensent. Ils posent des questions, ils cherchent des solutions — c'est exactement ce dont la RCA a besoin.",
-    quoteEn:
-      "The eNdara Challenge programme has transformed the way my students think. They ask questions, they look for solutions — that's exactly what CAR needs.",
-    nameFr: "Marie-Claire N.",
-    nameEn: "Marie-Claire N.",
-    roleFr: "Enseignante, École Publique de Sica 1, Bangui",
-    roleEn: "Teacher, Public School of Sica 1, Bangui",
+    quoteKey: "testimonial_marieclaire_quote",
+    nameKey: "testimonial_marieclaire_name",
+    roleKey: "testimonial_marieclaire_role",
+  },
+];
+
+interface FinanceItem {
+  pct: string;
+  labelKey: string;
+  descKey: string;
+  color: string;
+  bar: string;
+}
+
+const FINANCE_ITEMS: FinanceItem[] = [
+  {
+    pct: "80%",
+    labelKey: "finance_programs_label",
+    descKey: "finance_programs_desc",
+    color: "bg-teal-600",
+    bar: "w-4/5",
+  },
+  {
+    pct: "15%",
+    labelKey: "finance_admin_label",
+    descKey: "finance_admin_desc",
+    color: "bg-amber-500",
+    bar: "w-3/20",
+  },
+  {
+    pct: "5%",
+    labelKey: "finance_comms_label",
+    descKey: "finance_comms_desc",
+    color: "bg-teal-300",
+    bar: "w-1/20",
   },
 ];
 
@@ -194,7 +172,7 @@ export default async function ImpactPage({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "impactPage" });
   const common = await getTranslations({ locale, namespace: "common" });
-  const isFr = locale === "fr";
+  type TKey = Parameters<typeof t>[0];
 
   return (
     <>
@@ -219,7 +197,7 @@ export default async function ImpactPage({
         <div className="relative mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-medium text-white/90 backdrop-blur-sm">
             <TrendingUp className="h-4 w-4" aria-hidden="true" />
-            {isFr ? "Transparence & impact" : "Transparency & impact"}
+            {t("hero_badge")}
           </div>
           <h1
             id="impact-page-heading"
@@ -250,29 +228,29 @@ export default async function ImpactPage({
             <ImpactCounterAnimated
               value={stats.prizes}
               suffix="+"
-              label={isFr ? "lauréat·e·s" : "laureates"}
+              label={t("counter_laureates")}
               icon={<Trophy className="h-7 w-7" aria-hidden="true" />}
             />
             <ImpactCounterAnimated
               value={stats.students}
               suffix="+"
-              label={isFr ? "élèves touchés" : "students reached"}
+              label={t("counter_students")}
               icon={<Users className="h-7 w-7" aria-hidden="true" />}
             />
             <ImpactCounterAnimated
               value={stats.donations}
               suffix="€+"
-              label={isFr ? "collectés" : "raised"}
+              label={t("counter_raised")}
               icon={<Heart className="h-7 w-7" aria-hidden="true" />}
             />
             <ImpactCounterAnimated
               value={stats.projects}
-              label={isFr ? "projets actifs" : "active projects"}
+              label={t("counter_projects")}
               icon={<Layers className="h-7 w-7" aria-hidden="true" />}
             />
             <ImpactCounterAnimated
               value={5}
-              label={isFr ? "pays d'impact" : "countries of impact"}
+              label={t("counter_countries")}
               icon={<Globe className="h-7 w-7" aria-hidden="true" />}
             />
           </div>
@@ -295,23 +273,20 @@ export default async function ImpactPage({
           </div>
 
           <div className="overflow-hidden rounded-2xl ring-1 ring-gray-100 shadow-sm">
-            <table
-              className="w-full text-sm"
-              aria-label={isFr ? "Impact par projet" : "Impact by project"}
-            >
+            <table className="w-full text-sm" aria-label={t("projects_table_aria")}>
               <thead className="bg-teal-600 text-white">
                 <tr>
                   <th scope="col" className="px-6 py-4 text-left font-semibold">
-                    {isFr ? "Projet" : "Project"}
+                    {t("projects_col_project")}
                   </th>
                   <th scope="col" className="px-6 py-4 text-left font-semibold">
-                    {isFr ? "Bénéficiaires estimés" : "Estimated beneficiaries"}
+                    {t("projects_col_beneficiaries")}
                   </th>
                   <th
                     scope="col"
                     className="hidden px-6 py-4 text-left font-semibold sm:table-cell"
                   >
-                    {isFr ? "Statut" : "Status"}
+                    {t("projects_col_status")}
                   </th>
                 </tr>
               </thead>
@@ -331,12 +306,12 @@ export default async function ImpactPage({
                           {p.categoryEmoji}
                         </span>
                         <span className="font-medium text-charcoal-900">
-                          {isFr ? p.titleFr : p.titleEn}
+                          {t(p.titleKey as TKey)}
                         </span>
                       </div>
                     </td>
                     <td className="px-6 py-4 text-gray-600">
-                      {isFr ? p.beneficiariesFr : p.beneficiariesEn}
+                      {t(p.beneficiariesKey as TKey)}
                     </td>
                     <td className="hidden px-6 py-4 sm:table-cell">
                       <span className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-3 py-1 text-xs font-medium text-teal-700">
@@ -344,7 +319,7 @@ export default async function ImpactPage({
                           className="h-1.5 w-1.5 rounded-full bg-teal-500"
                           aria-hidden="true"
                         />
-                        {isFr ? "Actif" : "Active"}
+                        {t("projects_status_active")}
                       </span>
                     </td>
                   </tr>
@@ -384,7 +359,7 @@ export default async function ImpactPage({
                     ODD {sdg.number}
                   </div>
                   <div className={`font-semibold ${sdg.color}`}>
-                    {isFr ? sdg.labelFr : sdg.labelEn}
+                    {t(sdg.labelKey as TKey)}
                   </div>
                 </div>
               </div>
@@ -419,7 +394,7 @@ export default async function ImpactPage({
                   aria-hidden="true"
                 />
                 <blockquote className="text-gray-700 leading-relaxed italic">
-                  &ldquo;{isFr ? testimonial.quoteFr : testimonial.quoteEn}
+                  &ldquo;{t(testimonial.quoteKey as TKey)}
                   &rdquo;
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3">
@@ -427,16 +402,16 @@ export default async function ImpactPage({
                     className="flex h-10 w-10 items-center justify-center rounded-full bg-teal-600 text-sm font-bold text-white"
                     aria-hidden="true"
                   >
-                    {(isFr ? testimonial.nameFr : testimonial.nameEn)
+                    {t(testimonial.nameKey as TKey)
                       .charAt(0)
                       .toUpperCase()}
                   </div>
                   <div>
                     <div className="font-semibold text-charcoal-900 text-sm">
-                      {isFr ? testimonial.nameFr : testimonial.nameEn}
+                      {t(testimonial.nameKey as TKey)}
                     </div>
                     <div className="text-xs text-gray-500">
-                      {isFr ? testimonial.roleFr : testimonial.roleEn}
+                      {t(testimonial.roleKey as TKey)}
                     </div>
                   </div>
                 </figcaption>
@@ -463,37 +438,7 @@ export default async function ImpactPage({
           </div>
 
           <div className="grid gap-6 sm:grid-cols-3">
-            {(
-              [
-                {
-                  pct: "80%",
-                  labelFr: "Programmes",
-                  labelEn: "Programmes",
-                  descFr: "Financement direct des activités terrain",
-                  descEn: "Direct funding of field activities",
-                  color: "bg-teal-600",
-                  bar: "w-4/5",
-                },
-                {
-                  pct: "15%",
-                  labelFr: "Administration",
-                  labelEn: "Administration",
-                  descFr: "Gestion associative et ressources humaines",
-                  descEn: "Association management and human resources",
-                  color: "bg-amber-500",
-                  bar: "w-3/20",
-                },
-                {
-                  pct: "5%",
-                  labelFr: "Communication",
-                  labelEn: "Communication",
-                  descFr: "Sensibilisation et collecte de fonds",
-                  descEn: "Awareness raising and fundraising",
-                  color: "bg-teal-300",
-                  bar: "w-1/20",
-                },
-              ] as const
-            ).map((item) => (
+            {FINANCE_ITEMS.map((item) => (
               <div
                 key={item.pct}
                 className="rounded-xl bg-white/5 p-6 ring-1 ring-white/10"
@@ -503,7 +448,7 @@ export default async function ImpactPage({
                     {item.pct}
                   </span>
                   <span className="font-semibold text-white/70">
-                    {isFr ? item.labelFr : item.labelEn}
+                    {t(item.labelKey as TKey)}
                   </span>
                 </div>
                 {/* Bar */}
@@ -514,7 +459,7 @@ export default async function ImpactPage({
                   />
                 </div>
                 <p className="text-sm text-white/50">
-                  {isFr ? item.descFr : item.descEn}
+                  {t(item.descKey as TKey)}
                 </p>
               </div>
             ))}
@@ -535,9 +480,9 @@ export default async function ImpactPage({
           </div>
 
           <div className="grid gap-6 sm:grid-cols-3">
-            {ANNUAL_REPORTS.map((report) => (
+            {ANNUAL_REPORT_YEARS.map((year) => (
               <div
-                key={report.year}
+                key={year}
                 className="flex flex-col items-center rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-teal-200"
               >
                 <div
@@ -547,19 +492,17 @@ export default async function ImpactPage({
                   <Download className="h-8 w-8" />
                 </div>
                 <h3 className="font-serif text-lg font-semibold text-charcoal-900">
-                  {isFr ? report.pagesFr : report.pagesEn}
+                  {t("report_title", { year: String(year) })}
                 </h3>
-                <p className="mt-1 text-sm text-gray-400">{report.year}</p>
+                <p className="mt-1 text-sm text-gray-400">{year}</p>
                 <Link
                   href={`mailto:contact@h-cw.org?subject=${encodeURIComponent(
-                    isFr
-                      ? `Demande rapport ${report.year}`
-                      : `Report request ${report.year}`,
+                    t("report_request_subject", { year: String(year) }),
                   )}`}
                   className="mt-5 inline-flex items-center gap-2 rounded-full border border-teal-200 px-5 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
                 >
                   <Download className="h-3.5 w-3.5" aria-hidden="true" />
-                  {isFr ? "Demander le rapport" : "Request report"}
+                  {t("report_request_button")}
                 </Link>
               </div>
             ))}
@@ -575,13 +518,9 @@ export default async function ImpactPage({
             aria-hidden="true"
           />
           <h2 className="font-serif text-3xl font-bold text-white">
-            {isFr ? "Contribuez à notre impact" : "Contribute to our impact"}
+            {t("cta_title")}
           </h2>
-          <p className="mt-4 text-white/85">
-            {isFr
-              ? "Chaque euro compte. Votre don finance directement l'éducation des enfants en RCA."
-              : "Every euro counts. Your donation directly funds children's education in CAR."}
-          </p>
+          <p className="mt-4 text-white/85">{t("cta_text")}</p>
           <Link
             href={`/${locale}/donate`}
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold text-amber-600 shadow-md transition-colors hover:bg-amber-50"

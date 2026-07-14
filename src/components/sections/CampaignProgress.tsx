@@ -10,6 +10,8 @@ export default function CampaignProgress() {
   const t = useTranslations("campaign");
   const locale = useLocale();
 
+  if (!CAMPAIGN.active) return null;
+
   const pct = Math.min(
     Math.round((CAMPAIGN.raisedAmount / CAMPAIGN.goalAmount) * 100),
     100,

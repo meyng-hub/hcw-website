@@ -22,6 +22,9 @@ export default async function NewsPreview() {
     .sort((a, b) => b.date.localeCompare(a.date))
     .slice(0, 3);
 
+  // No published articles — hide the section entirely.
+  if (recent.length === 0) return null;
+
   return (
     <section className="bg-white py-24" aria-labelledby="news-heading">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

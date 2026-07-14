@@ -6,6 +6,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Heart, CreditCard, Smartphone } from "lucide-react";
 import { DONATION_PRESETS } from "@/lib/constants";
+import { stats } from "@/lib/content";
 
 export default function DonateSection() {
   const t = useTranslations("donate");
@@ -52,7 +53,8 @@ export default function DonateSection() {
                 </div>
                 <div className="bg-teal-600/90 backdrop-blur-sm rounded-xl p-4 text-white">
                   <p className="text-sm font-semibold">
-                    90 000+ {t("students_helped")}
+                    {stats.students.toLocaleString(locale)}+{" "}
+                    {t("students_helped")}
                   </p>
                   <p className="text-xs text-teal-200 mt-1">{t("since")}</p>
                 </div>

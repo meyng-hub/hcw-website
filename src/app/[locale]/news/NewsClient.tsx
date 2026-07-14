@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Search } from "lucide-react";
+import { Search, Newspaper } from "lucide-react";
 import { pickLocale, type NewsArticle } from "@/lib/content";
+import { SOCIAL } from "@/lib/constants";
 
 interface NewsClientProps {
   articles: NewsArticle[];
@@ -43,6 +44,35 @@ export default function NewsClient({ articles, locale }: NewsClientProps) {
       .toLowerCase()
       .includes(query.toLowerCase());
   });
+
+  // No published articles yet — show a "coming soon" notice instead of the grid.
+  if (articles.length === 0) {
+    return (
+      <section
+        className="bg-cream-50 py-24"
+        aria-labelledby="news-grid-heading"
+      >
+        <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 id="news-grid-heading" className="sr-only">
+            {t("all_articles")}
+          </h2>
+          <Newspaper
+            className="mx-auto mb-6 h-12 w-12 text-teal-300"
+            aria-hidden="true"
+          />
+          <p className="text-lg text-gray-600">{t("coming_soon")}</p>
+          <a
+            href={SOCIAL.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-block rounded-full bg-teal-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-teal-700"
+          >
+            {t("coming_soon_cta")}
+          </a>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-cream-50 py-16" aria-labelledby="news-grid-heading">

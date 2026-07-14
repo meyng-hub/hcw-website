@@ -30,7 +30,7 @@
     "students": "students reached",
     "donations": "donations collected",
     "projects": "active projects",
-    "updated": "Verified data"
+    "updated": "Figures updated annually"
   },
   "campaign": {
     "title": "Campaign — Education is Freedom",
@@ -73,7 +73,7 @@
     "paypal": "PayPal",
     "helloasso_title": "Donate via HelloAsso",
     "helloasso_desc": "0% platform fee — donors pay an optional contribution.",
-    "tax_info": "Donation tax-deductible for French residents (66% of amount).",
+    "tax_info": "A tax receipt may be issued to French residents, subject to the association's eligibility.",
     "success_title": "Thank you for your donation!",
     "success_message": "You will receive a receipt by email. Your generosity changes lives.",
     "frequency_label": "Donation frequency",
@@ -92,12 +92,12 @@
     "merci_share_prompt": "Share and encourage others to give:",
     "merci_back_home": "Back to home",
     "merci_see_projects": "See our projects",
-    "merci_receipt_note": "You'll receive a tax receipt by email within 48 hours.",
+    "merci_receipt_note": "A tax receipt may be sent to you by email, subject to eligibility.",
     "impact_title": "Every donation, real impact",
     "your_impact": "Your impact",
     "one_child": "1 donation = 1 child in school",
     "students_helped": "students helped",
-    "since": "since 2013",
+    "since": "since 2009",
     "donate_amount_cta": "Donate €{amount} now",
     "photo_alt": "Young girls benefiting from HCW programmes"
   },
@@ -143,6 +143,8 @@
     "newsletter_placeholder": "Your email address",
     "newsletter_submit": "Subscribe",
     "newsletter_disclaimer": "No spam. Unsubscribe in one click.",
+    "coming_soon": "Our news section is coming soon. In the meantime, follow us on Facebook for the latest updates.",
+    "coming_soon_cta": "Follow HCW on Facebook →",
     "page_label": "Page",
     "meta_title": "News — HCW",
     "meta_description": "All the latest news from HCW: impact, education, partnerships and campaigns in the Central African Republic."
@@ -245,11 +247,11 @@
   },
   "impactPage": {
     "page_title": "Our Impact — HCW",
-    "page_description": "800+ laureates, 90,000+ students reached, €70,000+ raised. Discover HCW's impact in Central Africa since 2009.",
+    "page_description": "800+ laureates, 9,000+ students reached, €70,000+ raised. Discover HCW's impact in Central Africa since 2009.",
     "hero_headline": "Our Impact",
     "hero_tagline": "Numbers, stories, lives changed",
     "counters_title": "Impact since 2009",
-    "counters_note": "Verified data — updated annually",
+    "counters_note": "Figures updated annually",
     "projects_title": "Impact by project",
     "sdg_title": "UN Sustainable Development Goals",
     "sdg_subtitle": "HCW's programmes contribute directly to four global SDGs",
@@ -272,7 +274,7 @@
     "founded": "Founded in",
     "registered": "Registered non-profit",
     "page_title": "Our Story — About HCW",
-    "meta_description": "Discover the story of HCW, an association founded in 2009 for education and culture in Central Africa. 90,000 students reached since 2009."
+    "meta_description": "Discover the story of HCW, an association founded in 2009 for education and culture in Central Africa. 9,000 students reached since 2009."
   },
   "contact": {
     "title": "Contact Us",
@@ -302,6 +304,7 @@
     "privacy": "Privacy",
     "founded": "Founded in 2009 · Non-profit association",
     "rights": "All rights reserved",
+    "registration": "RNA W602001421 · SIREN 841 629 157",
     "nav_title": "Navigation",
     "gdpr_note": "GDPR compliant. Unsubscribe anytime.",
     "take_action": "Take action",

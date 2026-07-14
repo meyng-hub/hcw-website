@@ -30,7 +30,7 @@
     "students": "élèves touchés",
     "donations": "dons collectés",
     "projects": "projets actifs",
-    "updated": "Données vérifiées"
+    "updated": "Chiffres mis à jour annuellement"
   },
   "campaign": {
     "title": "Campagne — L'éducation est une liberté",
@@ -73,7 +73,7 @@
     "paypal": "PayPal",
     "helloasso_title": "Donner via HelloAsso",
     "helloasso_desc": "0% de frais de plateforme — les donateurs paient une contribution optionnelle.",
-    "tax_info": "Don déductible des impôts pour les résidents français (66% du montant).",
+    "tax_info": "Un reçu fiscal pourra être adressé aux résidents français, sous réserve d'éligibilité de l'association.",
     "success_title": "Merci pour votre don !",
     "success_message": "Vous recevrez un reçu par email. Votre générosité change des vies.",
     "frequency_label": "Fréquence du don",
@@ -92,12 +92,12 @@
     "merci_share_prompt": "Partagez et encouragez d'autres personnes à donner :",
     "merci_back_home": "Retour à l'accueil",
     "merci_see_projects": "Voir nos projets",
-    "merci_receipt_note": "Vous recevrez un reçu fiscal par email sous 48h.",
+    "merci_receipt_note": "Un reçu fiscal pourra vous être adressé par email, sous réserve d'éligibilité.",
     "impact_title": "Chaque don, un impact réel",
     "your_impact": "Votre impact",
     "one_child": "1 don = 1 enfant scolarisé",
     "students_helped": "élèves aidés",
-    "since": "depuis 2013",
+    "since": "depuis 2009",
     "donate_amount_cta": "Donner €{amount} maintenant",
     "photo_alt": "Jeunes filles bénéficiaires des programmes HCW"
   },
@@ -143,6 +143,8 @@
     "newsletter_placeholder": "Votre adresse email",
     "newsletter_submit": "S'abonner",
     "newsletter_disclaimer": "Pas de spam. Désabonnement en un clic.",
+    "coming_soon": "Nos actualités arrivent bientôt. En attendant, suivez-nous sur Facebook pour nos dernières nouvelles.",
+    "coming_soon_cta": "Suivre HCW sur Facebook →",
     "page_label": "Page",
     "meta_title": "Actualités — HCW",
     "meta_description": "Toutes les actualités de l'association HCW : impact, éducation, partenariats et campagnes en République Centrafricaine."
@@ -245,11 +247,11 @@
   },
   "impactPage": {
     "page_title": "Notre impact — HCW",
-    "page_description": "800+ lauréat·e·s, 90 000+ élèves touchés, 70 000€+ collectés. Découvrez l'impact de HCW en Afrique centrale depuis 2009.",
+    "page_description": "800+ lauréat·e·s, 9 000+ élèves touchés, 70 000€+ collectés. Découvrez l'impact de HCW en Afrique centrale depuis 2009.",
     "hero_headline": "Notre impact",
     "hero_tagline": "Des chiffres, des histoires, des vies changées",
     "counters_title": "Impact depuis 2009",
-    "counters_note": "Données vérifiées — mises à jour annuellement",
+    "counters_note": "Chiffres mis à jour annuellement",
     "projects_title": "Impact par projet",
     "sdg_title": "Objectifs de développement durable de l'ONU",
     "sdg_subtitle": "Les programmes de HCW contribuent directement à quatre ODD mondiaux",
@@ -272,7 +274,7 @@
     "founded": "Fondée en",
     "registered": "Association loi 1901",
     "page_title": "Notre histoire — À propos de HCW",
-    "meta_description": "Découvrez l’histoire de HCW, association fondée en 2009 pour l’éducation et la culture en Afrique centrale. 90 000 élèves touchés depuis 2009."
+    "meta_description": "Découvrez l’histoire de HCW, association fondée en 2009 pour l’éducation et la culture en Afrique centrale. 9 000 élèves touchés depuis 2009."
   },
   "contact": {
     "title": "Nous contacter",
@@ -302,6 +304,7 @@
     "privacy": "Confidentialité",
     "founded": "Fondée en 2009 · Association loi 1901",
     "rights": "Tous droits réservés",
+    "registration": "RNA W602001421 · SIREN 841 629 157",
     "nav_title": "Navigation",
     "gdpr_note": "Conformément au RGPD. Désabonnement en un clic.",
     "take_action": "Agir maintenant",

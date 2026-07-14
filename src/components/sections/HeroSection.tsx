@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { Heart, ArrowRight, Sparkles } from "lucide-react";
-import { stats } from "@/lib/content";
+import { campaign, stats } from "@/lib/content";
 
 export default function HeroSection() {
   const t = useTranslations("hero");
@@ -45,15 +45,17 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-32 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
-          {/* Live campaign badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/20 px-4 py-1.5 text-sm font-medium text-amber-300 backdrop-blur-sm">
-            <span
-              className="h-2 w-2 animate-pulse rounded-full bg-amber-400"
-              aria-hidden="true"
-            />
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            {t("campaign_badge")}
-          </div>
+          {/* Live campaign badge — only when a campaign is running */}
+          {campaign.active && (
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/20 px-4 py-1.5 text-sm font-medium text-amber-300 backdrop-blur-sm">
+              <span
+                className="h-2 w-2 animate-pulse rounded-full bg-amber-400"
+                aria-hidden="true"
+              />
+              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+              {t("campaign_badge")}
+            </div>
+          )}
 
           {/* Main headline */}
           <h1 className="mb-6 font-serif text-5xl font-bold leading-tight text-white drop-shadow-lg sm:text-6xl lg:text-7xl">

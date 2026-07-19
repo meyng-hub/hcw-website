@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useLocale } from "next-intl";
 
 interface ImpactCounterAnimatedProps {
   value: number;
@@ -46,6 +47,7 @@ export default function ImpactCounterAnimated({
   icon,
   duration = 2200,
 }: ImpactCounterAnimatedProps) {
+  const locale = useLocale();
   const ref = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
   const count = useCountUp(value, duration, started);
@@ -84,7 +86,7 @@ export default function ImpactCounterAnimated({
         </div>
       )}
       <div className="font-serif text-4xl font-bold tabular-nums text-charcoal-900">
-        {count.toLocaleString()}
+        {count.toLocaleString(locale)}
         {suffix}
       </div>
       <div className="mt-2 text-center text-sm text-gray-500">{label}</div>

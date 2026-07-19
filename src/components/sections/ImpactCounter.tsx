@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { stats } from "@/lib/content";
 import { Trophy, Users, Layers } from "lucide-react";
 
@@ -42,6 +42,7 @@ function StatCard({
   suffix?: string;
   started: boolean;
 }) {
+  const locale = useLocale();
   const count = useCountUp(value, 2200, started);
   return (
     <div className="flex flex-col items-center rounded-2xl bg-white p-8 shadow-sm ring-1 ring-teal-100 hover:shadow-md hover:ring-teal-200 transition-all">
@@ -49,7 +50,7 @@ function StatCard({
         <Icon className="h-7 w-7" aria-hidden="true" />
       </div>
       <div className="font-serif text-4xl font-bold text-charcoal-900 tabular-nums">
-        {count.toLocaleString()}
+        {count.toLocaleString(locale)}
         {suffix}
       </div>
       <div className="mt-2 text-center text-sm text-gray-500">{label}</div>

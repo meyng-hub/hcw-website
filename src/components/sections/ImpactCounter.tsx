@@ -6,11 +6,14 @@ import { useTranslations } from "next-intl";
 import { stats } from "@/lib/content";
 import { Trophy, Users, Heart, Layers } from "lucide-react";
 
+// SSR fallback: render the final value immediately; the count-up from 0 is a
+// progressive enhancement that only runs once the observer marks it started.
 function useCountUp(target: number, duration = 2000, started: boolean) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   useEffect(() => {
     if (!started) return;
     let start = 0;
+    setCount(0);
     const step = target / (duration / 16);
     const timer = setInterval(() => {
       start += step;
@@ -60,6 +63,13 @@ export default function ImpactCounter() {
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
+    // No observer support or reduced motion: keep the final value, no animation.
+    if (
+      typeof IntersectionObserver === "undefined" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) setStarted(true);

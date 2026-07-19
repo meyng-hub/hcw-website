@@ -10,16 +10,19 @@ interface ImpactCounterAnimatedProps {
   duration?: number;
 }
 
+// SSR fallback: render the final value immediately; the count-up from 0 is a
+// progressive enhancement that only runs once the observer marks it started.
 function useCountUp(
   target: number,
   duration: number,
   started: boolean,
 ): number {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
 
   useEffect(() => {
     if (!started) return;
     let current = 0;
+    setCount(0);
     const step = target / (duration / 16);
     const timer = setInterval(() => {
       current += step;
@@ -50,6 +53,13 @@ export default function ImpactCounterAnimated({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // No observer support or reduced motion: keep the final value, no animation.
+    if (
+      typeof IntersectionObserver === "undefined" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

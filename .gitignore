@@ -40,3 +40,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# internal funding/strategy docs — repo is PUBLIC, never commit these
+/docs/funding/
+
+.vercel

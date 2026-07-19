@@ -110,39 +110,6 @@ const SDGS: SDG[] = [
   },
 ];
 
-const ANNUAL_REPORT_YEARS: number[] = [2024, 2023, 2022];
-
-interface FinanceItem {
-  pct: string;
-  labelKey: string;
-  descKey: string;
-  color: string;
-  bar: string;
-}
-
-const FINANCE_ITEMS: FinanceItem[] = [
-  {
-    pct: "80%",
-    labelKey: "finance_programs_label",
-    descKey: "finance_programs_desc",
-    color: "bg-teal-600",
-    bar: "w-4/5",
-  },
-  {
-    pct: "15%",
-    labelKey: "finance_admin_label",
-    descKey: "finance_admin_desc",
-    color: "bg-amber-500",
-    bar: "w-3/20",
-  },
-  {
-    pct: "5%",
-    labelKey: "finance_comms_label",
-    descKey: "finance_comms_desc",
-    color: "bg-teal-300",
-    bar: "w-1/20",
-  },
-];
 
 export default async function ImpactPage({
   params,
@@ -364,32 +331,13 @@ export default async function ImpactPage({
             <p className="mt-3 text-white/60">{t("finance_subtitle")}</p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
-            {FINANCE_ITEMS.map((item) => (
-              <div
-                key={item.pct}
-                className="rounded-xl bg-white/5 p-6 ring-1 ring-white/10"
-              >
-                <div className="mb-3 flex items-baseline gap-2">
-                  <span className="font-serif text-4xl font-bold text-white">
-                    {item.pct}
-                  </span>
-                  <span className="font-semibold text-white/70">
-                    {t(item.labelKey as TKey)}
-                  </span>
-                </div>
-                {/* Bar */}
-                <div className="mb-4 h-2 overflow-hidden rounded-full bg-white/10">
-                  <div
-                    className={`h-full ${item.color} ${item.bar} rounded-full`}
-                    role="presentation"
-                  />
-                </div>
-                <p className="text-sm text-white/50">
-                  {t(item.descKey as TKey)}
-                </p>
-              </div>
-            ))}
+          <div className="mx-auto max-w-3xl rounded-xl bg-white/5 p-8 ring-1 ring-white/10">
+            <p className="text-lg leading-relaxed text-white/80">
+              {t("finance_mechanism")}
+            </p>
+            <p className="mt-4 text-sm text-white/50">
+              {t("finance_commitment")}
+            </p>
           </div>
         </div>
       </section>
@@ -406,33 +354,19 @@ export default async function ImpactPage({
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
-            {ANNUAL_REPORT_YEARS.map((year) => (
-              <div
-                key={year}
-                className="flex flex-col items-center rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-teal-200"
-              >
-                <div
-                  className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-50 text-teal-600"
-                  aria-hidden="true"
-                >
-                  <Download className="h-8 w-8" />
-                </div>
-                <h3 className="font-serif text-lg font-semibold text-charcoal-900">
-                  {t("report_title", { year: String(year) })}
-                </h3>
-                <p className="mt-1 text-sm text-gray-400">{year}</p>
-                <Link
-                  href={`mailto:contact@h-cw.org?subject=${encodeURIComponent(
-                    t("report_request_subject", { year: String(year) }),
-                  )}`}
-                  className="mt-5 inline-flex items-center gap-2 rounded-full border border-teal-200 px-5 py-2 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-50"
-                >
-                  <Download className="h-3.5 w-3.5" aria-hidden="true" />
-                  {t("report_request_button")}
-                </Link>
-              </div>
-            ))}
+          <div className="mx-auto flex max-w-2xl flex-col items-center rounded-2xl bg-white p-8 text-center shadow-sm ring-1 ring-gray-100">
+            <div
+              className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-50 text-teal-600"
+              aria-hidden="true"
+            >
+              <Download className="h-8 w-8" />
+            </div>
+            <h3 className="font-serif text-lg font-semibold text-charcoal-900">
+              {t("reports_coming_title")}
+            </h3>
+            <p className="mt-3 max-w-md text-sm text-gray-500">
+              {t("reports_coming_text")}
+            </p>
           </div>
         </div>
       </section>

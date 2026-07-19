@@ -53,14 +53,6 @@ const PARTNERS: Partner[] = [
     website: "#",
     color: "bg-amber-500",
   },
-  {
-    id: "kaikelem",
-    initials: "KK",
-    name: "KAIKELEM",
-    descKey: "partner_kaikelem_desc",
-    website: "#",
-    color: "bg-charcoal-800",
-  },
 ];
 
 interface PartnershipType {
@@ -105,11 +97,6 @@ const WHAT_WE_OFFER_KEYS = [
   "offer_certificate",
 ];
 
-const INSTITUTIONAL_SUPPORTERS = [
-  { name: "UN ECOSOC", descKey: "inst_ecosoc_desc" },
-  { name: "OIF", descKey: "inst_oif_desc" },
-  { name: "Union Africaine", descKey: "inst_au_desc" },
-];
 
 export default async function PartnersPage({
   params,
@@ -294,38 +281,6 @@ export default async function PartnersPage({
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Institutional supporters */}
-      <section
-        className="bg-charcoal-900 py-16"
-        aria-labelledby="institutional-heading"
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h2
-            id="institutional-heading"
-            className="mb-10 text-center font-serif text-2xl font-bold text-white sm:text-3xl"
-          >
-            {t("institutional_title")}
-          </h2>
-          <div className="grid gap-6 sm:grid-cols-3">
-            {INSTITUTIONAL_SUPPORTERS.map((s) => (
-              <div
-                key={s.name}
-                className="rounded-xl bg-white/5 p-6 text-center ring-1 ring-white/10 backdrop-blur-sm"
-              >
-                <div className="mb-2 font-serif text-xl font-bold text-white">
-                  {s.name}
-                </div>
-                <p className="text-sm text-white/60">{t(s.descKey)}</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-8 text-center text-sm text-white/40">
-            {t("institutional_note")}
-          </p>
         </div>
       </section>
 

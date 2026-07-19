@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { stats } from "@/lib/content";
-import { Trophy, Users, Heart, Layers } from "lucide-react";
+import { Trophy, Users, Layers } from "lucide-react";
 
 // SSR fallback: render the final value immediately; the count-up from 0 is a
 // progressive enhancement that only runs once the observer marks it started.
@@ -107,7 +107,7 @@ export default function ImpactCounter() {
           <p className="mt-3 text-sm text-gray-500">{t("updated")}</p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" role="list">
+        <div className="grid gap-6 sm:grid-cols-3" role="list">
           <StatCard
             value={stats.prizes}
             label={t("prizes")}
@@ -118,13 +118,6 @@ export default function ImpactCounter() {
             value={stats.students}
             label={t("students")}
             icon={Users}
-            started={started}
-            suffix="+"
-          />
-          <StatCard
-            value={stats.donations}
-            label={t("donations")}
-            icon={Heart}
             started={started}
             suffix="+"
           />

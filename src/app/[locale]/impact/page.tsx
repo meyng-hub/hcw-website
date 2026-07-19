@@ -6,7 +6,6 @@ import {
   Users,
   Heart,
   Layers,
-  Globe,
   Download,
   TrendingUp,
 } from "lucide-react";
@@ -171,7 +170,7 @@ export default async function ImpactPage({
             <p className="mt-3 text-sm text-gray-400">{t("counters_note")}</p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5" role="list">
+          <div className="grid gap-6 sm:grid-cols-3" role="list">
             <ImpactCounterAnimated
               value={stats.prizes}
               suffix="+"
@@ -185,20 +184,9 @@ export default async function ImpactPage({
               icon={<Users className="h-7 w-7" aria-hidden="true" />}
             />
             <ImpactCounterAnimated
-              value={stats.donations}
-              suffix="€+"
-              label={t("counter_raised")}
-              icon={<Heart className="h-7 w-7" aria-hidden="true" />}
-            />
-            <ImpactCounterAnimated
               value={stats.projects}
               label={t("counter_projects")}
               icon={<Layers className="h-7 w-7" aria-hidden="true" />}
-            />
-            <ImpactCounterAnimated
-              value={5}
-              label={t("counter_countries")}
-              icon={<Globe className="h-7 w-7" aria-hidden="true" />}
             />
           </div>
         </div>

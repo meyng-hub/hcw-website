@@ -1,28 +1,27 @@
-# SESSION HANDOFF — 2026-07-14
+# SESSION HANDOFF — 2026-07-23
 
-**Objective:** ship the HCW site + admin (Phases 0–2). ✅ Done and owner-verified.
+**Worktree:** `.claude/worktrees/musing-dhawan-ccbfcc` (branch `claude/musing-dhawan-ccbfcc`)
+**Objective:** fix live bug — all "Impact depuis 2009" counters on h-cw.org rendered "0+" permanently. ✅ Done, deployed, verified in production. No work in progress.
 
-## State at close
+## What was done
 
-- `main` = `0899cd7` (an admin-made image-upload commit — proof the admin works).
-- Live: https://h-cw.org (site) + https://h-cw.org/admin (admin, allowlist `contact@h-cw.org`).
-- CI green; all secrets in Vercel env (sensitive). No uncommitted work. No open PRs.
+- **Root cause:** `src/components/sections/ImpactCounter.tsx` (homepage) and `ImpactCounterAnimated.tsx` (impact page) initialized counter state to `0` and only counted up after an IntersectionObserver fired. Any hydration or observer failure left "0+" on screen forever.
+- **Fix (`1758f92`, pushed to `main`):** counter state initializes to the final value from `content/stats.json`, so SSR HTML / no-JS / failed hydration all show real numbers. Count-up from 0 runs only as progressive enhancement on scroll-into-view; skipped under `prefers-reduced-motion` or missing IntersectionObserver. Stat values unchanged.
+- **Verified live** (curl with cache-busting, `X-Vercel-Cache: MISS`): `/fr/impact` serves 800+ / 9 000+ / 6; `/fr` serves 800 / 9 000+ / 6. Zero-counter bug resolved in production.
+
+## State of main at close (verified live)
+
+Three commits landed on `main` after `1758f92`, all deployed:
+
+- `9c54e00` — removed "70 000€ collectés" and "5 pays d'impact" counters (credibility purge: unverified numbers). Impact page now has 3 counters, not 5.
+- `09e93ce` — counters format with the active locale ("9 000" fr, not "9,000") — this was the follow-up task chip spawned this session, executed separately.
+- `0792573` — Vercel Git integration made the sole deploy path.
 
 ## Next step when resuming
 
-Read `START-HERE.md` → "Next tasks" table. Most likely first moves:
-Stripe review completion (Michel) → live-donation verification (Claude),
-or "start Phase 4" (remaining admin editors).
+Nothing pending for this bug. This worktree's branch sits at `1758f92`, 3 commits behind `origin/main` — rebase before any new work here.
 
-## Key decisions this session
+## Key decisions
 
-- Admin UI bilingual FR/EN (changed from FR-only mid-build); images editor pulled into MVP.
-- Admin allowlist = `contact@h-cw.org` only.
-- Payment methods are Stripe-Dashboard-managed (no `payment_method_types` in code).
-- Forms fail honestly (503 + direct email) if `RESEND_API_KEY` ever disappears.
-
-## Claude's memory
-
-Cross-session facts live in Claude's project memory (auto-loaded):
-name meaning, content verification rules, deploy topology, admin architecture.
-This file + `START-HERE.md` are the human-readable mirror.
+- SSR-fallback pattern chosen over debugging why observer/hydration fails on live: correct values render under every failure mode; animation stays as enhancement.
+- Pushed directly to `main` (explicitly requested in the task) rather than opening a PR.

@@ -1,0 +1,118 @@
+name: HCW Production Smoke Test
+
+# Content-level check of the live site — HTTP 200 is NOT enough (a stale or
+# wrong deployment serves 200 too). Runs after every push to main
+# (post-Vercel-deploy) and daily.
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Daily at 08:47 UTC — staggered from the other MEYNG smoke tests
+    # (SangoAI production 08:00, Lambda 04:00/16:00, eNdara 04:17/16:17,
+    # Obêtrack 04:34/16:34) to avoid GitHub runner-pool congestion.
+    - cron: "47 8 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: production-smoke-test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke-test:
+    name: Live site content check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      # ── STEP 0: Confirm runner was acquired ────────────────────────────────
+      - name: "✓ Runner acquired — platform healthy"
+        run: |
+          echo "Runner:  $RUNNER_NAME"
+          echo "Time:    $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          echo "Trigger: ${{ github.event_name }}"
+          echo ""
+          echo "If this step ran, any subsequent failure is a REAL site issue."
+
+      - name: Wait for Vercel production deploy
+        if: github.event_name == 'push'
+        run: sleep 120
+
+      # ── Retry helper ───────────────────────────────────────────────────────
+      - name: Write retry helper
+        run: |
+          cat <<'EOF' > /tmp/retry.sh
+          retry_curl() {
+            local max=3 delay=10 attempt=1
+            while [ $attempt -le $max ]; do
+              if "$@"; then return 0; fi
+              if [ $attempt -lt $max ]; then
+                echo "Attempt $attempt/$max failed. Retrying in ${delay}s..."
+                sleep $delay
+              fi
+              attempt=$((attempt + 1))
+            done
+            echo "All $max attempts failed."; return 1
+          }
+          EOF
+
+      # ── CHECKS ─────────────────────────────────────────────────────────────
+
+      - name: HTTP checks (all key pages return 200)
+        run: |
+          source /tmp/retry.sh
+          FAIL=0
+          for path in "/" "/fr" "/en" "/fr/impact" "/en/impact" "/fr/donate"; do
+            check() {
+              STATUS=$(curl -sLo /dev/null -w "%{http_code}" --max-time 20 "https://h-cw.org${path}")
+              [ "$STATUS" = "200" ] || { echo "FAIL: ${path} returned $STATUS"; return 1; }
+              echo "PASS: ${path} 200 OK"
+            }
+            retry_curl check || {
+              echo "::error title=Page down::h-cw.org${path} returned non-200 after 3 attempts"
+              FAIL=1
+            }
+          done
+          [ $FAIL -eq 0 ] || exit 1
+
+      - name: Fetch page content
+        run: |
+          source /tmp/retry.sh
+          check() {
+            curl -sfL --max-time 20 https://h-cw.org/fr > /tmp/fr.html || return 1
+            curl -sfL --max-time 20 https://h-cw.org/en > /tmp/en.html || return 1
+            wc -c /tmp/fr.html /tmp/en.html
+          }
+          retry_curl check
+
+      - name: "Content check — owner-verified strings present"
+        run: |
+          FAIL=0
+          # Association identity (name + RNA number in footer)
+          grep -q "Wenezoui" /tmp/fr.html      || { echo "::error title=Content regression::'Wenezoui' missing from /fr"; FAIL=1; }
+          grep -q "W602001421" /tmp/fr.html    || { echo "::error title=Content regression::RNA 'W602001421' missing from /fr"; FAIL=1; }
+          # Impact counter: 9,000 students (owner-verified figure — NOT 90,000)
+          grep -q 'tabular-nums">9[^<]*000' /tmp/fr.html || { echo "::error title=Content regression::students counter missing from /fr"; FAIL=1; }
+          grep -q "9,000" /tmp/en.html         || { echo "::error title=Content regression::'9,000' missing from /en"; FAIL=1; }
+          # [^<]* instead of a literal space: fr-FR uses U+202F narrow no-break space
+          grep -qE 'tabular-nums">90[^<]*000|90,000' /tmp/fr.html && { echo "::error title=Content regression::inflated '90 000' found on /fr (must be 9 000)"; FAIL=1; }
+          [ $FAIL -eq 0 ] || exit 1
+          echo "PASS: identity + impact figures OK"
+
+      - name: "Locale check — no en-US formatting on French pages"
+        run: |
+          # count.toLocaleString(locale) regression guard: '9,000' on /fr means
+          # the server rendered with the wrong locale again.
+          if grep -q '9,000' /tmp/fr.html; then
+            echo "::error title=Locale regression::en-US formatted '9,000' found on /fr (expected '9 000')"
+            exit 1
+          fi
+          echo "PASS: /fr uses French number formatting"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## HCW Production Smoke Test" >> $GITHUB_STEP_SUMMARY
+          echo "**Time:** $(date -u '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+          echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "> ℹ️ If this run failed with 'runner not acquired', it is a GitHub platform issue — not an HCW outage. Check https://www.githubstatus.com" >> $GITHUB_STEP_SUMMARY

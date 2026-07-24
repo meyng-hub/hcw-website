@@ -1,27 +1,56 @@
-# SESSION HANDOFF — 2026-07-23
+# SESSION HANDOFF — 2026-07-24
 
-**Worktree:** `.claude/worktrees/musing-dhawan-ccbfcc` (branch `claude/musing-dhawan-ccbfcc`)
-**Objective:** fix live bug — all "Impact depuis 2009" counters on h-cw.org rendered "0+" permanently. ✅ Done, deployed, verified in production. No work in progress.
+**Objective:** strategic-partner engagement on h-cw.org — (1) full site audit, (2) admin
+redesign, (3) logo/brand system — then execute audit Phase 0 fixes.
 
-## What was done
+**Branch:** `main`. **Git state at close:** local `main` is **ahead of `origin/main`** by the
+held newsletter commit + this handoff. `origin/main` HEAD = `adefa9d` (analytics), deployed live.
 
-- **Root cause:** `src/components/sections/ImpactCounter.tsx` (homepage) and `ImpactCounterAnimated.tsx` (impact page) initialized counter state to `0` and only counted up after an IntersectionObserver fired. Any hydration or observer failure left "0+" on screen forever.
-- **Fix (`1758f92`, pushed to `main`):** counter state initializes to the final value from `content/stats.json`, so SSR HTML / no-JS / failed hydration all show real numbers. Count-up from 0 runs only as progressive enhancement on scroll-into-view; skipped under `prefers-reduced-motion` or missing IntersectionObserver. Stat values unchanged.
-- **Verified live** (curl with cache-busting, `X-Vercel-Cache: MISS`): `/fr/impact` serves 800+ / 9 000+ / 6; `/fr` serves 800 / 9 000+ / 6. Zero-counter bug resolved in production.
+## Deliverables (all three complete)
 
-## State of main at close (verified live)
+1. **Audit** → `docs/SITE-AUDIT.md` (P0–P3 table, decisions, order).
+2. **Admin redesign** → `docs/ADMIN-REDESIGN.md` (keep custom JSON+GitHub admin; POD shop;
+   two-tier roles + git-history audit; Phase 1 = "Carmen content autonomy").
+3. **Brand** → new mark **"Le H-Porte"**, live-wired. Guide artifacts (private, claude.ai):
+   concepts board + full system book (URLs in chat transcript).
 
-Three commits landed on `main` after `1758f92`, all deployed:
+## LIVE on `origin/main` (pushed, deployed, verified)
 
-- `9c54e00` — removed "70 000€ collectés" and "5 pays d'impact" counters (credibility purge: unverified numbers). Impact page now has 3 counters, not 5.
-- `09e93ce` — counters format with the active locale ("9 000" fr, not "9,000") — this was the follow-up task chip spawned this session, executed separately.
-- `0792573` — Vercel Git integration made the sole deploy path.
+- **Brand mark** in header/footer + SVG favicon (`55e3c45`) — replaced off-brand blue PNG;
+  fixed header/footer inconsistency. Files: `src/components/brand/HcwMark.tsx`,
+  `src/app/icon.svg`, `public/brand/*.svg`.
+- **HelloAsso removed** (`b7a0a5f`) — dead CTAs on home + /donate deleted; privacy policy
+  payment line corrected to "Stripe" only. **Audit P0 #1 done.**
+- **Analytics** (`adefa9d`) — Vercel Analytics + Speed Insights (cookieless). **Audit #3.**
+  Verified live: endpoints 200 + deployed JS bundle references the analytics module.
 
-## Next step when resuming
+## COMMITTED LOCALLY, HELD (not pushed) — `105f7b0`
 
-Nothing pending for this bug. This worktree's branch sits at `1758f92`, 3 commits behind `origin/main` — rebase before any new work here.
+- **Newsletter → Brevo** (audit #14): footer + /news forms wired to `/api/newsletter`,
+  explicit GDPR consent checkbox + privacy link, footer **fake-success bug fixed**, honest 503
+  until keys set. **HELD** so live visitors don't hit an error before Brevo exists.
+  Do NOT push until Brevo is configured (pushing `105f7b0` deploys it).
 
-## Key decisions
+## Next step when resuming — newsletter is the one open thread
 
-- SSR-fallback pattern chosen over debugging why observer/hydration fails on live: correct values render under every failure mode; animation stays as enhancement.
-- Pushed directly to `main` (explicitly requested in the task) rather than opening a PR.
+1. **Michel:** create free Brevo account + contact list → set `BREVO_API_KEY` + `BREVO_LIST_ID`
+   in Vercel env. (Optional: enable double opt-in — if so, update success copy to "check email".)
+2. Then **push `105f7b0`** → verify a real test signup lands in the Brevo list.
+
+## Also pending (not blocking)
+
+- **Decision #2 (audit):** HCW fiscal status (*intérêt général* / art. 200 CGI?) → rewrite the
+  tax-receipt donate copy decisively (biggest untapped FR-donor conversion lever).
+- **Analytics dashboard:** Michel to confirm data landing in Vercel → Analytics (only he can see it).
+- **favicon.ico** (legacy binary) still holds the old mark — regen whenever (modern browsers
+  already use the new `icon.svg`).
+- **Remaining audit P1s:** #4 Organization JSON-LD, #5 OG share image, #6 impact-claim
+  consistency, #7 sitemap/robots, #8 gray-400 contrast. Then admin Phase 1.
+
+## Key decisions this session
+
+- Kept custom JSON+GitHub admin over a headless CMS (solo maintainer, cost, git = free audit log).
+- Shop = print-on-demand, not custom commerce (talked back from initial "build custom store").
+- Roles = simple two-tier, not RBAC (talked back from initial "formal roles + audit log").
+- Analytics = cookieless (Vercel) to stay consent-banner-free.
+- Newsletter split from analytics and held, so analytics could ship without a broken form.

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64" role="img" aria-label="HCW — Hervé-Charles Wenezoui">
+  <rect x="13" y="12" width="8.5" height="40" rx="3" fill="#0d6e6e"/>
+  <rect x="42.5" y="12" width="8.5" height="40" rx="3" fill="#0d6e6e"/>
+  <path d="M21.5 52 V28 a10.5 10.5 0 0 1 21 0 V52" fill="none" stroke="#f5a623" stroke-width="6" stroke-linejoin="round"/>
+  <text x="76" y="36" font-family="Fraunces, Georgia, serif" font-weight="700" font-size="30" letter-spacing="1" fill="#0d6e6e">HCW</text>
+  <text x="77" y="49" font-family="Inter, system-ui, sans-serif" font-weight="500" font-size="8.5" letter-spacing="1.5" fill="#6f6a60">HERVÉ-CHARLES WENEZOUI</text>
+</svg>

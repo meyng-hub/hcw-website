@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { Menu, X, Globe, Heart } from "lucide-react";
 import { routing } from "@/i18n/routing";
+import HcwMark from "@/components/brand/HcwMark";
 
 const NAV_LINKS = [
   { href: "/", key: "home" },
@@ -56,15 +56,7 @@ export default function Navbar() {
           className="flex items-center gap-2 focus-visible:outline-teal-600"
           aria-label="HCW — retour à l'accueil"
         >
-          <div className="relative h-10 w-16">
-            <Image
-              src="/images/hcw-logo.png"
-              alt="HCW logo"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
+          <HcwMark reversed={!scrolled} className="h-10 w-10" />
           <span
             className={`font-serif text-xl font-semibold tracking-tight ${
               scrolled ? "text-charcoal-900" : "text-white"

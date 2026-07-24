@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { MessageCircle, Heart, Send } from "lucide-react";
 import { SOCIAL, CONTACT } from "@/lib/constants";
+import HcwMark from "@/components/brand/HcwMark";
 
 /* ---------- Inline SVG brand icons (not in lucide-react) ---------- */
 function FbIcon() {
@@ -100,14 +100,7 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-1">
             <div className="mb-4 flex items-center gap-3">
-              <div className="relative h-10 w-16">
-                <Image
-                  src="/images/hcw-logo.png"
-                  alt="HCW logo"
-                  fill
-                  className="object-contain brightness-0 invert"
-                />
-              </div>
+              <HcwMark reversed className="h-10 w-10" />
               <span className="font-serif text-xl font-semibold">HCW</span>
             </div>
             <p className="mb-2 text-sm leading-relaxed text-gray-400">

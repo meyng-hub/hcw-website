@@ -9,6 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 import "../globals.css";
 
 const inter = Inter({
@@ -72,6 +73,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="bg-cream-50 font-sans text-charcoal-900 antialiased">
+        <OrganizationJsonLd locale={locale} />
         <NextIntlClientProvider messages={messages}>
           <a
             href="#main-content"

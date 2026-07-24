@@ -61,7 +61,11 @@ _Status: proposal, 2026-07-24. Author: strategy/eng session. Supersedes ad-hoc a
 - Print-on-demand: €0 fixed, revenue-share. No inventory risk.
 - Net new dependencies: 2 (Brevo, Printful), both optional, both replacing code otherwise maintained forever.
 
-## Open decisions
+## Decisions (confirmed 2026-07-24)
 
-- Shop path: print-on-demand vs Payment Links vs keep email-catalog.
-- Confirm Brevo free-tier limits + double-opt-in before Phase 2.
+- **Shop:** print-on-demand (Printful/Printify). Admin keeps catalog editor only; payment + fulfillment via POD. CGV + SIREN required in mentions légales once live. Payment always via Stripe — never custom card handling.
+- **Roles/audit:** simple two-tier (admin = Michel / editor = Carmen) + git history as audit log. No RBAC, no custom audit system, no new database needed.
+
+## Still to verify
+
+- Brevo free-tier limits + double-opt-in before Phase 2.

@@ -9,7 +9,6 @@ import {
   ShieldCheck,
   Lock,
   RefreshCw,
-  ExternalLink,
   CheckCircle2,
 } from "lucide-react";
 
@@ -441,32 +440,6 @@ export default function DonateClient() {
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-400">
                 <Lock className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>{t("ssl_badge")}</span>
-              </div>
-
-              {/* Divider */}
-              <div className="my-6 flex items-center gap-3">
-                <div className="h-px flex-1 bg-gray-100" />
-                <span className="text-xs text-gray-400">{t("or")}</span>
-                <div className="h-px flex-1 bg-gray-100" />
-              </div>
-
-              {/* HelloAsso secondary CTA */}
-              <a
-                href="https://www.helloasso.com/associations/hcw"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex w-full items-center justify-center gap-2 rounded-xl bg-gray-50 py-3.5 text-sm font-medium text-gray-700 ring-1 ring-gray-200 transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
-              >
-                <ExternalLink
-                  className="h-4 w-4 text-gray-400"
-                  aria-hidden="true"
-                />
-                {t("helloasso_title")}
-              </a>
-              <div className="mt-2 flex items-center justify-center gap-1.5">
-                <span className="rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
-                  {t("helloasso_badge")}
-                </span>
               </div>
 
               {/* Tax info */}

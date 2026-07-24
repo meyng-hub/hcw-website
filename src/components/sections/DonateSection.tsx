@@ -151,20 +151,6 @@ export default function DonateSection() {
                 </div>
               </div>
 
-              {/* HelloAsso option */}
-              <div className="border-t border-gray-100 pt-5">
-                <p className="text-xs text-gray-400 text-center mb-3">
-                  {t("helloasso_desc")}
-                </p>
-                <a
-                  href="https://www.helloasso.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-gray-50 py-3 text-sm font-medium text-gray-600 ring-1 ring-gray-100 hover:bg-gray-100 transition-colors"
-                >
-                  {t("helloasso_title")}
-                </a>
-              </div>
             </div>
           </div>
         </div>

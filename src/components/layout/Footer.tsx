@@ -77,13 +77,37 @@ export default function Footer() {
   const t = useTranslations();
   const locale = useLocale();
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Brevo API call
-    setSubscribed(true);
-    setEmail("");
+    if (!consent) {
+      setError(t("footer.newsletter_consent_required"));
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, consent }),
+      });
+      if (!res.ok) {
+        setError(t("footer.newsletter_error"));
+        return;
+      }
+      setSubscribed(true);
+      setEmail("");
+      setConsent(false);
+    } catch {
+      setError(t("footer.newsletter_error"));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -216,13 +240,37 @@ export default function Footer() {
                   />
                   <button
                     type="submit"
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-teal-600 text-white transition-colors hover:bg-teal-500"
+                    disabled={loading}
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-teal-600 text-white transition-colors hover:bg-teal-500 disabled:opacity-60"
                     aria-label={t("footer.newsletter_submit")}
+                    aria-busy={loading}
                   >
                     <Send className="h-4 w-4" />
                   </button>
                 </div>
-                <p className="text-xs text-gray-500">{t("footer.gdpr_note")}</p>
+                <label className="flex items-start gap-2 text-xs text-gray-500">
+                  <input
+                    type="checkbox"
+                    checked={consent}
+                    onChange={(e) => setConsent(e.target.checked)}
+                    className="mt-0.5 shrink-0"
+                  />
+                  <span>
+                    {t("footer.newsletter_consent")}{" "}
+                    <Link
+                      href={`/${locale}/privacy`}
+                      className="text-teal-400 hover:underline"
+                    >
+                      {t("footer.newsletter_privacy_link")}
+                    </Link>
+                    .
+                  </span>
+                </label>
+                {error && (
+                  <p role="alert" className="text-xs text-red-400">
+                    {error}
+                  </p>
+                )}
               </form>
             )}
 

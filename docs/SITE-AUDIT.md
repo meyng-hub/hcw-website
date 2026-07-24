@@ -16,8 +16,8 @@ _Audit date: 2026-07-24. Scope: public site (h-cw.org, FR/EN) — IA, donation f
 | 1 | Dead HelloAsso CTAs (HelloAsso not live) routing donors to a dead end | Home + /donate | P0 | Donation leak + trust | Remove all HelloAsso CTAs/badges; Stripe only | S | ✅ Done 2026-07-24 |
 | 2 | Tax-receipt copy ambiguous (*"sous réserve d'éligibilité"*) — kills the 66% (art. 200 CGI) conversion lever and mildly over-promises | Home + /donate | P0/P1 | Biggest untapped FR-donor lever; legal exposure | Case B (not confirmed): strip tax framing, honest transparency copy | S | ✅ Case B live 2026-07-24 — **Case A pending, see Follow-ups** |
 | 3 | No web analytics installed | Site-wide | P1 | Flying blind; can't measure funnel | Add cookieless analytics (Vercel/Plausible) — stays banner-free | S | ✅ Live 2026-07-24 (Vercel Analytics + Speed Insights) |
-| 4 | No Organization/NonprofitOrganization JSON-LD | Site-wide | P1 | Weaker SEO, lower machine trust | Add JSON-LD in root layout (name, RNA, address, logo, sameAs) | S | Open |
-| 5 | No OG share image | Site-wide | P1 | Blank cards on WhatsApp/FB shares | Add 1200×630 OG image + per-page override for /donate | S/M | Open |
+| 4 | No Organization/NonprofitOrganization JSON-LD | Site-wide | P1 | Weaker SEO, lower machine trust | Add JSON-LD in root layout (name, RNA, address, logo, sameAs) | S | ✅ Live 2026-07-24 (NGO + WebSite schema, RNA + SIREN) |
+| 5 | No OG share image | Site-wide | P1 | Blank cards on WhatsApp/FB shares | Add 1200×630 OG image | S/M | ✅ Live 2026-07-24 (branded next/og image, FR/EN, + twitter-image) |
 | 6 | Conflicting impact claims (€20 = "kit" vs "1 mois de fournitures") | Home vs /donate | P1 | Credibility | Single source of truth for impact tiers | S | Open |
 | 7 | No sitemap.ts / robots.ts | Site-wide | P1/P2 | Crawlability | Add both (App Router native) | S | Open |
 | 8 | Low-contrast text — `text-gray-400` (~2.5:1 on white) fails WCAG AA | /donate, site-wide | P2 | RGAA/AA failure; readability | Bump to gray-500/600; verify teal pairs | S | Confirmed (tailwind has no gray override) |
@@ -51,4 +51,4 @@ _Audit date: 2026-07-24. Scope: public site (h-cw.org, FR/EN) — IA, donation f
 
 ## Recommended order
 
-Phase 0 (done 2026-07-24): #1 HelloAsso, #2 tax copy (Case B), #3 analytics, #14 newsletter (graceful, Brevo key pending). **Next up:** #4 Organization JSON-LD + #5 OG image (trust + shareability), then #7 sitemap/robots and #8 contrast. P2/P3 = follow-up sprint.
+Phase 0 (done 2026-07-24): #1 HelloAsso, #2 tax copy (Case B), #3 analytics, #4 JSON-LD, #5 OG image, #14 newsletter (graceful, Brevo key pending). **Next up:** #7 sitemap.ts/robots.ts, #6 impact-claim consistency, #8 gray-400 contrast. P2/P3 = follow-up sprint.

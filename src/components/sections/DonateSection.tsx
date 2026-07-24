@@ -103,7 +103,7 @@ export default function DonateSection() {
               </div>
 
               {/* Tax note */}
-              <p className="mt-6 text-xs text-gray-400">{t("tax_info")}</p>
+              <p className="mt-6 text-xs text-gray-500">{t("tax_info")}</p>
             </div>
 
             {/* Payment methods card */}
@@ -134,7 +134,7 @@ export default function DonateSection() {
               </Link>
 
               {/* Payment icons */}
-              <div className="flex items-center gap-3 justify-center text-gray-400 mb-6">
+              <div className="flex items-center gap-3 justify-center text-gray-500 mb-6">
                 <div className="flex items-center gap-1.5 text-xs">
                   <Smartphone className="h-4 w-4" aria-hidden="true" />
                   Google Pay

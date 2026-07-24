@@ -193,7 +193,7 @@ export default async function PartnersPage({
                       {t("visit_website")}
                     </Link>
                   ) : (
-                    <span className="text-xs text-gray-400">
+                    <span className="text-xs text-gray-500">
                       {t("website_soon")}
                     </span>
                   )}
@@ -247,7 +247,7 @@ export default async function PartnersPage({
                   <Mail className="h-4 w-4" aria-hidden="true" />
                   {t("become_cta")}
                 </Link>
-                <span className="self-center text-sm text-gray-400">
+                <span className="self-center text-sm text-gray-500">
                   contact@h-cw.org
                 </span>
               </div>

@@ -160,7 +160,7 @@ export default function ProjectsClient({
                   </p>
 
                   {/* Location */}
-                  <div className="mt-4 flex items-center gap-1.5 text-xs text-gray-400">
+                  <div className="mt-4 flex items-center gap-1.5 text-xs text-gray-500">
                     <MapPin
                       className="h-3.5 w-3.5 shrink-0"
                       aria-hidden="true"

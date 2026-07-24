@@ -338,7 +338,7 @@ export default async function AboutPage({
           </div>
 
           <div className="mt-8 text-center">
-            <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
+            <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
               <Users className="h-4 w-4" aria-hidden="true" />
               {t("team_volunteers")}
             </p>

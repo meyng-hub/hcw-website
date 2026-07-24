@@ -545,7 +545,7 @@ export default function ContactPage() {
                       )}
                     </button>
 
-                    <p className="text-center text-xs text-gray-400">
+                    <p className="text-center text-xs text-gray-500">
                       {t("form_gdpr")}
                     </p>
                   </div>

@@ -131,7 +131,7 @@ export default async function ShopPage({
                     <span className="text-2xl font-bold text-teal-600">
                       €{product.price}
                     </span>
-                    <span className="text-sm text-gray-400">
+                    <span className="text-sm text-gray-500">
                       {t("price_note")}
                     </span>
                   </div>

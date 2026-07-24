@@ -91,7 +91,7 @@ export default function ProjectsPreview() {
 
                 {/* Location */}
                 {project.location && (
-                  <div className="mt-4 flex items-center gap-1.5 text-xs text-gray-400">
+                  <div className="mt-4 flex items-center gap-1.5 text-xs text-gray-500">
                     <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                     {project.location.city}, {common("country")}
                   </div>

@@ -81,7 +81,7 @@ export default function NewsClient({ articles, locale }: NewsClientProps) {
         <div className="mb-10 flex justify-center">
           <div className="relative w-full max-w-lg">
             <Search
-              className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
+              className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500"
               aria-hidden="true"
             />
             <label htmlFor="news-search" className="sr-only">
@@ -131,7 +131,7 @@ export default function NewsClient({ articles, locale }: NewsClientProps) {
                     {/* Date */}
                     <time
                       dateTime={article.date}
-                      className="text-xs text-gray-400"
+                      className="text-xs text-gray-500"
                     >
                       {formatDate(article.date, locale)}
                     </time>

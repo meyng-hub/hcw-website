@@ -125,7 +125,7 @@ export default function MerciPage() {
               href={`/${locale}`}
               className="flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-charcoal-900 shadow-sm ring-1 ring-gray-200 transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400"
             >
-              <Home className="h-4 w-4 text-gray-400" aria-hidden="true" />
+              <Home className="h-4 w-4 text-gray-500" aria-hidden="true" />
               {t("merci_back_home")}
             </Link>
             <Link
@@ -138,7 +138,7 @@ export default function MerciPage() {
           </div>
 
           {/* Tax info footnote */}
-          <p className="text-xs text-gray-400">{t("tax_info")}</p>
+          <p className="text-xs text-gray-500">{t("tax_info")}</p>
         </div>
       </section>
     </div>

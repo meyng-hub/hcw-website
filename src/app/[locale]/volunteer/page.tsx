@@ -418,7 +418,7 @@ export default function VolunteerPage() {
               </button>
 
               {/* WhatsApp alternative */}
-              <p className="text-center text-xs text-gray-400">
+              <p className="text-center text-xs text-gray-500">
                 {common("or")}{" "}
                 <a
                   href={WHATSAPP_URL}

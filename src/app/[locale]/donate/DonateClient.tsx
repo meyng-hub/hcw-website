@@ -231,7 +231,7 @@ export default function DonateClient() {
                 </label>
                 <div className="relative">
                   <span
-                    className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-gray-400 text-sm font-medium"
+                    className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-gray-500 text-sm font-medium"
                     aria-hidden="true"
                   >
                     €
@@ -290,7 +290,7 @@ export default function DonateClient() {
                   >
                     <span className="shrink-0 font-serif text-xl font-bold text-teal-600">
                       €{amount}
-                      <span className="font-sans text-xs font-normal text-gray-400">
+                      <span className="font-sans text-xs font-normal text-gray-500">
                         /{t("per_month_short")}
                       </span>
                     </span>
@@ -392,7 +392,7 @@ export default function DonateClient() {
                   <p className="mt-0.5 text-xs text-teal-600">{impactText}</p>
                 </div>
               ) : (
-                <div className="mb-6 rounded-xl bg-gray-50 px-4 py-3.5 text-center text-sm text-gray-400">
+                <div className="mb-6 rounded-xl bg-gray-50 px-4 py-3.5 text-center text-sm text-gray-500">
                   {t("select_amount_prompt")}
                 </div>
               )}
@@ -437,13 +437,13 @@ export default function DonateClient() {
               </div>
 
               {/* Security */}
-              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-400">
+              <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-500">
                 <Lock className="h-3.5 w-3.5" aria-hidden="true" />
                 <span>{t("ssl_badge")}</span>
               </div>
 
               {/* Tax info */}
-              <p className="mt-5 text-center text-xs text-gray-400">
+              <p className="mt-5 text-center text-xs text-gray-500">
                 {t("tax_info")}
               </p>
             </div>

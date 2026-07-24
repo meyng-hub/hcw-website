@@ -273,7 +273,7 @@ export default async function PrivacyPage({
             </Section>
 
             {/* Last updated */}
-            <div className="pt-6 text-right text-xs text-gray-400">
+            <div className="pt-6 text-right text-xs text-gray-500">
               {t("last_updated")}
             </div>
           </div>

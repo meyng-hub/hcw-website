@@ -67,7 +67,7 @@ export default async function NewsPreview() {
                 </div>
 
                 <div className="flex flex-1 flex-col p-6">
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-500 mb-3">
                     <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
                     <time dateTime={article.date}>
                       {formatDate(article.date, locale)}

@@ -167,7 +167,7 @@ export default async function ImpactPage({
             >
               {t("counters_title")}
             </h2>
-            <p className="mt-3 text-sm text-gray-400">{t("counters_note")}</p>
+            <p className="mt-3 text-sm text-gray-500">{t("counters_note")}</p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-3" role="list">

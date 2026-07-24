@@ -13,7 +13,7 @@ export default async function PartnersStrip() {
       aria-label="Partenaires"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mb-10">
+        <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-500 mb-10">
           {t("trust_title")}
         </p>
 

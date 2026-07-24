@@ -13,6 +13,7 @@ function useCountUp(target: number, duration = 2000, started: boolean) {
   useEffect(() => {
     if (!started) return;
     let start = 0;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional single reset to 0 when the observer starts the count-up; initial/SSR render keeps the final value
     setCount(0);
     const step = target / (duration / 16);
     const timer = setInterval(() => {

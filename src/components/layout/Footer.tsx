@@ -79,6 +79,7 @@ export default function Footer() {
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const [unavailable, setUnavailable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -97,6 +98,10 @@ export default function Footer() {
         body: JSON.stringify({ email, consent }),
       });
       if (!res.ok) {
+        if (res.status === 503) {
+          setUnavailable(true);
+          return;
+        }
         setError(t("footer.newsletter_error"));
         return;
       }
@@ -225,6 +230,10 @@ export default function Footer() {
               <p className="flex items-center gap-2 text-sm text-teal-400">
                 <Heart className="h-4 w-4" />
                 {t("footer.newsletter_success")}
+              </p>
+            ) : unavailable ? (
+              <p className="text-sm text-gray-400">
+                {t("footer.newsletter_unavailable")}
               </p>
             ) : (
               <form onSubmit={handleNewsletter} className="space-y-3">

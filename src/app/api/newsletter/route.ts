@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
     const apiKey = process.env.BREVO_API_KEY;
     const listId = process.env.BREVO_LIST_ID;
     if (!apiKey || !listId) {
+      // Not configured yet — signal the UI to show a "coming soon" notice.
       return NextResponse.json({ error: "unavailable" }, { status: 503 });
     }
 

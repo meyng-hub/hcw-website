@@ -9,9 +9,9 @@ export default function NewsletterForm() {
   const locale = useLocale();
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
-  const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">(
-    "idle",
-  );
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "ok" | "error" | "unavailable"
+  >("idle");
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -29,6 +29,10 @@ export default function NewsletterForm() {
         body: JSON.stringify({ email, consent }),
       });
       if (!res.ok) {
+        if (res.status === 503) {
+          setStatus("unavailable");
+          return;
+        }
         setStatus("error");
         setError(t("newsletter_error"));
         return;
@@ -46,6 +50,14 @@ export default function NewsletterForm() {
     return (
       <p className="mt-8 text-center text-sm font-medium text-teal-700">
         {t("newsletter_success")}
+      </p>
+    );
+  }
+
+  if (status === "unavailable") {
+    return (
+      <p className="mt-8 text-center text-sm text-gray-500">
+        {t("newsletter_unavailable")}
       </p>
     );
   }

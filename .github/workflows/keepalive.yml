@@ -1,0 +1,49 @@
+name: Keepalive
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # every Monday 03:00 UTC — weekly, well inside 60 days
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check KEEPALIVE_PAT is configured
+        id: pat
+        env:
+          PAT: ${{ secrets.KEEPALIVE_PAT }}
+        run: |
+          if [ -z "$PAT" ]; then
+            echo "present=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::KEEPALIVE_PAT secret not set — keepalive is inert. Add it to activate."
+          else
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.pat.outputs.present == 'true'
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.KEEPALIVE_PAT }}
+          fetch-depth: 0
+
+      - name: Empty keepalive commit if repo idle >= 50 days
+        if: steps.pat.outputs.present == 'true'
+        run: |
+          last=$(git log -1 --format=%ct)
+          now=$(date +%s)
+          days=$(( (now - last) / 86400 ))
+          echo "Days since last commit: $days"
+          if [ "$days" -ge 50 ]; then
+            git config user.name  "meyng-keepalive[bot]"
+            git config user.email "meyng-keepalive[bot]@users.noreply.github.com"
+            git commit --allow-empty -m "chore(ci): keepalive — reset scheduled-workflow 60-day timer [skip ci]"
+            git push
+            echo "Keepalive commit pushed — 60-day timer reset."
+          else
+            echo "Repo active within 50 days; no keepalive commit needed."
+          fi

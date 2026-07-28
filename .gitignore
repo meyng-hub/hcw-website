@@ -45,3 +45,6 @@ next-env.d.ts
 /docs/funding/
 
 .vercel
+
+# Claude Code concurrency-guard heartbeats (audit 2026-07-28) — never commit these
+.claude/.sessions/

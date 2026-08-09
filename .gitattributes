@@ -1,0 +1,39 @@
+# Binary assets must never receive end-of-line conversion.
+#
+# core.autocrlf is `true` on this machine. Without this file git decides
+# text-vs-binary by sniffing for a NUL byte in the first 8000 bytes, so a PDF
+# with an ASCII header and ASCII85-encoded streams is classified as TEXT and
+# every 0x0A is rewritten to 0x0D0A on checkout -- shifting every byte offset
+# in a format whose xref table IS a table of byte offsets.
+#
+# Measured 2026-08-09 in meyng-hub/sangoai, where this silently corrupted three
+# PDFs including both halves of an EU funding submission. Git history stayed
+# clean; the WINDOWS WORKING COPY was the broken one -- i.e. the copy a human
+# opens and attaches. Files that happened to contain an early NUL survived, so
+# whether an artifact was damaged depended purely on its byte layout.
+#
+# Deliberately NOT setting `* text=auto`: that would renormalize tracked text
+# files wholesale. This declares the binary classes only.
+
+*.pdf   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.webp  binary
+*.ico   binary
+*.svgz  binary
+*.mp3   binary
+*.m4a   binary
+*.ogg   binary
+*.wav   binary
+*.flac  binary
+*.zip   binary
+*.gz    binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.xlsx  binary
+*.docx  binary
+*.pptx  binary

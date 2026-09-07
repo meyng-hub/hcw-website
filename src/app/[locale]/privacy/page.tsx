@@ -279,6 +279,9 @@ export default async function PrivacyPage({
               <p>
                 {t(isAnalyticsConfigured ? "cookies_p2" : "cookies_no_ga_p2")}
               </p>
+              {/* True in both states: the language cookie is set regardless of
+                  whether the Google tag is configured. */}
+              <p>{t("cookies_functional")}</p>
               {isAnalyticsConfigured && (
                 <div className="mt-4">
                   <ConsentPreferences />

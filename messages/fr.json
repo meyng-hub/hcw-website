@@ -604,7 +604,8 @@
     "changes_body": "HCW se réserve le droit de modifier la présente politique de confidentialité à tout moment. Les modifications entrent en vigueur dès leur publication sur cette page. Nous vous encourageons à consulter régulièrement cette page.",
     "last_updated": "Dernière mise à jour : septembre 2026",
     "cookies_no_ga_p1": "Ce site utilise une solution de mesure d'audience sans cookie : elle ne dépose aucun identifiant sur votre appareil et ne collecte aucune donnée personnelle identifiante. Aucun bandeau de consentement n'est donc nécessaire.",
-    "cookies_no_ga_p2": "Aucun cookie de traçage publicitaire ou de partage sur les réseaux sociaux n'est utilisé sur ce site."
+    "cookies_no_ga_p2": "Aucun cookie de traçage publicitaire ou de partage sur les réseaux sociaux n'est utilisé sur ce site.",
+    "cookies_functional": "Un seul cookie strictement fonctionnel est utilisé : NEXT_LOCALE, qui mémorise la langue que vous avez choisie. C'est un cookie de session, effacé à la fermeture de votre navigateur ; il ne sert ni à la mesure d'audience ni à la publicité et ne permet pas de vous identifier. À ce titre, il est exempté de consentement."
   },
   "consent": {
     "aria_label": "Gestion des cookies",

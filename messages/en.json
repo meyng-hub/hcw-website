@@ -597,11 +597,21 @@
     "rights_restriction_label": "Right to restriction",
     "rights_restriction_text": "— restrict processing in certain cases",
     "rights_contact": "To exercise these rights, contact us at <emailLink>{email}</emailLink>. You may also lodge a complaint with the <cnil>CNIL</cnil> (French data protection authority).",
-    "cookies_p1": "This website uses Plausible Analytics, a privacy-friendly audience analytics solution with no cookies, no collection of personally identifiable data, and no third-party data transfers. No cookie consent banner is required.",
-    "cookies_p2": "No advertising tracking cookies or social media sharing cookies are used on this website.",
+    "cookies_p1": "This website uses two audience measurement tools. The first is cookie-free: it stores no identifier on your device and collects no personally identifiable data. The second is Google Analytics 4, provided by Google Ireland Limited, which sets cookies and lets us understand which pages lead to a donation, a volunteer application or an enquiry — including to measure our Google Ad Grants campaigns.",
+    "cookies_p2": "Google Analytics 4 is only activated with your explicit consent. Until you accept, no analytics or advertising cookie is set and no data is tied to a persistent identifier. Declining is exactly as easy as accepting, and you can change your mind at any time using the button below. No social media sharing cookies are used.",
     "hosting_p1": "This website is hosted by Vercel Inc. (United States). Vercel operates under Standard Contractual Clauses (SCCs) approved by the European Commission, ensuring an adequate level of protection for data transfers outside the European Economic Area.",
     "hosting_p2": "Your data is never sold, rented or transferred to third parties.",
     "changes_body": "HCW reserves the right to modify this privacy policy at any time. Changes take effect upon publication on this page. We encourage you to check this page regularly.",
-    "last_updated": "Last updated: May 2026"
+    "last_updated": "Last updated: September 2026",
+    "cookies_no_ga_p1": "This website uses a cookie-free audience measurement tool: it stores no identifier on your device and collects no personally identifiable data. No consent banner is therefore required.",
+    "cookies_no_ga_p2": "No advertising tracking cookies or social media sharing cookies are used on this website."
+  },
+  "consent": {
+    "aria_label": "Cookie preferences",
+    "message": "We use analytics cookies to understand what brings in donations, volunteers and enquiries. They are only set with your agreement.",
+    "learn_more": "Learn more",
+    "accept": "Accept",
+    "refuse": "Decline",
+    "manage": "Manage my cookies"
   }
 }

@@ -6,10 +6,14 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { routing } from "@/i18n/routing";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
+import ConsentMode from "@/components/analytics/ConsentMode";
+import ConsentBanner from "@/components/analytics/ConsentBanner";
+import { GA_ID, isAnalyticsConfigured } from "@/lib/analytics";
 import "../globals.css";
 
 const inter = Inter({
@@ -73,6 +77,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="bg-cream-50 font-sans text-charcoal-900 antialiased">
+        <ConsentMode />
         <OrganizationJsonLd locale={locale} />
         <NextIntlClientProvider messages={messages}>
           <a
@@ -84,9 +89,11 @@ export default async function LocaleLayout({
           <Navbar />
           <main id="main-content">{children}</main>
           <Footer />
+          <ConsentBanner />
         </NextIntlClientProvider>
         <Analytics />
         <SpeedInsights />
+        {isAnalyticsConfigured && <GoogleAnalytics gaId={GA_ID} />}
       </body>
     </html>
   );

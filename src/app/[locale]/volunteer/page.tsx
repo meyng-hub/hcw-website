@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { MessageCircle, Globe, Heart, Laptop } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 const WHATSAPP_URL =
   "https://wa.me/33661935017?text=Je%20souhaite%20devenir%20b%C3%A9n%C3%A9vole%20pour%20HCW";
@@ -96,6 +97,7 @@ export default function VolunteerPage() {
         throw new Error(json.error ?? "Unknown error");
       }
       setSubmitted(true);
+      trackEvent("volunteer_form_submit");
     } catch (err: unknown) {
       setServerError(err instanceof Error ? err.message : t("form_error"));
     }

@@ -597,11 +597,21 @@
     "rights_restriction_label": "Droit à la limitation",
     "rights_restriction_text": "— limiter le traitement dans certains cas",
     "rights_contact": "Pour exercer ces droits, contactez-nous à <emailLink>{email}</emailLink>. Vous pouvez également introduire une réclamation auprès de la <cnil>CNIL</cnil>.",
-    "cookies_p1": "Ce site utilise Plausible Analytics, une solution d'analyse d'audience respectueuse de la vie privée, sans cookies, sans collecte de données personnelles identifiables et sans transfert de données vers des tiers. Aucun bandeau de consentement aux cookies n'est requis.",
-    "cookies_p2": "Aucun cookie de traçage publicitaire ou de partage sur les réseaux sociaux n'est utilisé sur ce site.",
+    "cookies_p1": "Ce site utilise deux outils de mesure d'audience. Le premier fonctionne sans cookie : il ne dépose aucun identifiant sur votre appareil et ne collecte aucune donnée personnelle identifiante. Le second est Google Analytics 4, fourni par Google Ireland Limited, qui dépose des cookies et nous permet de comprendre quelles pages mènent à un don, à une candidature de bénévole ou à une prise de contact — y compris pour mesurer nos campagnes Google Ad Grants.",
+    "cookies_p2": "Google Analytics 4 n'est activé qu'avec votre consentement explicite. Tant que vous n'avez pas accepté, aucun cookie de mesure d'audience ou de publicité n'est déposé et aucune donnée n'est associée à un identifiant persistant. Refuser est aussi simple qu'accepter, et vous pouvez revenir sur votre choix à tout moment avec le bouton ci-dessous. Aucun cookie de partage sur les réseaux sociaux n'est utilisé.",
     "hosting_p1": "Le site est hébergé par Vercel Inc. (États-Unis). Vercel est soumis à des Clauses Contractuelles Types (CCT) approuvées par la Commission européenne, garantissant un niveau de protection adéquat pour les transferts de données hors de l'Espace Économique Européen.",
     "hosting_p2": "Vos données ne sont en aucun cas vendues, louées ou cédées à des tiers.",
     "changes_body": "HCW se réserve le droit de modifier la présente politique de confidentialité à tout moment. Les modifications entrent en vigueur dès leur publication sur cette page. Nous vous encourageons à consulter régulièrement cette page.",
-    "last_updated": "Dernière mise à jour : mai 2026"
+    "last_updated": "Dernière mise à jour : septembre 2026",
+    "cookies_no_ga_p1": "Ce site utilise une solution de mesure d'audience sans cookie : elle ne dépose aucun identifiant sur votre appareil et ne collecte aucune donnée personnelle identifiante. Aucun bandeau de consentement n'est donc nécessaire.",
+    "cookies_no_ga_p2": "Aucun cookie de traçage publicitaire ou de partage sur les réseaux sociaux n'est utilisé sur ce site."
+  },
+  "consent": {
+    "aria_label": "Gestion des cookies",
+    "message": "Nous utilisons des cookies de mesure d'audience pour comprendre ce qui amène des dons, des bénévoles et des prises de contact. Ils ne sont déposés qu'avec votre accord.",
+    "learn_more": "En savoir plus",
+    "accept": "Accepter",
+    "refuse": "Refuser",
+    "manage": "Gérer mes cookies"
   }
 }

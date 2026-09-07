@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { SITE_NAME, CONTACT } from "@/lib/constants";
+import ConsentPreferences from "@/components/analytics/ConsentPreferences";
+import { isAnalyticsConfigured } from "@/lib/analytics";
 
 export async function generateMetadata({
   params,
@@ -130,7 +132,10 @@ export default async function PrivacyPage({
       </div>
 
       {/* ── Content ── */}
-      <article aria-label={t("article_aria_label")} className="bg-cream-50 py-16">
+      <article
+        aria-label={t("article_aria_label")}
+        className="bg-cream-50 py-16"
+      >
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-100">
             {/* 1. Data controller */}
@@ -141,7 +146,10 @@ export default async function PrivacyPage({
                     term: t("controller_org_label"),
                     detail: t("controller_org"),
                   },
-                  { term: t("controller_address_label"), detail: CONTACT.france },
+                  {
+                    term: t("controller_address_label"),
+                    detail: CONTACT.france,
+                  },
                   {
                     term: t("controller_email_label"),
                     detail: (
@@ -180,14 +188,19 @@ export default async function PrivacyPage({
                   </thead>
                   <tbody>
                     {DATA_ROWS.map((row, i) => (
-                      <tr key={row} className={i % 2 === 1 ? "bg-gray-50" : undefined}>
+                      <tr
+                        key={row}
+                        className={i % 2 === 1 ? "bg-gray-50" : undefined}
+                      >
                         {DATA_COLS.map((col) => (
                           <td
                             key={col}
                             className="border border-gray-200 px-3 py-2"
                           >
                             {t(
-                              `data_row_${row}_${col}` as Parameters<typeof t>[0],
+                              `data_row_${row}_${col}` as Parameters<
+                                typeof t
+                              >[0],
                             )}
                           </td>
                         ))}
@@ -257,8 +270,20 @@ export default async function PrivacyPage({
 
             {/* 6. Cookies */}
             <Section id="section-6" title={`6. ${t("section_6_title")}`}>
-              <p>{t("cookies_p1")}</p>
-              <p>{t("cookies_p2")}</p>
+              {/* The wording must match reality: with no GA measurement ID
+                  configured, the site sets no cookies at all and claiming
+                  otherwise would be as wrong as the reverse. */}
+              <p>
+                {t(isAnalyticsConfigured ? "cookies_p1" : "cookies_no_ga_p1")}
+              </p>
+              <p>
+                {t(isAnalyticsConfigured ? "cookies_p2" : "cookies_no_ga_p2")}
+              </p>
+              {isAnalyticsConfigured && (
+                <div className="mt-4">
+                  <ConsentPreferences />
+                </div>
+              )}
             </Section>
 
             {/* 7. Hosting */}

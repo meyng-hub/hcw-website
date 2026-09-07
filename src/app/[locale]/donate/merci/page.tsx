@@ -3,13 +3,25 @@
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import { CheckCircle2, Share2, Home, ArrowRight } from "lucide-react";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { SOCIAL } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
 export default function MerciPage() {
   const t = useTranslations("donate");
   const tCommon = useTranslations("common");
   const locale = useLocale();
+  // Donation conversion. Fired once per mount; the ref guards against React
+  // StrictMode's double-invoke in development.
+  const conversionSent = useRef(false);
+  useEffect(() => {
+    if (conversionSent.current) return;
+    conversionSent.current = true;
+    // No `value`: Stripe's success_url carries no session id, so the amount is
+    // genuinely unknown here. Reporting a made-up value would corrupt the
+    // conversion data — see the follow-up note in the session summary.
+    trackEvent("donation_complete", { locale });
+  }, [locale]);
 
   const handleShare = useCallback(async () => {
     const shareData: ShareData = {
@@ -66,7 +78,9 @@ export default function MerciPage() {
           <p className="mt-5 text-lg text-teal-100">{t("success_message")}</p>
 
           {/* Receipt note */}
-          <p className="mt-3 text-sm text-teal-200">{t("merci_receipt_note")}</p>
+          <p className="mt-3 text-sm text-teal-200">
+            {t("merci_receipt_note")}
+          </p>
         </div>
       </section>
 
@@ -78,7 +92,9 @@ export default function MerciPage() {
             <p className="font-serif text-lg font-semibold text-charcoal-900">
               {t("merci_impact")}
             </p>
-            <p className="mt-2 text-sm text-gray-500">{t("merci_impact_sub")}</p>
+            <p className="mt-2 text-sm text-gray-500">
+              {t("merci_impact_sub")}
+            </p>
           </div>
 
           {/* Share */}

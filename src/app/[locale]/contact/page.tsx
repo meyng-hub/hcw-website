@@ -16,6 +16,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { CONTACT, SOCIAL } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 
 /* ── Zod schema ── */
 const contactSchema = z.object({
@@ -146,6 +147,7 @@ export default function ContactPage() {
         throw new Error(json.error ?? "Unknown error");
       }
       setStatus("success");
+      trackEvent("contact_form_submit");
       reset();
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : String(error);

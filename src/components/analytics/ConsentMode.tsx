@@ -3,6 +3,9 @@ import { CONSENT_STORAGE_KEY } from "@/lib/analytics";
 /**
  * Google Consent Mode v2 defaults.
  *
+ * Rendered only when a GA measurement ID is configured: with the tag off there
+ * is nothing to consent to, so the site ships no analytics code at all.
+ *
  * Rendered as a plain inline <script> rather than next/script on purpose: it has
  * to execute in document order, BEFORE the `gtag('config', ...)` call that
  * <GoogleAnalytics> injects with the afterInteractive strategy. If the defaults

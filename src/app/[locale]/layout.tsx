@@ -77,7 +77,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="bg-cream-50 font-sans text-charcoal-900 antialiased">
-        <ConsentMode />
+        {isAnalyticsConfigured && <ConsentMode />}
         <OrganizationJsonLd locale={locale} />
         <NextIntlClientProvider messages={messages}>
           <a
